@@ -1,4 +1,4 @@
-import { BallpitHero } from "@/components/ui/interactive-hero-backgrounds";
+import { VideoHero } from "@/components/VideoHero";
 import { IntegrationsSection } from "@/components/IntegrationsSection";
 import { VoiceAgentSection } from "@/components/VoiceAgentSection";
 import { ProductsSection } from "@/components/ProductsSection";
@@ -10,7 +10,7 @@ import { CTA } from "@/components/CTA";
 export default function Home() {
   return (
     <>
-      <BallpitHero />
+      <VideoHero />
       <IntegrationsSection />
       <VoiceAgentSection />
       <ProductsSection />

@@ -57,3 +57,11 @@ next-env.d.ts
 /*.jpg
 /*.jpeg
 
+# local dev/build logs
+/dev-server.log
+/npm-install.log
+
+# raw hero source clips — only the compressed hero-*.mp4 ship
+/public/video/*
+!/public/video/hero-*.mp4
+
