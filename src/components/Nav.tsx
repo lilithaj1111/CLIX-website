@@ -41,6 +41,10 @@ const ICONS: Record<string, LucideIcon> = {
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  // The home page floats the nav over the dark video hero, so the dark wordmark
+  // needs to be painted light there. Initialise from the path to avoid a
+  // first-paint flash of the invisible dark logo.
+  const [logoLight, setLogoLight] = useState(pathname === "/");
   const [open, setOpen] = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
   const [industriesOpen, setIndustriesOpen] = useState(false);
@@ -53,6 +57,24 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Keep the logo light while the dark hero sits behind the nav (home only),
+  // and swap to the dark mark once the light page scrolls up under it. The
+  // hero is clamp(640px, 100svh, 960px) tall; flip ~130px before its bottom so
+  // the change lands as the light fade passes under the nav.
+  useEffect(() => {
+    if (pathname !== "/") {
+      setLogoLight(false);
+      return;
+    }
+    const onScroll = () => {
+      const heroH = Math.min(Math.max(window.innerHeight, 640), 960);
+      setLogoLight(window.scrollY < heroH - 130);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
 
   useEffect(() => {
     setOpen(false);
@@ -119,9 +141,14 @@ export function Nav() {
           scrolled ? "pt-3 md:pt-4" : "pt-5 md:pt-6"
         }`}
       >
-        {/* Left — logo */}
+        {/* Left — logo. Painted light over the dark hero, dark otherwise. */}
         <div className="pointer-events-auto">
-          <Logo size={38} />
+          <Logo
+            size={38}
+            className={`transition-colors duration-300 ${
+              logoLight ? "text-on-dark" : "text-foreground"
+            }`}
+          />
         </div>
 
         {/* Center — floating capsule with nav links + industries dropdown */}
