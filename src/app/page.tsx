@@ -1,4 +1,4 @@
-import { VideoHero } from "@/components/VideoHero";
+import { ParticleHero } from "@/components/ParticleHero";
 import { IntegrationsSection } from "@/components/IntegrationsSection";
 import { VoiceAgentSection } from "@/components/VoiceAgentSection";
 import { ProductsSection } from "@/components/ProductsSection";
@@ -10,14 +10,18 @@ import { CTA } from "@/components/CTA";
 export default function Home() {
   return (
     <>
-      <VideoHero />
-      <IntegrationsSection />
-      <VoiceAgentSection />
-      <ProductsSection />
-      <Testimonial />
-      <LecturesSection />
-      <Process />
-      <CTA />
+      <ParticleHero />
+      {/* Opaque content that slides UP and OVER the pinned particle hero
+          (sharp top edge). bg-background keeps it solid so it covers the hero. */}
+      <div className="relative z-10 bg-background">
+        <IntegrationsSection />
+        <VoiceAgentSection />
+        <ProductsSection />
+        <Testimonial />
+        <LecturesSection />
+        <Process />
+        <CTA />
+      </div>
     </>
   );
 }

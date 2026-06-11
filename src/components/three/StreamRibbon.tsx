@@ -186,10 +186,15 @@ function RibbonLine({
 
   useFrame((_, dt) => {
     tRef.current += dt * (reduced ? 0 : 0.18);
-    if (tRef.current > 1) tRef.current -= 1;
-    const p = cCurve.getPointAt(tRef.current);
-    if (particleRef.current) {
-      particleRef.current.position.copy(p);
+    if (tRef.current >= 1) tRef.current -= 1;
+    if (!particleRef.current) return;
+    // getPointAt can throw at the arc-length boundaries; clamp + guard so it
+    // never throws every frame (was a per-frame uncaught exception + drain).
+    try {
+      const p = cCurve.getPointAt(Math.min(0.999, Math.max(0.001, tRef.current)));
+      if (p) particleRef.current.position.copy(p);
+    } catch {
+      /* skip this frame */
     }
   });
 

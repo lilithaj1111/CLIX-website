@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
 import { CinematicHeading } from "./CinematicHeading";
 import { LogoMark } from "./LogoMark";
@@ -108,14 +108,18 @@ function CollageStage() {
     [],
   );
 
+  // Run the 12 infinite float loops only while the collage is near the viewport.
+  const stageRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(stageRef, { margin: "200px 0px 200px 0px" });
+
   return (
-    <div className="relative w-full md:min-h-[760px] lg:min-h-[820px]">
+    <div ref={stageRef} className="relative w-full md:min-h-[760px] lg:min-h-[820px]">
       {/* Scattered tool cards — absolute-positioned in stage coordinates so
           they layer behind the central focal block. Hidden on the smallest
           viewports where they'd crash into the text. */}
       <div aria-hidden className="hidden md:block absolute inset-0">
         {placedTools.map(({ tool, slot }, i) => (
-          <ToolCard key={tool.id} tool={tool} slot={slot} delay={0.05 + i * 0.04} />
+          <ToolCard key={tool.id} tool={tool} slot={slot} delay={0.05 + i * 0.04} play={inView} />
         ))}
       </div>
 
@@ -214,9 +218,11 @@ type ToolCardProps = {
   slot: Slot;
   /** Entrance delay (applied to the scroll-in motion). */
   delay: number;
+  /** Run the idle float loop only while the section is near the viewport. */
+  play: boolean;
 };
 
-function ToolCard({ tool, slot, delay }: ToolCardProps) {
+function ToolCard({ tool, slot, delay, play }: ToolCardProps) {
   const reduced = useReducedMotion();
   const { brand, name } = tool;
 
@@ -259,7 +265,7 @@ function ToolCard({ tool, slot, delay }: ToolCardProps) {
           rather than marching in unison. */}
       <motion.div
         animate={
-          reduced
+          reduced || !play
             ? undefined
             : {
                 y: [0, -slot.amp, 0, slot.amp * 0.6, 0],
@@ -287,8 +293,7 @@ function ToolCard({ tool, slot, delay }: ToolCardProps) {
           aria-hidden
           className="absolute -inset-4 rounded-[24px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
           style={{
-            background: `radial-gradient(circle, ${brand}50 0%, ${brand}28 35%, transparent 70%)`,
-            filter: "blur(20px)",
+            background: `radial-gradient(circle, ${brand}50 0%, ${brand}28 38%, transparent 72%)`,
           }}
         />
       </motion.div>
@@ -354,9 +359,9 @@ function PolaroidCard({ tool }: { tool: Tool }) {
             {/* Enhanced brand halo behind icon */}
             <span
               aria-hidden
-              className="absolute inset-[-28%] rounded-full blur-lg pointer-events-none"
+              className="absolute inset-[-28%] rounded-full pointer-events-none"
               style={{
-                background: `radial-gradient(circle, ${brand}60 0%, transparent 65%)`,
+                background: `radial-gradient(circle, ${brand}55 0%, transparent 70%)`,
                 opacity: 0.75,
               }}
             />

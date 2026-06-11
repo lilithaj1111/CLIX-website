@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { ChatWidget } from "@/components/ChatWidget";
 import { AccessibilityWidget } from "@/components/AccessibilityWidget";
+import SmoothScroll from "@/components/ui/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-sans-body",
@@ -92,14 +93,16 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Nav />
-        <main id="main" tabIndex={-1} className="flex-1 relative z-[2] page-enter">
-          {children}
-        </main>
-        <Footer />
-        <CookieConsent />
-        <ChatWidget />
-        <AccessibilityWidget />
+        <SmoothScroll>
+          <Nav />
+          <main id="main" tabIndex={-1} className="flex-1 relative z-[2] page-enter">
+            {children}
+          </main>
+          <Footer />
+          <CookieConsent />
+          <ChatWidget />
+          <AccessibilityWidget />
+        </SmoothScroll>
       </body>
     </html>
   );
