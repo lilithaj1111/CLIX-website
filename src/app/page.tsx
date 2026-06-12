@@ -1,4 +1,4 @@
-// Home page — hero followed by the marketing sections.
+// Home page — hero followed by the marketing sections. (redeploy trigger)
 import { ParticleHero } from "@/components/ParticleHero";
 import { IntegrationsSection } from "@/components/IntegrationsSection";
 import { VoiceAgentSection } from "@/components/VoiceAgentSection";
