@@ -6,16 +6,13 @@ import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 /**
- * ParticleHero — the home hero. Shape-morphing RGB particle mark
- * (expand-in intro → logo → circle → square → triangle → …).
- * Sticky-pinned so the page content slides up and over it on scroll.
+ * ParticleHero — the home hero (promoted from the /lab experiment). Hosts the
+ * shape-morphing particle mark (expand-in intro → logo → circle → square →
+ * triangle → …). Sticky-pinned so the page content slides up and over it.
  *
  * Gemini-style layout: the headline sits DEAD CENTRE inside the particle field
  * (the hollow shapes leave the middle open), with one centred CTA below it.
- * The headline reveals WORD BY WORD on load (fade-up + blur clear), then the CTA.
- *
- * Promoted from the /lab experiment (ParticleHeroLab); the lab components stay
- * as the iteration sandbox.
+ * The headline reveals WORD BY WORD on load (zoom-in), then the CTA.
  */
 const ParticleLogo = dynamic(
   () => import("./three/ParticleLogo").then((m) => m.ParticleLogo),
@@ -70,7 +67,8 @@ export function ParticleHero() {
           variants={lineV}
           initial="hidden"
           animate="show"
-          className="flex flex-wrap items-baseline justify-center gap-x-[0.28em] gap-y-1 text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-[-0.035em] text-on-dark [text-shadow:none]"
+          className="flex flex-wrap items-baseline justify-center gap-x-[0.28em] gap-y-1 text-[clamp(2.5rem,6vw,5rem)] font-black leading-[1.05] tracking-[-0.035em] text-on-dark"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.65), 0 10px 38px rgba(0,0,0,0.5)" }}
         >
           {WORDS.map((w, i) => (
             <motion.span

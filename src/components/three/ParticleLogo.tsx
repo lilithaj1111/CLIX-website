@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 /* ────────────────────────────────────────────────────────────────────────────
- * ParticleLogo — the home-hero particle field (promoted from /lab).
+ * ParticleLogo — the home hero particle field (promoted from the /lab experiment).
  *
  *  - Intro: a small, compressed Clix mark at the centre EXPANDS to full size.
  *  - Continuous SLOW morph cycle through HOLLOW 3D tube shapes:
@@ -68,6 +68,10 @@ const CYCLE = [
   new THREE.Color("#A24BFF"), new THREE.Color("#FF3BD0"),
 ];
 const COLOR_EVERY = 10;
+// The shapes cycle hues, but the Clix LOGO (scroll-formed) settles to brand blue.
+const LOGO_BLUE = new THREE.Color("#3B7BF5");
+// Intro colour beat: the forming logo goes blue → yellow → then the random cycle.
+const INTRO_YELLOW = new THREE.Color("#FFC400");
 
 export function ParticleLogo({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -77,9 +81,10 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     if (!canvas) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
-    const N = isMobile ? 20000 : 44000;
-    const WORLD = isMobile ? 17 : 28;
-    const S = isMobile ? 0.65 : 1;
+    const MIN_DT = isMobile ? 1 / 32 : 0; // cap mobile redraw to ~32fps (halves GPU fill on capable devices)
+    const N = isMobile ? 7000 : 44000;    // lighter particle count on mobile
+    const WORLD = isMobile ? 11 : 28;      // smaller mark on mobile (fit naturally on the screen)
+    const S = isMobile ? 0.40 : 1;         // smaller shapes on mobile
 
     const g1 = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
 
@@ -131,8 +136,8 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       const t = new THREE.Texture(cv); t.needsUpdate = true; return t;
     };
 
-    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.5);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 0.8 : 1.5); // lower DPR = big mobile fill-rate win
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, powerPreference: "high-performance" }); // no MSAA on mobile
     renderer.setPixelRatio(pr);
     const size = () => { const r = canvas.getBoundingClientRect(); return { w: r.width || window.innerWidth, h: r.height || window.innerHeight }; };
     let { w, h } = size(); renderer.setSize(w, h, false);
@@ -140,14 +145,14 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     const camera = new THREE.PerspectiveCamera(55, w / h, 0.1, 200); camera.position.set(0, 0, 26);
 
     const uniforms = {
-      uTime: { value: 0 }, uScale: { value: h * 0.5 }, uSize: { value: 0.27 * pr * (isMobile ? 1.35 : 1) },
+      uTime: { value: 0 }, uScale: { value: h * 0.5 }, uSize: { value: 0.27 * pr * (isMobile ? 0.72 : 1) },
       uMorph: { value: 0 }, uShapeA: { value: 0 }, uShapeB: { value: 0 }, uFlowAmp: { value: 0.18 },
-      uScrollForm: { value: 0 }, uOpacity: { value: 1.0 }, uBright: { value: 2.6 }, uMap: { value: sprite() }, uColor: { value: CYCLE[0].clone() },
+      uScrollForm: { value: 0 }, uOpacity: { value: 1.0 }, uBright: { value: 2.4 }, uMap: { value: sprite() }, uColor: { value: LOGO_BLUE.clone() },
     };
     const mat = new THREE.ShaderMaterial({ uniforms, vertexShader: VERT, fragmentShader: FRAG, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
 
     const dustGeo = new THREE.BufferGeometry();
-    { const n = isMobile ? 1100 : 2200, p = new Float32Array(n * 3); for (let i = 0; i < n; i++) { p[i * 3] = (Math.random() - .5) * 130; p[i * 3 + 1] = (Math.random() - .5) * 90; p[i * 3 + 2] = (Math.random() - .5) * 130; } dustGeo.setAttribute("position", new THREE.BufferAttribute(p, 3)); }
+    { const n = isMobile ? 500 : 2200, p = new Float32Array(n * 3); for (let i = 0; i < n; i++) { p[i * 3] = (Math.random() - .5) * 130; p[i * 3 + 1] = (Math.random() - .5) * 90; p[i * 3 + 2] = (Math.random() - .5) * 130; } dustGeo.setAttribute("position", new THREE.BufferAttribute(p, 3)); }
     const dustMat = new THREE.PointsMaterial({ size: 0.07, color: 0x222a40, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false });
     scene.add(new THREE.Points(dustGeo, dustMat));
 
@@ -210,14 +215,15 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     let geo: THREE.BufferGeometry | null = null, points: THREE.Points | null = null;
 
     let raf = 0, lastT = performance.now() / 1000, lastInteract = -100;
-    let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0;   // 0 reveal, 2 cycle+loop
+    let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0;   // 0 reveal, 2 cycle+loop
     let dragging = false, dpx = 0, dpy = 0, rotY = 0, rotX = 0, tRotY = 0, tRotX = 0, velY = 0, velX = 0;
     const REVEAL = 1.5, CLOCK_STEP = 10.0, CLOCK_A = 1.0, STAGE = 22, HOLD = 6.0, CLOCK_CRAWL = 1.0;
     const INTRO_DELAY = 2.7; // hold the mark hidden until the hero text + CTA finish rendering (see ParticleHero timing)
     const CLOCK_MAXV = 0.22; // rad/s — cap so resuming after a drag CRAWLS back, never snaps
+    const LIFT_WORLD = 13.5; // ≈ half the camera's visible world-height: raise the logo per viewport scrolled so it stays centred above the sliding content
     const CLOCKS = [[-0.5, 0.866], [1, 0], [0.5, -0.866], [-0.866, -0.5], [0, 0]]; // 11,3,5,8,centre (dx,dy)
     const ss = (p: number) => { p = Math.min(1, Math.max(0, p)); return p * p * (3 - 2 * p); };
-    const colA = new THREE.Color(), colB = new THREE.Color();
+    const colA = new THREE.Color(), colB = new THREE.Color(), colC = new THREE.Color(), colD = new THREE.Color();
 
     const onDown = (e: PointerEvent) => { dragging = true; dpx = e.clientX; dpy = e.clientY; tRotY = rotY; tRotX = rotX; velY = velX = 0; lastInteract = performance.now() / 1000; canvas.style.cursor = "grabbing"; };
     const onUp = () => { dragging = false; lastInteract = performance.now() / 1000; canvas.style.cursor = "grab"; };
@@ -226,7 +232,9 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
 
     function frame(now: number) {
       raf = requestAnimationFrame(frame);
-      now /= 1000; const t = now, dt = Math.min(0.05, t - lastT); lastT = t;
+      now /= 1000;
+      if (now - lastT < MIN_DT) return;                 // ~32fps cap on mobile (MIN_DT = 0 on desktop)
+      const t = now, dt = Math.min(0.05, t - lastT); lastT = t;
       if (window.scrollY > window.innerHeight * 1.05) return;
 
       // scroll down → Clix logo
@@ -244,6 +252,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
         return;
       }
       if (points && !points.visible) points.visible = true;
+      introColT += dt; // drives the blue → yellow → cycle intro colour beat
 
       if (introStage === 0) {
         // reveal: super-compressed dot → full logo, held CENTRED
@@ -284,17 +293,36 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
           rotX += Math.max(-cap, Math.min(cap, dX));
           velY *= 0.9; velX *= 0.9;
         }
+        // scroll down → FORCE the mark to face front (rotation → 0) so the Clix logo
+        // reads clearly, overriding any drag/clock tilt as the logo forms.
+        const face = scrollForm * scrollForm;
+        rotY += (0 - rotY) * face * 0.25;
+        rotX += (0 - rotX) * face * 0.25;
       }
       uniforms.uTime.value = t;
 
-      // one colour for the whole field, changing every COLOR_EVERY seconds (hold, then crossfade)
+      // intro colour beat: blue → yellow, then hand off to the random hue cycle
+      colC.copy(LOGO_BLUE).lerp(INTRO_YELLOW, ss((introColT - 1.6) / 0.7)); // blue, then yellow by ~2.3s
+      // random hue cycle (hold, then crossfade)
       const ci = Math.floor(t / COLOR_EVERY), cf = t / COLOR_EVERY - ci;
       colA.copy(CYCLE[ci % CYCLE.length]); colB.copy(CYCLE[(ci + 1) % CYCLE.length]);
-      (uniforms.uColor.value as THREE.Color).copy(colA).lerp(colB, ss((cf - 0.8) / 0.2));
+      colD.copy(colA).lerp(colB, ss((cf - 0.8) / 0.2));
+      // hand off intro → cycle after the yellow beat, then bias to brand blue as the logo forms
+      const handoff = ss((introColT - 3.2) / 1.0);
+      (uniforms.uColor.value as THREE.Color).copy(colC).lerp(colD, handoff).lerp(LOGO_BLUE, scrollForm);
+      uniforms.uBright.value = 2.4 - 1.0 * scrollForm; // ease brightness down so the logo blue stays saturated
 
       if (points) {
         points.rotation.y = rotY; points.rotation.x = rotX;
-        points.position.set(Math.sin(t * 0.16) * 0.6, Math.sin(t * 0.23) * 0.7, 0); // floating
+        // Float gently while idle, then settle + RISE as the logo forms so it stays
+        // centred in the strip still visible above the sliding content.
+        const idle = 1 - scrollForm;
+        const sf = Math.min(1, window.scrollY / (h || window.innerHeight));
+        points.position.set(
+          Math.sin(t * 0.16) * 0.6 * idle,
+          Math.sin(t * 0.23) * 0.7 * idle + sf * LIFT_WORLD,
+          0,
+        );
       }
       renderer.render(scene, camera);
     }
