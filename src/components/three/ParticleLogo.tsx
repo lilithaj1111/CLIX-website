@@ -44,8 +44,8 @@ const VERT = `
     vRad = clamp(length(base.xy) / uRadNorm, 0.0, 1.0); // 0 centre → 1 edge (drives the colour crawl)
     // structural brightness: the outer rim / corners hit FULL brightness, fading
     // toward the centre. (radial gradient survives additive blending; random doesn't.)
-    float edge = mix(0.34, 1.0, smoothstep(0.42, 0.80, vRad));
-    edge = mix(edge, 0.9, uScrollForm);                 // logo stays ~uniform & readable on scroll
+    float edge = mix(0.14, 1.0, smoothstep(0.48, 0.82, vRad));
+    edge = mix(edge, 1.0, uScrollForm);                 // logo goes fully uniform & bright (readable) on scroll
     vBright = aBright * edge;
     float ft = uTime * 0.35;
     vec3 flow = vec3(
@@ -84,17 +84,53 @@ const FRAG = `
   }
 `;
 
-// colour cycle — one vivid colour for the whole field, switching every 1.7s
+// Ambient field — a separate GPU-animated dust that continuously DRIFTS OUTWARD from
+// the centre and recycles, so the corners read as alive (not a static background).
+const VERT_DUST = `
+  uniform float uTime;
+  uniform float uDustScale;
+  uniform float uDustSize;
+  attribute float aSeed;
+  varying float vFade;
+  void main() {
+    // gentle LOCAL float around each particle's home position — independent drift,
+    // never morphs with the subject (just follows its own movement).
+    float ph = aSeed * 6.2831853;
+    vec3 drift = vec3(
+      sin(uTime * 0.56 + ph) * 1.5,
+      sin(uTime * 0.45 + ph * 1.7) * 1.5,
+      sin(uTime * 0.50 + ph * 0.9) * 1.2
+    );
+    vec4 mv = modelViewMatrix * vec4(position + drift, 1.0);
+    float mvz = -mv.z;
+    vFade = smoothstep(112.0, 18.0, mvz);               // far → dim (depth), but distant dots still show
+    gl_PointSize = uDustSize * (uDustScale / mvz);
+    gl_Position = projectionMatrix * mv;
+  }
+`;
+
+const FRAG_DUST = `
+  uniform vec3 uDustColor;
+  uniform float uDustOpacity;
+  varying float vFade;
+  void main() {
+    float d = length(gl_PointCoord - 0.5);
+    float a = smoothstep(0.5, 0.05, d) * vFade * uDustOpacity;
+    if (a < 0.01) discard;
+    gl_FragColor = vec4(uDustColor, a);
+  }
+`;
+
+// BLUE-ONLY palette — the field drifts between blue tones (the brightness pulse rides each change).
 const CYCLE = [
-  new THREE.Color("#FF3B5C"), new THREE.Color("#FF9A3B"), new THREE.Color("#FFE03B"),
-  new THREE.Color("#46E86B"), new THREE.Color("#3BE0FF"), new THREE.Color("#3B7BFF"),
-  new THREE.Color("#A24BFF"), new THREE.Color("#FF3BD0"),
+  new THREE.Color("#5C93F7"), new THREE.Color("#3B7BF5"),
+  new THREE.Color("#8FC0FF"), new THREE.Color("#2E6BE0"),
 ];
 const COLOR_EVERY = 10;
 // The shapes cycle hues, but the Clix LOGO (scroll-formed) settles to brand blue.
 const LOGO_BLUE = new THREE.Color("#3B7BF5");
-// Intro colour beat: the forming logo goes blue → yellow → then the random cycle.
-const INTRO_YELLOW = new THREE.Color("#FFC400");
+// Intro pop: the forming logo flashes a brighter blue, then settles into the cycle.
+const INTRO_TINT = new THREE.Color("#9FCBFF");
 
 export function ParticleLogo({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -104,10 +140,10 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     if (!canvas) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
-    const MIN_DT = isMobile ? 1 / 32 : 0; // cap mobile redraw to ~32fps (halves GPU fill on capable devices)
-    const N = isMobile ? 7000 : 44000;    // lighter particle count on mobile
-    const WORLD = isMobile ? 11 : 28;      // smaller mark on mobile (fit naturally on the screen)
-    const S = isMobile ? 0.40 : 1;         // smaller shapes on mobile
+    const MIN_DT = isMobile ? 1 / 30 : 0; // cap mobile redraw to ~30fps (halves GPU fill on capable devices)
+    const N = isMobile ? 15000 : 78000;   // dense HD grain (small, sharp dots — fill ∝ size²)
+    const WORLD = isMobile ? 20 : 28;      // mark size on mobile
+    const S = isMobile ? 0.72 : 1;         // shape size on mobile — fills the portrait frame
 
     const g1 = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
 
@@ -145,7 +181,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
           const hs = spread[i] * 1.7;                     // gentler halo on the logo (keep the mark readable)
           logo[i * 3] = (px - cxm) * scale + g1() * 0.28 + g1() * hs;
           logo[i * 3 + 1] = -(py - cym) * scale + g1() * 0.28 + g1() * hs;
-          logo[i * 3 + 2] = (Math.random() - 0.5) * 7.0 + g1() * 0.6 + g1() * hs; // wide Z volume
+          logo[i * 3 + 2] = (Math.random() - 0.5) * 6.5 + g1() * 0.6 + g1() * hs; // moderate Z (crisper mark from the front)
         }
         return true;
       } catch { return false; }
@@ -154,32 +190,69 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     const sprite = () => {
       const cv = document.createElement("canvas"); cv.width = cv.height = 64;
       const x = cv.getContext("2d")!, gr = x.createRadialGradient(32, 32, 0, 32, 32, 32);
-      gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(.35, "rgba(255,255,255,.7)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+      gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(.22, "rgba(255,255,255,.95)"); gr.addColorStop(.5, "rgba(255,255,255,.32)"); gr.addColorStop(1, "rgba(255,255,255,0)"); // solid core + quick falloff → crisp HD dot
       x.fillStyle = gr; x.fillRect(0, 0, 64, 64);
       const t = new THREE.Texture(cv); t.needsUpdate = true; return t;
     };
 
-    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 0.8 : 1.5); // lower DPR = big mobile fill-rate win
+    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.5); // mobile a touch lower (fill ∝ DPR²), still crisp
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, powerPreference: "high-performance" }); // no MSAA on mobile
     renderer.setPixelRatio(pr);
     const size = () => { const r = canvas.getBoundingClientRect(); return { w: r.width || window.innerWidth, h: r.height || window.innerHeight }; };
     let { w, h } = size(); renderer.setSize(w, h, false);
-    const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0x000000, 0.01);
+    const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0x000000, 0.014); // atmospheric depth: far particles fade to black
     const camera = new THREE.PerspectiveCamera(55, w / h, 0.1, 200); camera.position.set(0, 0, 26);
 
     const uniforms = {
-      uTime: { value: 0 }, uScale: { value: h * 0.5 }, uSize: { value: 0.27 * pr * (isMobile ? 0.72 : 1) },
+      uTime: { value: 0 }, uScale: { value: h * 0.5 }, uSize: { value: 0.28 * pr },
       uMorph: { value: 0 }, uShapeA: { value: 0 }, uShapeB: { value: 0 }, uFlowAmp: { value: 0.18 },
-      uScrollForm: { value: 0 }, uOpacity: { value: 1.0 }, uBright: { value: 3.0 }, uMap: { value: sprite() },
+      uScrollForm: { value: 0 }, uOpacity: { value: 1.0 }, uBright: { value: 3.4 }, uMap: { value: sprite() },
       uColorA: { value: LOGO_BLUE.clone() }, uColorB: { value: LOGO_BLUE.clone() }, uColorMix: { value: 0 },
       uPulseAmt: { value: 1.0 }, uRadNorm: { value: 17 * S },
     };
     const mat = new THREE.ShaderMaterial({ uniforms, vertexShader: VERT, fragmentShader: FRAG, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
 
     const dustGeo = new THREE.BufferGeometry();
-    { const n = isMobile ? 500 : 2200, p = new Float32Array(n * 3); for (let i = 0; i < n; i++) { p[i * 3] = (Math.random() - .5) * 130; p[i * 3 + 1] = (Math.random() - .5) * 90; p[i * 3 + 2] = (Math.random() - .5) * 130; } dustGeo.setAttribute("position", new THREE.BufferAttribute(p, 3)); }
-    const dustMat = new THREE.PointsMaterial({ size: 0.07, color: 0x222a40, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false });
-    scene.add(new THREE.Points(dustGeo, dustMat));
+    {
+      const dn = isMobile ? 16000 : 46000;
+      const dpos = new Float32Array(dn * 3), dseed = new Float32Array(dn);
+      for (let i = 0; i < dn; i++) {
+        const sel = Math.random();
+        if (sel < 0.10) {                            // dense centre cloud (depth behind the subject)
+          dpos[i * 3] = g1() * 30; dpos[i * 3 + 1] = g1() * 22; dpos[i * 3 + 2] = g1() * 30 - 8;
+        } else if (sel < 0.32) {                       // SURROUND — a cloud hugging the subject
+          const ang = Math.random() * Math.PI * 2, rr = 16 + Math.random() * 42;
+          dpos[i * 3] = Math.cos(ang) * rr * 1.25;
+          dpos[i * 3 + 1] = Math.sin(ang) * rr;
+          dpos[i * 3 + 2] = g1() * 16 - 4;
+        } else if (sel < 0.60) {                       // MID-SURROUND — a denser ring a bit FARTHER out
+          const ang = Math.random() * Math.PI * 2, rr = 52 + Math.random() * 60;
+          dpos[i * 3] = Math.cos(ang) * rr * 1.25;
+          dpos[i * 3 + 1] = Math.sin(ang) * rr;
+          dpos[i * 3 + 2] = g1() * 24 - 6;
+        } else if (sel < 0.80) {                       // mid uniform fill
+          dpos[i * 3] = (Math.random() * 2 - 1) * 96;
+          dpos[i * 3 + 1] = (Math.random() * 2 - 1) * 60;
+          dpos[i * 3 + 2] = -52 + Math.random() * 60;
+        } else {                                       // FAR outer tier → distant edges/corners
+          const ang = Math.random() * Math.PI * 2, rf = 0.5 + Math.random() * 0.5;
+          dpos[i * 3] = Math.cos(ang) * 150 * rf;
+          dpos[i * 3 + 1] = Math.sin(ang) * 92 * rf;
+          dpos[i * 3 + 2] = -70 + Math.random() * 76;
+        }
+        dseed[i] = Math.random();                     // per-particle phase → varied float
+      }
+      dustGeo.setAttribute("position", new THREE.BufferAttribute(dpos, 3));
+      dustGeo.setAttribute("aSeed", new THREE.BufferAttribute(dseed, 1));
+    }
+    const dustUniforms = {
+      uTime: { value: 0 }, uDustScale: { value: h * 0.5 }, uDustSize: { value: 0.11 * pr },
+      uDustColor: { value: new THREE.Color(0x86baf2) }, uDustOpacity: { value: 1.0 },
+    };
+    const dustMat = new THREE.ShaderMaterial({ uniforms: dustUniforms, vertexShader: VERT_DUST, fragmentShader: FRAG_DUST, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+    const dustPoints = new THREE.Points(dustGeo, dustMat);
+    dustPoints.frustumCulled = false;                 // it's wide + rotates with the field
+    scene.add(dustPoints);
 
     const aPhase = new Float32Array(N);
     for (let i = 0; i < N; i++) aPhase[i] = Math.random() * Math.PI * 2;
@@ -220,7 +293,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     }
 
     function buildShapes() {
-      const R = 13.2 * S, WALL = 0.5 * S, DEPTH = 5.4 * S; // donut: bigger ring, thin wall, thick Z
+      const R = 13.2 * S, WALL = 0.5 * S, DEPTH = 10.0 * S; // donut: bigger ring, thin wall, LONG Z (elongated side view)
       const H = 13.8 * S, bend = 2.5 * S;                  // diamond half-extent
       const Rt = 16.4 * S, bendT = 3.4 * S;                // triangle circumradius
       const TV = [0, 1, 2].map((k) => { const a = Math.PI / 2 + k * (2 * Math.PI / 3); return [Math.cos(a) * Rt, Math.sin(a) * Rt]; });
@@ -247,12 +320,14 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     let geo: THREE.BufferGeometry | null = null, points: THREE.Points | null = null;
 
     let raf = 0, lastT = performance.now() / 1000, lastInteract = -100;
-    let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0;   // 0 reveal, 2 cycle+loop
+    let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0, dustFade = 0;   // 0 reveal, 2 cycle+loop
     let dragging = false, dpx = 0, dpy = 0, rotY = 0, rotX = 0, tRotY = 0, tRotX = 0, velY = 0, velX = 0;
     const REVEAL = 1.5, CLOCK_STEP = 10.0, CLOCK_A = 1.0, STAGE = 22, HOLD = 6.0, CLOCK_CRAWL = 1.0;
     const INTRO_DELAY = 2.7; // hold the mark hidden until the hero text + CTA finish rendering (see ParticleHero timing)
     const CLOCK_MAXV = 0.22; // rad/s — cap so resuming after a drag CRAWLS back, never snaps
     const LIFT_WORLD = 13.5; // ≈ half the camera's visible world-height: raise the logo per viewport scrolled so it stays centred above the sliding content
+    const DUST_OPACITY = 1.0; // ambient stays hidden during the intro, then fades in with the shape reveal
+    const SHAPE_Y = isMobile ? 0.0 : -2.0; // mobile centred; desktop sits a bit low
     const CLOCKS = [[-0.5, 0.866], [1, 0], [0.5, -0.866], [-0.866, -0.5], [0, 0]]; // 11,3,5,8,centre (dx,dy)
     const ss = (p: number) => { p = Math.min(1, Math.max(0, p)); return p * p * (3 - 2 * p); };
     const colA = new THREE.Color(), colB = new THREE.Color(), colC = new THREE.Color();
@@ -260,7 +335,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     const onDown = (e: PointerEvent) => { dragging = true; dpx = e.clientX; dpy = e.clientY; tRotY = rotY; tRotX = rotX; velY = velX = 0; lastInteract = performance.now() / 1000; canvas.style.cursor = "grabbing"; };
     const onUp = () => { dragging = false; lastInteract = performance.now() / 1000; canvas.style.cursor = "grab"; };
     const onDrag = (e: PointerEvent) => { if (!dragging) return; tRotY += (e.clientX - dpx) * 0.004; if (!isMobile) tRotX += (e.clientY - dpy) * 0.004; dpx = e.clientX; dpy = e.clientY; lastInteract = performance.now() / 1000; }; // mobile: horizontal rotates, vertical scrolls
-    const onResize = () => { const s = size(); w = s.w; h = s.h; camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); uniforms.uScale.value = h * 0.5; };
+    const onResize = () => { const s = size(); w = s.w; h = s.h; camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h, false); uniforms.uScale.value = h * 0.5; dustUniforms.uDustScale.value = h * 0.5; };
 
     function frame(now: number) {
       raf = requestAnimationFrame(frame);
@@ -268,6 +343,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       if (now - lastT < MIN_DT) return;                 // ~32fps cap on mobile (MIN_DT = 0 on desktop)
       const t = now, dt = Math.min(0.05, t - lastT); lastT = t;
       if (window.scrollY > window.innerHeight * 1.05) return;
+      dustUniforms.uTime.value = t;                     // animate the ambient outward drift
 
       // scroll down → Clix logo
       const sfTarget = Math.min(1, window.scrollY / (window.innerHeight * 0.40));
@@ -279,11 +355,15 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       if (bootT < INTRO_DELAY) {
         bootT += dt;
         if (points) points.visible = false;
+        dustPoints.visible = false;                   // ambient hidden until the shape appears
         uniforms.uTime.value = t;
         renderer.render(scene, camera);
         return;
       }
       if (points && !points.visible) points.visible = true;
+      dustPoints.visible = true;
+      dustFade += (1 - dustFade) * 0.03;              // fade the ambient in alongside the shape reveal
+      dustUniforms.uDustOpacity.value = DUST_OPACITY * dustFade;
       introColT += dt; // drives the blue → yellow → cycle intro colour beat
 
       if (introStage === 0) {
@@ -340,7 +420,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       colB.copy(CYCLE[(ci + 1) % CYCLE.length]);           // next
       let mix = ss((cf - 0.82) / 0.15);                    // fast crawl in the last ~1.5s of each beat
       // intro beat: blue → yellow, hold, then hand off to the cycle (no crawl during intro)
-      colC.copy(LOGO_BLUE).lerp(INTRO_YELLOW, ss((introColT - 1.6) / 0.7));
+      colC.copy(LOGO_BLUE).lerp(INTRO_TINT, ss((introColT - 1.6) / 0.7));
       const introBlend = 1 - ss((introColT - 3.2) / 1.0); // 1 during intro → 0 after handoff
       if (introBlend > 0.001) { colA.lerp(colC, introBlend); colB.lerp(colC, introBlend); mix *= 1 - introBlend; }
       // scroll-formed logo → brand blue (both ends, so the crawl resolves to a clean blue)
@@ -348,19 +428,26 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       (uniforms.uColorA.value as THREE.Color).copy(colA);
       (uniforms.uColorB.value as THREE.Color).copy(colB);
       uniforms.uColorMix.value = mix;
-      uniforms.uBright.value = 3.0 - 1.4 * scrollForm;     // ease brightness down so the logo blue stays saturated
+      uniforms.uBright.value = 3.4 - 1.05 * scrollForm;    // keep the formed logo bright enough to read
 
       if (points) {
-        points.rotation.y = rotY; points.rotation.x = rotX;
-        // Float gently while idle, then settle + RISE as the logo forms so it stays
-        // centred in the strip still visible above the sliding content.
         const idle = 1 - scrollForm;
         const sf = Math.min(1, window.scrollY / (h || window.innerHeight));
+        // Gemini-like idle FLOAT: a gentle continuous sway layered on the rotation +
+        // organic multi-sine drift on all three axes (a slow, alive hover). Settles
+        // as the logo forms (× idle), then RISES to stay centred above the content.
+        points.rotation.y = rotY + Math.sin(t * 0.26) * 0.05 * idle;
+        points.rotation.x = rotX + Math.sin(t * 0.21 + 1.1) * 0.04 * idle;
         points.position.set(
-          Math.sin(t * 0.16) * 0.6 * idle,
-          Math.sin(t * 0.23) * 0.7 * idle + sf * LIFT_WORLD,
-          0,
+          (Math.sin(t * 0.22) * 0.8 + Math.sin(t * 0.13 + 2.1) * 0.5) * idle,
+          (Math.sin(t * 0.31) * 0.9 + Math.sin(t * 0.18 + 0.7) * 0.5) * idle + sf * LIFT_WORLD + SHAPE_Y,
+          Math.sin(t * 0.15 + 1.5) * 0.8 * idle,
         );
+        // ambient follows the SAME rotation + float so it feels connected to the field
+        // (it keeps its own scattered positions — never morphs into the shape).
+        dustPoints.rotation.y = points.rotation.y;
+        dustPoints.rotation.x = points.rotation.x;
+        dustPoints.position.copy(points.position);
       }
       renderer.render(scene, camera);
     }

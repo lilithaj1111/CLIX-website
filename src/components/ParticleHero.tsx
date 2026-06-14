@@ -61,13 +61,13 @@ export function ParticleHero() {
           the text so the particle field underneath is still draggable. */}
       <motion.div
         style={{ opacity: fade }}
-        className="pointer-events-none relative z-10 mx-auto w-full max-w-3xl px-6 text-center"
+        className="pointer-events-none relative z-10 mx-auto w-full max-w-3xl translate-y-[7vh] px-6 text-center"
       >
         <motion.h1
           variants={lineV}
           initial="hidden"
           animate="show"
-          className="flex flex-wrap items-baseline justify-center gap-x-[0.28em] gap-y-1 text-[clamp(2.5rem,6vw,5rem)] font-black leading-[1.05] tracking-[-0.035em] text-on-dark"
+          className="flex flex-wrap items-baseline justify-center gap-x-[0.28em] gap-y-1 text-[clamp(2.5rem,6vw,5rem)] font-normal leading-[1.05] tracking-[-0.035em] text-on-dark"
           style={{ textShadow: "0 1px 4px rgba(0,0,0,0.65), 0 10px 38px rgba(0,0,0,0.5)" }}
         >
           {WORDS.map((w, i) => (

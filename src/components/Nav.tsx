@@ -91,6 +91,9 @@ export function Nav() {
 
   const industriesActive = pathname.startsWith("/industries");
 
+  // Lab nav preview owns its own navbar — hide this one there so they don't stack.
+  if (pathname.startsWith("/lab/nav")) return null;
+
   /* A single capsule link with the shared active/hover pill treatment. */
   const renderLink = (l: { href: string; label: string }) => {
     const active = pathname === l.href || pathname.startsWith(l.href + "/");

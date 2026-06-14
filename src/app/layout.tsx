@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Bricolage_Grotesque, Fraunces, Space_Grotesk, Rubik } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Bricolage_Grotesque, Fraunces, Space_Grotesk, Rubik, Heebo } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -56,6 +56,14 @@ const rubik = Rubik({
   subsets: ["hebrew", "latin"],
 });
 
+// Heebo — clean geometric Hebrew+Latin sans, the closest free stand-in for
+// Google Sans (which is proprietary and Latin-only). Used for the Gemini-style nav.
+const heebo = Heebo({
+  variable: "--font-google-sans",
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["hebrew", "latin"],
+});
+
 export const metadata: Metadata = {
   title: "Clix — בינה מהונדסת לעסק שלכם.",
   description:
@@ -84,7 +92,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${rubik.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${rubik.variable} ${heebo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground grain">
         <a
