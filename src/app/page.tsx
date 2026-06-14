@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <ParticleHero />
       {/* Opaque content that slides UP and OVER the pinned particle hero
-          (sharp top edge). bg-background keeps it solid so it covers the hero. */}
+          (sharp top edge)s. bg-background keeps it solid so it covers the hero. */}
       <div className="relative z-10 bg-background">
         <IntegrationsSection />
         <VoiceAgentSection />
