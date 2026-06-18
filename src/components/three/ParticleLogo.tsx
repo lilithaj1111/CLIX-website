@@ -152,6 +152,8 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     const N = isMobile ? 15000 : 78000;   // dense HD grain (small, sharp dots — fill ∝ size²)
     const WORLD = isMobile ? 20 : 28;      // mark size on mobile
     const S = isMobile ? 0.72 : 1;         // shape size on mobile — fills the portrait frame
+    const CIRCLE_ONLY = isMobile;          // mobile: hold the CIRCLE only (no square/triangle/logo morph cycle)
+    const REST_SHAPE = CIRCLE_ONLY ? 1 : 0; // resting shape index: 1 = torus (circle), 0 = logo mark
 
     const g1 = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
 
@@ -363,7 +365,8 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
 
       // scroll down → Clix logo. Form decisively over ~0.45 vh of scroll, with a
       // snappy catch-up so the mark locks into the logo (not a lingering blob).
-      const sfTarget = Math.min(1, window.scrollY / (window.innerHeight * 0.45));
+      // Mobile holds the circle — no scroll-morph into the logo (sfTarget pinned 0).
+      const sfTarget = CIRCLE_ONLY ? 0 : Math.min(1, window.scrollY / (window.innerHeight * 0.45));
       scrollForm += (sfTarget - scrollForm) * 0.13;
       uniforms.uScrollForm.value = scrollForm;
       // damp the live flow jitter as the logo forms → the mark settles steadily
@@ -394,18 +397,23 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
         introT += dt;
         const e = ss(Math.min(1, introT / REVEAL));
         if (points) points.scale.setScalar(0.015 + 0.985 * e);
-        uniforms.uShapeA.value = 0; uniforms.uShapeB.value = 0; uniforms.uMorph.value = 0;
+        uniforms.uShapeA.value = REST_SHAPE; uniforms.uShapeB.value = REST_SHAPE; uniforms.uMorph.value = 0;
         rotY += (0 - rotY) * 0.12; rotX += (0 - rotX) * 0.12;
         if (introT >= REVEAL) { introStage = 2; cycleT = 0; clockT = 0; }
       } else {
         // shape cycle
         if (points) points.scale.setScalar(1);
         cycleT += dt;
-        const stage = Math.floor(cycleT / STAGE) % 4;
-        const local = cycleT % STAGE;
-        uniforms.uShapeA.value = stage;
-        uniforms.uShapeB.value = (stage + 1) % 4;
-        uniforms.uMorph.value = local < HOLD ? 0 : ss((local - HOLD) / (STAGE - HOLD));
+        if (CIRCLE_ONLY) {
+          // mobile: hold the circle, no morphing through the other shapes
+          uniforms.uShapeA.value = 1; uniforms.uShapeB.value = 1; uniforms.uMorph.value = 0;
+        } else {
+          const stage = Math.floor(cycleT / STAGE) % 4;
+          const local = cycleT % STAGE;
+          uniforms.uShapeA.value = stage;
+          uniforms.uShapeB.value = (stage + 1) % 4;
+          uniforms.uMorph.value = local < HOLD ? 0 : ss((local - HOLD) / (STAGE - HOLD));
+        }
         // rotation: heavy drag-orbit, else a smooth LOOPING clock tumble: centre→11→3→5→8→centre→…
         const free = (t - lastInteract) < 6.0;
         if (dragging) {
@@ -493,7 +501,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       points.scale.setScalar(0.05);
       scene.add(points);
 
-      if (reduce) { introStage = 2; points.scale.setScalar(1); uniforms.uShapeA.value = 0; uniforms.uShapeB.value = 0; uniforms.uMorph.value = 0; renderer.render(scene, camera); return; }
+      if (reduce) { introStage = 2; points.scale.setScalar(1); uniforms.uShapeA.value = REST_SHAPE; uniforms.uShapeB.value = REST_SHAPE; uniforms.uMorph.value = 0; renderer.render(scene, camera); return; }
 
       window.addEventListener("resize", onResize);
       canvas.addEventListener("pointerdown", onDown);
