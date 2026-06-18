@@ -149,7 +149,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     const isMobile = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
     const MIN_DT = isMobile ? 1 / 30 : 0; // cap mobile redraw to ~30fps (halves GPU fill on capable devices)
     const SCROLL_DT = isMobile ? 1 / 20 : 1 / 30; // while actively scrolling, throttle harder (field is in motion + partly covered → extra frames are imperceptible, and it frees the GPU so Lenis doesn't starve/freeze)
-    const N = isMobile ? 15000 : 78000;   // dense HD grain (small, sharp dots — fill ∝ size²)
+    const N = isMobile ? 20000 : 78000;   // dense HD grain (small, sharp dots — fill ∝ size²); denser ring on mobile reads higher-res
     const WORLD = isMobile ? 20 : 28;      // mark size on mobile
     const S = isMobile ? 0.72 : 1;         // shape size on mobile — fills the portrait frame
     const CIRCLE_ONLY = isMobile;          // mobile: hold the CIRCLE only (no square/triangle/logo morph cycle)
@@ -336,7 +336,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0, dustFade = 0, appear = 0;   // 0 reveal, 2 cycle+loop; appear = float-drift ramp (0 during reveal → shape emerges from dead centre)
     let dragging = false, dpx = 0, dpy = 0, rotY = 0, rotX = 0, tRotY = 0, tRotX = 0, velY = 0, velX = 0;
     const REVEAL = 1.5, CLOCK_STEP = 10.0, CLOCK_A = 1.0, STAGE = 22, HOLD = 6.0, CLOCK_CRAWL = 1.0;
-    const INTRO_DELAY = 2.7; // hold the mark hidden until the hero text + CTA finish rendering (see ParticleHero timing)
+    const INTRO_DELAY = 2.5; // hold the mark hidden until the hero text + CTA finish rendering (see ParticleHero timing) — 0.2s sooner
     const CLOCK_MAXV = 0.22; // rad/s — cap so resuming after a drag CRAWLS back, never snaps
     const LIFT_WORLD = 13.5; // ≈ half the camera's visible world-height: raise the logo per viewport scrolled so it stays centred above the sliding content
     const DUST_OPACITY = 1.0; // ambient stays hidden during the intro, then fades in with the shape reveal
