@@ -67,6 +67,22 @@ export function Nav() {
   const [mobileIndustries, setMobileIndustries] = useState(false);
   const closeTimer = useRef<number | undefined>(undefined);
 
+  // On the home page the nav floats over the BLACK hero, which whites out on
+  // scroll — so flip the nav to a frosted LIGHT bar (dark text/logo) once it
+  // scrolls into the light content, matching the hero transition (Gemini-style).
+  // Other routes keep the solid dark bar.
+  const [light, setLight] = useState(false);
+  useEffect(() => {
+    if (pathname !== "/") {
+      setLight(false);
+      return;
+    }
+    const onScroll = () => setLight(window.scrollY > window.innerHeight * 0.72);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
+
   // Close any open menus when the route changes.
   useEffect(() => {
     setOpen(false);
@@ -96,7 +112,13 @@ export function Nav() {
         key={l.href}
         href={l.href}
         className={`text-sm font-medium transition-colors ${
-          active ? "text-white" : "text-white/70 hover:text-white"
+          light
+            ? active
+              ? "text-foreground"
+              : "text-foreground/70 hover:text-foreground"
+            : active
+              ? "text-white"
+              : "text-white/70 hover:text-white"
         }`}
       >
         {l.label}
@@ -107,11 +129,18 @@ export function Nav() {
   return (
     <header
       style={{ fontFamily: "var(--font-google-sans)" }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        light
+          ? "border-line/40 bg-background/40 backdrop-blur-xl"
+          : "border-white/10 bg-black"
+      }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3 lg:px-10">
         {/* Brand — right edge in RTL (Logo renders its own home link) */}
-        <Logo size={34} className="text-on-dark" />
+        <Logo
+          size={34}
+          className={`transition-colors duration-300 ${light ? "text-foreground" : "text-on-dark"}`}
+        />
 
         {/* Centre — white text links + industries dropdown */}
         <nav
@@ -125,7 +154,13 @@ export function Nav() {
             <Link
               href="/industries"
               className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                industriesActive ? "text-white" : "text-white/70 hover:text-white"
+                light
+                  ? industriesActive
+                    ? "text-foreground"
+                    : "text-foreground/70 hover:text-foreground"
+                  : industriesActive
+                    ? "text-white"
+                    : "text-white/70 hover:text-white"
               }`}
             >
               תעשיות
@@ -202,7 +237,11 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-on-dark/70 transition-colors hover:bg-white/10 hover:text-on-dark"
+                className={`inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+                  light
+                    ? "text-foreground/60 hover:bg-foreground/10 hover:text-foreground"
+                    : "text-on-dark/70 hover:bg-white/10 hover:text-on-dark"
+                }`}
               >
                 <Icon className="h-[18px] w-[18px]" />
               </a>
@@ -220,7 +259,11 @@ export function Nav() {
           <button
             aria-label="פתיחת תפריט"
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-on-dark backdrop-blur-sm md:hidden"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-sm transition-colors md:hidden ${
+              light
+                ? "border-line bg-paper/80 text-foreground"
+                : "border-white/15 bg-white/5 text-on-dark"
+            }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               {open ? (

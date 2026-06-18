@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -44,7 +45,24 @@ const wordV: Variants = {
 
 export function ParticleHero() {
   const { scrollY } = useScroll();
-  const fade = useTransform(scrollY, [0, 320], [1, 0]);
+
+  const [vh, setVh] = useState(0);
+  useEffect(() => {
+    const onResize = () => setVh(window.innerHeight);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Single 0→1 scroll-progress over the first viewport (Gemini's --progress);
+  // every part of the reveal is derived from it so they move in lockstep.
+  const progress = useTransform(scrollY, [0, vh || 1e6], [0, 1]);
+  // Hero copy: zoom OUT (scale → 0.5) and fade as it exits, like Gemini.
+  const textOpacity = useTransform(progress, [0, 0.4], [1, 0]);
+  const textScale = useTransform(progress, [0, 0.6], [1, 0.5]);
+  // Stage-2 white card: fades in past ~40% so the whole hero resolves to solid
+  // white (the rising content covers the foot; this whites the remaining top).
+  const whiteCard = useTransform(progress, [0.4, 0.85], [0, 1]);
 
   // CTA appears just after the last word lands.
   const ctaDelay = 0.3 + WORDS.length * STAGGER + 0.5;
@@ -60,9 +78,10 @@ export function ParticleHero() {
       {/* Hero copy — centred, fades as the build begins. pointer-events stay off
           the text so the particle field underneath is still draggable. */}
       <motion.div
-        style={{ opacity: fade }}
+        style={{ opacity: textOpacity }}
         className="pointer-events-none relative z-10 mx-auto w-full max-w-3xl translate-y-0 px-6 text-center md:translate-y-[7vh]"
       >
+        <motion.div style={{ scale: textScale }} className="origin-center">
         <motion.h1
           variants={lineV}
           initial="hidden"
@@ -97,7 +116,16 @@ export function ParticleHero() {
             </span>
           </Link>
         </motion.div>
+        </motion.div>
       </motion.div>
+
+      {/* Stage-2 white card — whites out the remaining black hero past 50% scroll
+          (sits above the particles/text; the rising content covers it at the foot). */}
+      <motion.div
+        aria-hidden
+        style={{ opacity: whiteCard }}
+        className="pointer-events-none absolute inset-0 z-20 bg-background"
+      />
     </section>
   );
 }
