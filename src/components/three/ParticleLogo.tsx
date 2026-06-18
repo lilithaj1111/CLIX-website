@@ -333,7 +333,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     let geo: THREE.BufferGeometry | null = null, points: THREE.Points | null = null;
 
     let raf = 0, lastT = performance.now() / 1000, lastInteract = -100, lastScrollY = window.scrollY;
-    let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0, dustFade = 0;   // 0 reveal, 2 cycle+loop
+    let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0, dustFade = 0, appear = 0;   // 0 reveal, 2 cycle+loop; appear = float-drift ramp (0 during reveal → shape emerges from dead centre)
     let dragging = false, dpx = 0, dpy = 0, rotY = 0, rotX = 0, tRotY = 0, tRotX = 0, velY = 0, velX = 0;
     const REVEAL = 1.5, CLOCK_STEP = 10.0, CLOCK_A = 1.0, STAGE = 22, HOLD = 6.0, CLOCK_CRAWL = 1.0;
     const INTRO_DELAY = 2.7; // hold the mark hidden until the hero text + CTA finish rendering (see ParticleHero timing)
@@ -407,6 +407,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
         // shape cycle
         if (points) points.scale.setScalar(1);
         cycleT += dt;
+        appear += (1 - appear) * 0.02;                  // ease the organic float drift in AFTER the centred reveal
         if (CIRCLE_ONLY) {
           // mobile: hold the circle, no morphing through the other shapes
           uniforms.uShapeA.value = 1; uniforms.uShapeB.value = 1; uniforms.uMorph.value = 0;
@@ -472,10 +473,12 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
         // as the logo forms (× idle), then RISES to stay centred above the content.
         points.rotation.y = rotY + Math.sin(t * 0.26) * 0.05 * idle;
         points.rotation.x = rotX + Math.sin(t * 0.21 + 1.1) * 0.04 * idle;
+        // drift gated by `appear` so the shape EMERGES from dead centre (0, SHAPE_Y, 0),
+        // then the organic float eases in; lift/SHAPE_Y stay so it's framed throughout.
         points.position.set(
-          (Math.sin(t * 0.22) * 0.8 + Math.sin(t * 0.13 + 2.1) * 0.5) * idle,
-          (Math.sin(t * 0.31) * 0.9 + Math.sin(t * 0.18 + 0.7) * 0.5) * idle + sf * LIFT_WORLD + SHAPE_Y,
-          Math.sin(t * 0.15 + 1.5) * 0.8 * idle,
+          (Math.sin(t * 0.22) * 0.8 + Math.sin(t * 0.13 + 2.1) * 0.5) * idle * appear,
+          (Math.sin(t * 0.31) * 0.9 + Math.sin(t * 0.18 + 0.7) * 0.5) * idle * appear + sf * LIFT_WORLD + SHAPE_Y,
+          Math.sin(t * 0.15 + 1.5) * 0.8 * idle * appear,
         );
         // ambient follows the SAME rotation + float so it feels connected to the field
         // (it keeps its own scattered positions — never morphs into the shape).
