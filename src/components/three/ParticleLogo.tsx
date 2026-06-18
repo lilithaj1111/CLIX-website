@@ -198,14 +198,17 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     }
 
     const sprite = () => {
-      const cv = document.createElement("canvas"); cv.width = cv.height = 64;
-      const x = cv.getContext("2d")!, gr = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+      const SZ = 128, C = SZ / 2;                       // 128² (was 64²) → crisper dot edges at high DPR
+      const cv = document.createElement("canvas"); cv.width = cv.height = SZ;
+      const x = cv.getContext("2d")!, gr = x.createRadialGradient(C, C, 0, C, C, C);
       gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(.22, "rgba(255,255,255,.95)"); gr.addColorStop(.5, "rgba(255,255,255,.32)"); gr.addColorStop(1, "rgba(255,255,255,0)"); // solid core + quick falloff → crisp HD dot
-      x.fillStyle = gr; x.fillRect(0, 0, 64, 64);
-      const t = new THREE.Texture(cv); t.needsUpdate = true; return t;
+      x.fillStyle = gr; x.fillRect(0, 0, SZ, SZ);
+      const t = new THREE.Texture(cv); t.needsUpdate = true;
+      t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; // smooth minification when dots are small, crisp when large
+      return t;
     };
 
-    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 2 : 1.5); // mobile renders near-native (HD, crisp dots) — the circle-only field is light on overdraw so it affords the higher DPR (fill ∝ DPR²)
+    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 2.5 : 1.5); // mobile renders near-native (HD, crisp dots) — the circle-only field is light on overdraw so it affords the higher DPR (fill ∝ DPR²)
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, powerPreference: "high-performance" }); // no MSAA on mobile
     renderer.setPixelRatio(pr);
     const size = () => { const r = canvas.getBoundingClientRect(); return { w: r.width || window.innerWidth, h: r.height || window.innerHeight }; };
