@@ -336,7 +336,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     let introStage = 0, introT = 0, cycleT = 0, scrollForm = 0, clockT = 0, bootT = 0, introColT = 0, dustFade = 0, appear = 0;   // 0 reveal, 2 cycle+loop; appear = float-drift ramp (0 during reveal → shape emerges from dead centre)
     let dragging = false, dpx = 0, dpy = 0, rotY = 0, rotX = 0, tRotY = 0, tRotX = 0, velY = 0, velX = 0;
     const REVEAL = 1.5, CLOCK_STEP = 10.0, CLOCK_A = 1.0, STAGE = 22, HOLD = 6.0, CLOCK_CRAWL = 1.0;
-    const INTRO_DELAY = 2.0; // hold the mark hidden until the hero text + CTA render, then reveal the field (see ParticleHero timing)
+    const INTRO_DELAY = 1.5; // hold the mark hidden briefly, then pop the field in (see ParticleHero timing)
     const CLOCK_MAXV = 0.22; // rad/s — cap so resuming after a drag CRAWLS back, never snaps
     const LIFT_WORLD = 13.5; // ≈ half the camera's visible world-height: raise the logo per viewport scrolled so it stays centred above the sliding content
     const DUST_OPACITY = 1.0; // ambient stays hidden during the intro, then fades in with the shape reveal
