@@ -107,7 +107,7 @@ export function Nav() {
   return (
     <header
       style={{ fontFamily: "var(--font-google-sans)" }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0b0712]"
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black"
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3 lg:px-10">
         {/* Brand — right edge in RTL (Logo renders its own home link) */}
