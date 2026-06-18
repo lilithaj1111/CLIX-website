@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <ParticleHero />
-      {/* Content slides UP and OVER the pinned particle hero. Its leading edge
+      {/* Contents slides UP and OVER the pinned particle hero. Its leading edge
           is a "whisper reveal": a soft gradient that dissolves the black hero
           into the page background (near-white) — at rest it reads as a gentle
           white band at the foot of the hero; on scroll it sweeps up and the
