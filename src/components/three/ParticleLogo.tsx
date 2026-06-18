@@ -205,7 +205,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
       const t = new THREE.Texture(cv); t.needsUpdate = true; return t;
     };
 
-    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 1.5); // render near-native so the field is sharp, not upscaled/blurry (fill ∝ DPR², but the scroll throttle + dust-fade buy the headroom)
+    const pr = Math.min(window.devicePixelRatio || 1, isMobile ? 2 : 1.5); // mobile renders near-native (HD, crisp dots) — the circle-only field is light on overdraw so it affords the higher DPR (fill ∝ DPR²)
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, powerPreference: "high-performance" }); // no MSAA on mobile
     renderer.setPixelRatio(pr);
     const size = () => { const r = canvas.getBoundingClientRect(); return { w: r.width || window.innerWidth, h: r.height || window.innerHeight }; };
