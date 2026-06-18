@@ -61,7 +61,7 @@ export function ParticleHero() {
           the text so the particle field underneath is still draggable. */}
       <motion.div
         style={{ opacity: fade }}
-        className="pointer-events-none relative z-10 mx-auto w-full max-w-3xl translate-y-[7vh] px-6 text-center"
+        className="pointer-events-none relative z-10 mx-auto w-full max-w-3xl translate-y-0 px-6 text-center md:translate-y-[7vh]"
       >
         <motion.h1
           variants={lineV}
