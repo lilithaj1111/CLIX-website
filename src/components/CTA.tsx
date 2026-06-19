@@ -21,15 +21,14 @@ export function CTA() {
   return (
     <section
       ref={sectionRef}
-      className="divider-draw border-t border-transparent py-16 md:py-24 relative overflow-hidden"
+      className="border-t border-line/10 py-20 md:py-28 relative overflow-hidden bg-ink-warm"
     >
-      <div aria-hidden className="absolute inset-0 z-0 aurora-bg opacity-90" />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(900px 500px at 80% 100%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%)",
+            "radial-gradient(900px 520px at 82% 110%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 62%)",
         }}
       />
 
@@ -37,11 +36,11 @@ export function CTA() {
         <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
           <div className="md:col-span-7">
             <Reveal direction="left">
-              <div className="eyebrow">בואו נבנה משהו</div>
+              <div className="eyebrow text-on-dark/55">בואו נבנה משהו</div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="mt-5 text-[clamp(1.9rem,4.6vw,4rem)] leading-[1] tracking-[-0.035em]">
-                אתם מביאים את <span className="serif-italic text-accent">העסק.</span>
+              <h2 className="mt-5 text-[clamp(2rem,4.8vw,4.2rem)] font-bold leading-[1] tracking-[-0.04em] text-on-dark">
+                אתם מביאים את <span className="serif-italic text-[#A9BDD0]">העסק.</span>
                 <br />
                 אנחנו מביאים את הבינה.
               </h2>
@@ -50,10 +49,10 @@ export function CTA() {
               <div className="mt-7 flex flex-wrap gap-3 items-center">
                 <Link
                   href="/contact"
-                  className="btn-shine btn-violet inline-flex items-center gap-3 text-base ps-7 pe-2 py-2 rounded-full font-medium"
+                  className="inline-flex items-center gap-3 text-base ps-7 pe-2 py-2 rounded-full font-semibold bg-on-dark text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
                 >
                   בואו נתחיל
-                  <span className="inline-flex w-9 h-9 rounded-full bg-ink/40 text-paper items-center justify-center backdrop-blur-sm">
+                  <span className="inline-flex w-9 h-9 rounded-full bg-ink text-paper items-center justify-center">
                     <svg
                       width="14"
                       height="14"
@@ -72,7 +71,7 @@ export function CTA() {
                 </Link>
                 <Link
                   href="mailto:info@clixsolution.com"
-                  className="link-underline inline-flex items-center text-sm px-5 py-2 text-foreground/75 hover:text-foreground transition"
+                  className="link-underline inline-flex items-center text-sm px-5 py-2 text-on-dark/70 hover:text-on-dark transition"
                 >
                   או פשוט שלחו לנו אימייל
                 </Link>

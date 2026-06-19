@@ -44,13 +44,13 @@ function GlassCube({ reduced }: { reduced: boolean }) {
             the H20.AI reference but tuned toward sage/teal sheens instead
             of full-spectrum dichroic. */}
         <meshPhysicalMaterial
-          color="#b5c0b8"
+          color="#8CA0B3"
           metalness={0.35}
           roughness={0.08}
           transmission={0.45}
           thickness={1.3}
           ior={1.5}
-          attenuationColor="#2f4039"
+          attenuationColor="#A9BDD0"
           attenuationDistance={1.4}
           clearcoat={1}
           clearcoatRoughness={0.04}
@@ -58,7 +58,7 @@ function GlassCube({ reduced }: { reduced: boolean }) {
           iridescenceIOR={1.5}
           iridescenceThicknessRange={[280, 900]}
           sheen={0.6}
-          sheenColor={new THREE.Color("#7a9285")}
+          sheenColor={new THREE.Color("#8CA0B3")}
           sheenRoughness={0.25}
           envMapIntensity={1.6}
         />
@@ -91,7 +91,7 @@ export function HeroPrism({ reduced = false }: HeroPrismProps) {
       <directionalLight
         position={[-3, -1, 2]}
         intensity={0.7}
-        color="#5c7a6e"
+        color="#8CA0B3"
       />
       <pointLight position={[0, -2, 3]} intensity={0.5} color="#fafaf4" />
 

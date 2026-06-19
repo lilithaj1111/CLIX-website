@@ -42,24 +42,7 @@ import { MagneticButton } from "./MagneticButton";
 
 export function ProductsSection() {
   return (
-    <section className="relative border-t border-line py-20 md:py-28 overflow-hidden">
-      {/* Lime/mint radiant — distributed across both sides so the green
-          undertone reads on the right (text) column as well as the left
-          (device mockups). */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          background: [
-            "radial-gradient(40% 50% at 20% 30%, color-mix(in srgb, #A3E635 30%, transparent), transparent 70%)",
-            "radial-gradient(40% 50% at 80% 30%, color-mix(in srgb, #A3E635 28%, transparent), transparent 70%)",
-            "radial-gradient(38% 48% at 50% 65%, color-mix(in srgb, #5EEAD4 26%, transparent), transparent 70%)",
-            "radial-gradient(34% 44% at 88% 75%, color-mix(in srgb, #5EEAD4 26%, transparent), transparent 70%)",
-            "radial-gradient(32% 42% at 30% 88%, color-mix(in srgb, #FDE68A 22%, transparent), transparent 70%)",
-          ].join(", "),
-        }}
-      />
-
+    <section className="relative border-t border-line bg-paper py-20 md:py-28 overflow-hidden">
       {/* Subtle blueprint grid */}
       <div
         aria-hidden
@@ -98,7 +81,7 @@ export function ProductsSection() {
               </span>
             </div>
 
-            <h2 className="mt-7 text-[clamp(2rem,4vw,3.6rem)] leading-[1] tracking-[-0.03em] font-medium">
+            <h2 className="mt-7 text-[clamp(2rem,4vw,3.6rem)] leading-[1] tracking-[-0.035em] font-semibold">
               אפליקציות ו{" "}
               <span className="serif-italic">אתרים,</span>{" "}
               <span className="serif-italic">מהונדסים</span>{" "}
@@ -586,10 +569,10 @@ function ActivityScreen() {
 
 function LayersScreen() {
   const workflows = [
-    { Icon: MessageCircle, name: "סוכן LeadGen",   state: "פעיל · 18/יום",  bars: [3, 5, 4, 6, 7, 8, 9],   tint: "var(--accent)" },
-    { Icon: Mail,          name: "סינון תיבת דואר", state: "פעיל · 412/יום", bars: [4, 6, 5, 7, 6, 9, 10],  tint: "#5EEAD4" },
-    { Icon: Phone,         name: "סוכן קולי",       state: "פעיל · 24/יום",  bars: [2, 3, 4, 3, 5, 6, 7],   tint: "#A3E635" },
-    { Icon: Calendar,      name: "בוט יומן",        state: "במצב המתנה",     bars: [1, 1, 1, 2, 1, 0, 1],   tint: "#FDE68A" },
+    { Icon: MessageCircle, name: "סוכן LeadGen",   state: "פעיל · 18/יום",  bars: [3, 5, 4, 6, 7, 8, 9],   tint: "var(--accent-deep)" },
+    { Icon: Mail,          name: "סינון תיבת דואר", state: "פעיל · 412/יום", bars: [4, 6, 5, 7, 6, 9, 10],  tint: "var(--accent)" },
+    { Icon: Phone,         name: "סוכן קולי",       state: "פעיל · 24/יום",  bars: [2, 3, 4, 3, 5, 6, 7],   tint: "var(--accent-2)" },
+    { Icon: Calendar,      name: "בוט יומן",        state: "במצב המתנה",     bars: [1, 1, 1, 2, 1, 0, 1],   tint: "var(--line-strong)" },
   ];
   return (
     <div className="h-full overflow-hidden px-4 pt-4 space-y-3">

@@ -57,13 +57,13 @@ export function WovenCanvas({ className = "absolute inset-0 z-0" }: { className?
     // Stays inside the pale-blue range so the weave reads as one calm
     // brand-aligned tone rather than a multi-colour ribbon.
     const palette = [
-      new THREE.Color(0xbfdbfe), // baby blue
-      new THREE.Color(0x93c5fd), // sky blue
-      new THREE.Color(0x7dd3fc), // sky cyan
-      new THREE.Color(0x60a5fa), // light cornflower
-      new THREE.Color(0xa5b4fc), // soft periwinkle
-      new THREE.Color(0x93c5fd), // back toward sky
-      new THREE.Color(0xbfdbfe), // baby blue (loop close)
+      new THREE.Color(0xa9bdd0), // baby blue
+      new THREE.Color(0xa9bdd0), // sky blue
+      new THREE.Color(0xa9bdd0), // sky cyan
+      new THREE.Color(0x8ca0b3), // light cornflower
+      new THREE.Color(0xa9bdd0), // soft periwinkle
+      new THREE.Color(0xa9bdd0), // back toward sky
+      new THREE.Color(0xa9bdd0), // baby blue (loop close)
     ];
     const sampleColor = (t: number, out: THREE.Color) => {
       const x = Math.min(1, Math.max(0, t)) * (palette.length - 1);

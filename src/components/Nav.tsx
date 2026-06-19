@@ -67,21 +67,10 @@ export function Nav() {
   const [mobileIndustries, setMobileIndustries] = useState(false);
   const closeTimer = useRef<number | undefined>(undefined);
 
-  // On the home page the nav floats over the BLACK hero, which whites out on
-  // scroll — so flip the nav to a frosted LIGHT bar (dark text/logo) once it
-  // scrolls into the light content, matching the hero transition (Gemini-style).
-  // Other routes keep the solid dark bar.
-  const [light, setLight] = useState(false);
-  useEffect(() => {
-    if (pathname !== "/") {
-      setLight(false);
-      return;
-    }
-    const onScroll = () => setLight(window.scrollY > window.innerHeight * 0.72);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [pathname]);
+  // UiPath-style: a single solid dark charcoal bar over every page — dark over
+  // the black hero, dark over the light interior content alike. (We keep the
+  // `light` flag wired for minimal churn, but it stays false everywhere.)
+  const [light] = useState(false);
 
   // Close any open menus when the route changes.
   useEffect(() => {
@@ -132,7 +121,7 @@ export function Nav() {
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         light
           ? "border-line/40 bg-background/40 backdrop-blur-xl"
-          : "border-white/10 bg-black"
+          : "border-white/10 bg-ink-warm"
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3 lg:px-10">
@@ -181,7 +170,7 @@ export function Nav() {
                   onMouseEnter={openMenu}
                   onMouseLeave={closeMenu}
                 >
-                  <div className="w-[340px] rounded-2xl border border-white/10 bg-[#140b1c]/95 p-2.5 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+                  <div className="w-[340px] rounded-2xl border border-white/10 bg-[#222A33]/97 p-2.5 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl">
                     <div className="px-3 pb-1.5 pt-2 text-[10.5px] font-mono uppercase tracking-[0.18em] text-on-dark/45">
                       תעשיות שאנחנו בונים בהן
                     </div>
@@ -250,7 +239,7 @@ export function Nav() {
 
           <Link
             href="/contact"
-            className="btn-shine btn-violet hidden items-center rounded-full px-5 py-2.5 text-sm font-medium text-on-dark transition-transform duration-300 hover:-translate-y-0.5 md:inline-flex"
+            className="hidden items-center rounded-full bg-on-dark px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white md:inline-flex"
           >
             בואו נתחיל
           </Link>
@@ -302,7 +291,7 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-4 mt-2 rounded-2xl border border-white/10 bg-[#140b1c]/95 p-5 backdrop-blur-xl md:hidden"
+            className="mx-4 mt-2 rounded-2xl border border-white/10 bg-[#222A33]/97 p-5 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1">
               <Link href="/services" className="py-2 text-lg text-white hover:text-white/70">

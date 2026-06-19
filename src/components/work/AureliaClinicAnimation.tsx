@@ -449,7 +449,7 @@ function FollowupScene({ reduced }: { reduced: boolean }) {
                       <div className="mt-0.5 flex items-center justify-end gap-0.5 text-[6.5px]" style={{ color: INK_SOFT }}>
                         <span>09:4{i}</span>
                         {!isClient && (
-                          <CheckCheck className="w-2.5 h-2.5" strokeWidth={2.5} style={{ color: "#34B7F1" }} />
+                          <CheckCheck className="w-2.5 h-2.5" strokeWidth={2.5} style={{ color: "#A9BDD0" }} />
                         )}
                       </div>
                     </div>
@@ -574,7 +574,7 @@ function RebookedScene({ reduced }: { reduced: boolean }) {
                             existing.tint === "rose"
                               ? `${ROSE}55`
                               : existing.tint === "mint"
-                              ? "#A7F3D055"
+                              ? "#8CA0B355"
                               : `${ACCENT}33`,
                         }}
                       />

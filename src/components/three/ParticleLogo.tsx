@@ -128,16 +128,18 @@ const FRAG_DUST = `
   }
 `;
 
-// BLUE-ONLY palette — the field drifts between blue tones (the brightness pulse rides each change).
+// SLATE / BLUE-GREY palette — the field drifts between muted blue-grey tones
+// (the brightness pulse rides each change). Matches the brand palette:
+// dark slate #3D4A59 + muted blue-grey #8CA0B3.
 const CYCLE = [
-  new THREE.Color("#5C93F7"), new THREE.Color("#3B7BF5"),
-  new THREE.Color("#8FC0FF"), new THREE.Color("#2E6BE0"),
+  new THREE.Color("#8CA0B3"), new THREE.Color("#5C7488"),
+  new THREE.Color("#A9BDD0"), new THREE.Color("#6E8398"),
 ];
 const COLOR_EVERY = 10;
-// The shapes cycle hues, but the Clix LOGO (scroll-formed) settles to brand blue.
-const LOGO_BLUE = new THREE.Color("#3B7BF5");
-// Intro pop: the forming logo flashes a brighter blue, then settles into the cycle.
-const INTRO_TINT = new THREE.Color("#9FCBFF");
+// The shapes cycle tones, but the Clix LOGO (scroll-formed) settles to the brand blue-grey.
+const LOGO_BLUE = new THREE.Color("#8CA0B3");
+// Intro pop: the forming logo flashes a brighter blue-grey, then settles into the cycle.
+const INTRO_TINT = new THREE.Color("#C2D0DD");
 
 export function ParticleLogo({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -260,7 +262,7 @@ export function ParticleLogo({ className = "" }: { className?: string }) {
     }
     const dustUniforms = {
       uTime: { value: 0 }, uDustScale: { value: h * 0.5 }, uDustSize: { value: 0.11 * pr },
-      uDustColor: { value: new THREE.Color(0x86baf2) }, uDustOpacity: { value: 1.0 },
+      uDustColor: { value: new THREE.Color(0x9fb1c2) }, uDustOpacity: { value: 1.0 },
     };
     const dustMat = new THREE.ShaderMaterial({ uniforms: dustUniforms, vertexShader: VERT_DUST, fragmentShader: FRAG_DUST, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
     const dustPoints = new THREE.Points(dustGeo, dustMat);

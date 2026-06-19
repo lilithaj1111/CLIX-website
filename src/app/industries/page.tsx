@@ -120,7 +120,7 @@ export default function IndustriesPage() {
                         className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium"
                         style={{
                           background: `color-mix(in srgb, ${c1} 12%, white)`,
-                          color: `color-mix(in srgb, ${c1} 80%, #0B1326)`,
+                          color: `color-mix(in srgb, ${c1} 80%, #222A33)`,
                         }}
                       >
                         <span

@@ -145,7 +145,7 @@ function WireIco({
       scale={scale}
     >
       <lineBasicMaterial
-        color="#4a6258"
+        color="#8CA0B3"
         transparent
         opacity={opacity}
         depthWrite={false}
@@ -189,7 +189,7 @@ function DriftingDust({
   return (
     <points ref={ref} geometry={geom}>
       <pointsMaterial
-        color="#4a6258"
+        color="#8CA0B3"
         size={0.038}
         sizeAttenuation
         transparent

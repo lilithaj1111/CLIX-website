@@ -16,12 +16,12 @@ import { Activity, ArrowDown, TrendingUp, Zap } from "lucide-react";
  *   03 · Scale without hiring     (volume up vs team flat sparklines)
  */
 
-const BLUE = "#3B82F6";
-const BLUE_DEEP = "#2563EB";
-const LIME = "#A3E635";
-const LIME_BRIGHT = "#BEF264";
-const LIME_DEEP = "#65A30D";
-const INK = "#0F172A";
+const BLUE = "#8CA0B3";
+const BLUE_DEEP = "#3D4A59";
+const LIME = "#8CA0B3";
+const LIME_BRIGHT = "#A9BDD0";
+const LIME_DEEP = "#3D4A59";
+const INK = "#222A33";
 const INK_SOFT = "rgba(15,23,42,0.55)";
 const INK_MUTED = "rgba(15,23,42,0.38)";
 const PAPER = "#FFFFFF";
@@ -154,7 +154,7 @@ export function HeroServiceCards({ className = "" }: { className?: string }) {
                 onClick={() => handleClick(id)}
                 aria-label={`Select ${CARDS[id].label}`}
                 aria-pressed={isCenter}
-                className="absolute top-1/2 left-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/60 rounded-[26px]"
+                className="absolute top-1/2 left-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8CA0B3]/60 rounded-[26px]"
                 animate={{
                   x: offset * spread,
                   y: isCenter ? -12 : 22,
@@ -207,9 +207,9 @@ function Card({
         width,
         height,
         background: PAPER,
-        border: `1px solid ${isActive ? "rgba(59,130,246,0.20)" : LINE_FAINT}`,
+        border: `1px solid ${isActive ? "rgba(140,160,179,0.20)" : LINE_FAINT}`,
         boxShadow: isActive
-          ? `0 36px 70px -20px rgba(59,130,246,0.30), 0 14px 28px -10px rgba(15,23,42,0.18)`
+          ? `0 36px 70px -20px rgba(140,160,179,0.30), 0 14px 28px -10px rgba(15,23,42,0.18)`
           : `0 18px 36px -16px rgba(15,23,42,0.18), 0 6px 14px -6px rgba(15,23,42,0.10)`,
       }}
     >

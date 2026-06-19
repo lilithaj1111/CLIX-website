@@ -298,20 +298,20 @@ const defaultBallpitConfig = {
 };
 
 // Accent-blue sphere palette (Clix tokens).
-const BLUE_BALLS = ["#1E4DB8", "#3B7BF5", "#5C93F7", "#7FA9F7", "#A9CFF0"];
+const BLUE_BALLS = ["#3D4A59", "#8CA0B3", "#8CA0B3", "#A9BDD0", "#A9BDD0"];
 
 // Hero palette — the blue family with a lime accent dropped in roughly every
 // eighth sphere (colours are assigned i % length), so a glossy blue pit gets
 // occasional brand-lime pops without tipping green.
 const HERO_BALLS = [
-  "#1E4DB8",
-  "#2F6BF0",
-  "#3B7BF5",
-  "#5C93F7",
-  "#7FA9F7",
-  "#A9CFF0",
-  "#3B7BF5",
-  "#A3E635",
+  "#3D4A59",
+  "#8CA0B3",
+  "#8CA0B3",
+  "#8CA0B3",
+  "#A9BDD0",
+  "#A9BDD0",
+  "#8CA0B3",
+  "#8CA0B3",
 ];
 
 type BallpitProps = {
@@ -460,7 +460,7 @@ export function BallpitHero() {
       className="relative flex h-[100svh] min-h-[640px] max-h-[920px] flex-col items-center justify-center overflow-hidden px-6 pb-[14vh] text-center"
       style={{
         background:
-          "linear-gradient(165deg, #EFF6FD 0%, #E6F0F8 50%, #DEEAF6 100%)",
+          "linear-gradient(165deg, #F4F5F7 0%, #E7EAEE 50%, #D7DBE0 100%)",
       }}
     >
       {/* Living aurora — two slow-drifting glow layers (lime + blue) that
@@ -470,10 +470,10 @@ export function BallpitHero() {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background: [
-            "radial-gradient(48% 60% at 4% 26%, color-mix(in srgb, #A3E635 34%, transparent), transparent 68%)",
-            "radial-gradient(40% 52% at 14% 82%, color-mix(in srgb, #BEF264 26%, transparent), transparent 70%)",
-            "radial-gradient(48% 60% at 96% 28%, color-mix(in srgb, #A3E635 34%, transparent), transparent 68%)",
-            "radial-gradient(40% 52% at 86% 84%, color-mix(in srgb, #BEF264 26%, transparent), transparent 70%)",
+            "radial-gradient(48% 60% at 4% 26%, color-mix(in srgb, #8CA0B3 34%, transparent), transparent 68%)",
+            "radial-gradient(40% 52% at 14% 82%, color-mix(in srgb, #A9BDD0 26%, transparent), transparent 70%)",
+            "radial-gradient(48% 60% at 96% 28%, color-mix(in srgb, #8CA0B3 34%, transparent), transparent 68%)",
+            "radial-gradient(40% 52% at 86% 84%, color-mix(in srgb, #A9BDD0 26%, transparent), transparent 70%)",
           ].join(", "),
         }}
         animate={
@@ -486,9 +486,9 @@ export function BallpitHero() {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background: [
-            "radial-gradient(58% 54% at 50% 96%, color-mix(in srgb, #7FA9F7 30%, transparent), transparent 74%)",
-            "radial-gradient(42% 48% at 26% 6%, color-mix(in srgb, #93C5FD 24%, transparent), transparent 72%)",
-            "radial-gradient(42% 48% at 76% 4%, color-mix(in srgb, #BFD3FB 22%, transparent), transparent 72%)",
+            "radial-gradient(58% 54% at 50% 96%, color-mix(in srgb, #A9BDD0 30%, transparent), transparent 74%)",
+            "radial-gradient(42% 48% at 26% 6%, color-mix(in srgb, #A9BDD0 24%, transparent), transparent 72%)",
+            "radial-gradient(42% 48% at 76% 4%, color-mix(in srgb, #A9BDD0 22%, transparent), transparent 72%)",
           ].join(", "),
         }}
         animate={
@@ -539,7 +539,7 @@ export function BallpitHero() {
         className="pointer-events-none absolute inset-0 z-[3]"
         style={{
           background:
-            "radial-gradient(58% 48% at 50% 43%, color-mix(in srgb, #F4F8FD 86%, transparent) 0%, color-mix(in srgb, #F4F8FD 48%, transparent) 44%, transparent 72%)",
+            "radial-gradient(58% 48% at 50% 43%, color-mix(in srgb, #F4F5F7 86%, transparent) 0%, color-mix(in srgb, #F4F5F7 48%, transparent) 44%, transparent 72%)",
         }}
       />
 

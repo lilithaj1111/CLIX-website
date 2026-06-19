@@ -35,13 +35,11 @@ export function Process() {
   return (
     <section
       ref={sectionRef}
-      className="divider-draw border-t border-transparent py-20 md:py-28 relative overflow-hidden"
+      className="border-t border-line bg-paper py-20 md:py-28 relative overflow-hidden"
     >
-      <div aria-hidden className="absolute inset-0 z-0 aurora-bg-bl opacity-55 pointer-events-none" />
-
       {/* Horizontal ribbon strip — flows behind the four step cards. */}
       <RevealScene
-        opacity={0.55}
+        opacity={0.3}
         className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[70%] pointer-events-none z-0"
       >
         <Scene

@@ -25,7 +25,7 @@ export const projects: Project[] = [
       { label: "הזמנות שטופלו אוטומטית", value: "68%" },
     ],
     tags: ["סוכני AI", "WhatsApp", "אינטגרציות"],
-    accent: "#547A95",
+    accent: "#3D4A59",
   },
   {
     slug: "loomly-ops-portal",
@@ -41,7 +41,7 @@ export const projects: Project[] = [
       { label: "זמן קליטת עובד חדש", value: "−74%" },
     ],
     tags: ["תוכנה מותאמת אישית", "דשבורדים"],
-    accent: "#6fd1d7",
+    accent: "#5C7488",
   },
   {
     slug: "kindred-support-copilot",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
       { label: "כיסוי מאגר הידע", value: "94%" },
     ],
     tags: ["סוכני AI", "ייעוץ"],
-    accent: "#3B7BF5",
+    accent: "#6E8398",
   },
   {
     slug: "atlas-finance-flows",
@@ -73,6 +73,6 @@ export const projects: Project[] = [
       { label: "מחזור סגירה", value: "11 ימים → 3 ימים" },
     ],
     tags: ["אינטגרציות", "ייעוץ"],
-    accent: "#110d1c",
+    accent: "#2A3540",
   },
 ];

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { insights, getInsight } from "@/lib/insights";
 import { InsightCover } from "@/components/insights/InsightCard";
+import { Scene } from "@/components/three/Scene";
+import { RevealScene } from "@/components/RevealScene";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -30,48 +32,67 @@ export default async function InsightArticle({
   if (!article) notFound();
 
   return (
-    <article className="relative pt-28 md:pt-36">
-      {/* soft blue + lime radiant behind the header — fades out before the body */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[680px]"
-        style={{
-          background: [
-            "radial-gradient(50% 60% at 10% -4%, color-mix(in srgb, #3B7BF5 20%, transparent), transparent 68%)",
-            "radial-gradient(48% 56% at 94% 4%, color-mix(in srgb, #A3E635 22%, transparent), transparent 68%)",
-            "radial-gradient(70% 52% at 50% -10%, color-mix(in srgb, #BEF264 12%, transparent), transparent 70%)",
-          ].join(", "),
-          maskImage: "linear-gradient(to bottom, #000 38%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, #000 38%, transparent 100%)",
-        }}
-      />
+    <article className="relative">
+      {/* ── Header hero — animated mesh-ribbon scene behind the title, matching
+          the /insights listing hero (image 1). ─────────────────────────────── */}
+      <div className="relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-16">
+        <div aria-hidden className="absolute inset-0 z-0 aurora-bg" />
+        {/* soft slate radiant */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background: [
+              "radial-gradient(50% 60% at 10% -4%, color-mix(in srgb, #8CA0B3 20%, transparent), transparent 68%)",
+              "radial-gradient(48% 56% at 94% 4%, color-mix(in srgb, #8CA0B3 22%, transparent), transparent 68%)",
+              "radial-gradient(70% 52% at 50% -10%, color-mix(in srgb, #A9BDD0 12%, transparent), transparent 70%)",
+            ].join(", "),
+          }}
+        />
+        {/* mesh ribbon */}
+        <RevealScene opacity={0.9} className="absolute inset-0 z-0 pointer-events-none">
+          <Scene
+            kind="flow"
+            density={1}
+            scale={1.15}
+            accentMix={0.55}
+            position={[1.4, 0.2, 0]}
+            className="absolute inset-0"
+          />
+        </RevealScene>
+        {/* readability veil */}
+        <div
+          aria-hidden
+          className="absolute inset-0 z-[1] pointer-events-none bg-background/55 lg:bg-background/25"
+        />
 
-      <div className="mx-auto max-w-[760px] px-6 lg:px-8">
-        {/* back */}
-        <Link
-          href="/insights"
-          className="inline-flex items-center gap-1.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-foreground/55 transition-colors hover:text-accent"
-        >
-          <ArrowRight className="h-4 w-4" />
-          כל התובנות
-        </Link>
+        <div className="relative z-[2] mx-auto max-w-[760px] px-6 lg:px-8">
+          {/* back */}
+          <Link
+            href="/insights"
+            className="inline-flex items-center gap-1.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-foreground/55 transition-colors hover:text-accent"
+          >
+            <ArrowRight className="h-4 w-4" />
+            כל התובנות
+          </Link>
 
-        {/* header */}
-        <div className="mt-6 flex items-center gap-3 font-mono text-[12.5px] text-foreground/55">
-          <span className="rounded-full bg-accent-soft px-3 py-1 font-medium text-accent-deep">
-            {article.category}
-          </span>
-          <span>{article.date}</span>
-          <span aria-hidden>·</span>
-          <span>{article.readingMinutes} דק׳ קריאה</span>
+          {/* header */}
+          <div className="mt-6 flex items-center gap-3 font-mono text-[12.5px] text-foreground/55">
+            <span className="rounded-full bg-accent-soft px-3 py-1 font-medium text-accent-deep">
+              {article.category}
+            </span>
+            <span>{article.date}</span>
+            <span aria-hidden>·</span>
+            <span>{article.readingMinutes} דק׳ קריאה</span>
+          </div>
+
+          <h1 className="mt-5 text-[clamp(2rem,4.4vw,3.1rem)] font-bold leading-[1.08] tracking-[-0.03em] text-ink">
+            {article.title}
+          </h1>
+          <p className="mt-5 text-[18px] leading-relaxed text-foreground/70">
+            {article.excerpt}
+          </p>
         </div>
-
-        <h1 className="mt-5 text-[clamp(2rem,4.4vw,3.1rem)] font-medium leading-[1.08] tracking-[-0.03em] text-ink">
-          {article.title}
-        </h1>
-        <p className="mt-5 text-[18px] leading-relaxed text-foreground/70">
-          {article.excerpt}
-        </p>
       </div>
 
       {/* cover */}

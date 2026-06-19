@@ -101,14 +101,14 @@ export function AuroraHero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <MeshGradient
           className="absolute inset-0 h-full w-full"
-          colors={["#EAF2FE", "#BFD3FB", "#7FA9F7", "#3B7BF5", "#A3E635"]}
+          colors={["#E7EAEE", "#A9BDD0", "#8CA0B3", "#A9BDD0", "#8CA0B3"]}
           speed={live ? 0.28 : 0}
           distortion={0.95}
           swirl={0.7}
         />
         <MeshGradient
           className="absolute inset-0 h-full w-full opacity-60 mix-blend-screen"
-          colors={["#F7F9FC", "#DDE9FE", "#9DC0FA", "#BEF264", "#D9F99D"]}
+          colors={["#F4F5F7", "#E1E6EB", "#A9BDD0", "#8CA0B3", "#A9BDD0"]}
           speed={live ? 0.17 : 0}
           distortion={1.05}
           swirl={0.4}

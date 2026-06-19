@@ -150,7 +150,7 @@ function CinematicBackdrop() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(124,58,168,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,168,0.16) 1px, transparent 1px)",
+            "linear-gradient(rgba(140,160,179,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(140,160,179,0.16) 1px, transparent 1px)",
           backgroundSize: "44px 44px",
           maskImage:
             "radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 95%)",
@@ -562,7 +562,7 @@ function FounderCard({ founder }: { founder: TeamMember }) {
 function TeamCard({ member }: { member: TeamMember }) {
   return (
     <div className="relative h-full">
-      <div className="relative rounded-2xl border border-line/80 bg-paper px-6 py-9 flex flex-col items-center text-center transition-all duration-500 group-hover:border-accent/60 group-hover:shadow-[0_36px_70px_-22px_rgba(124,58,168,0.45)] h-full overflow-hidden">
+      <div className="relative rounded-2xl border border-line/80 bg-paper px-6 py-9 flex flex-col items-center text-center transition-all duration-500 group-hover:border-accent/60 group-hover:shadow-[0_36px_70px_-22px_rgba(61,74,89,0.4)] h-full overflow-hidden">
         {/* Soft permanent wash — accent glow at the top of every card so
             the row feels intentional, not just hover-driven. */}
         <div
@@ -602,7 +602,7 @@ function TeamCard({ member }: { member: TeamMember }) {
 function MoreTeamCard() {
   return (
     <div className="relative h-full">
-      <div className="relative rounded-2xl border border-line/80 bg-paper px-6 py-9 flex flex-col items-center text-center transition-all duration-500 group-hover:border-accent/60 group-hover:shadow-[0_36px_70px_-22px_rgba(124,58,168,0.45)] h-full overflow-hidden">
+      <div className="relative rounded-2xl border border-line/80 bg-paper px-6 py-9 flex flex-col items-center text-center transition-all duration-500 group-hover:border-accent/60 group-hover:shadow-[0_36px_70px_-22px_rgba(61,74,89,0.4)] h-full overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"

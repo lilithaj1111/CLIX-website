@@ -81,13 +81,41 @@ export default function WorkPage() {
                       "radial-gradient(800px 200px at 20% 80%, rgba(255,255,255,0.35), transparent), radial-gradient(600px 200px at 90% 20%, rgba(0,0,0,0.25), transparent)",
                   }}
                 />
-                <LazyTileAnimation
-                  slug={p.slug}
-                  accent={p.accent}
-                  className="opacity-95 transition-opacity duration-500 group-hover:opacity-100"
-                />
-                {/* Caption — desktop only; on mobile it would overlap the
-                    animation, so we hide the text (the animation stays). */}
+                {/* Desktop — the cinematic case-study animation. */}
+                <div className="hidden md:block absolute inset-0">
+                  <LazyTileAnimation
+                    slug={p.slug}
+                    accent={p.accent}
+                    className="opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                </div>
+
+                {/* Mobile — the animation is far too dense for a small screen,
+                    so we show the real outcome metrics on a clean dark panel
+                    instead (readable + actually useful at 375px). */}
+                <div className="md:hidden absolute inset-0 flex flex-col justify-center gap-1 bg-ink-warm px-6 py-7">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8CA0B3]">
+                    {p.category} · {p.year}
+                  </div>
+                  <div className="mt-3 flex flex-col">
+                    {p.metrics.map((m) => (
+                      <div
+                        key={m.label}
+                        className="flex items-baseline justify-between gap-3 border-b border-white/10 py-2.5 last:border-0"
+                      >
+                        <span className="text-[12px] leading-tight text-on-dark/60">
+                          {m.label}
+                        </span>
+                        <span className="shrink-0 text-lg font-bold tabular-nums text-on-dark">
+                          {m.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Caption — desktop only; on mobile the metrics panel carries
+                    the label. */}
                 <div
                   className={`hidden md:block absolute bottom-5 left-6 font-mono text-xs uppercase tracking-[0.18em] ${
                     p.slug === "northwind-sales-agent"

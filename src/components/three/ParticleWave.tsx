@@ -153,7 +153,7 @@ function Wave({
   const cBase = useMemo(() => new THREE.Color(accent), [accent]);
   const cHigh = useMemo(() => new THREE.Color(accentDeep), [accentDeep]);
   const cTrough = useMemo(
-    () => new THREE.Color(accent).lerp(new THREE.Color("#c8b3d9"), 0.45),
+    () => new THREE.Color(accent).lerp(new THREE.Color("#A9BDD0"), 0.45),
     [accent],
   );
   const cBg = useMemo(() => new THREE.Color(bg), [bg]);

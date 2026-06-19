@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useCallback, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
+import { Play, X } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { useInViewAttr } from "@/lib/useInViewAttr";
 import { CinematicHeading } from "./CinematicHeading";
@@ -49,259 +48,138 @@ const TESTIMONIALS: Testimonial[] = [
 
 export function Testimonial() {
   const sectionRef = useInViewAttr<HTMLElement>();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const close = useCallback(() => setOpenIndex(null), []);
+  // Single active inline video at a time — clicking another card swaps it, so
+  // the others are never blocked (no full-screen modal).
+  const [playingSlug, setPlayingSlug] = useState<string | null>(null);
 
   return (
     <section
       ref={sectionRef}
-      className="divider-draw border-t border-transparent relative overflow-hidden py-24 md:py-32"
+      className="relative overflow-hidden border-t border-line bg-background py-24 md:py-32"
     >
-      {/* Lime/mint radiant — same atmosphere as the AI Agents service
-          card so the home flow has a consistent green undertone. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          background: [
-            "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #A3E635 28%, transparent), transparent 70%)",
-            "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #5EEAD4 24%, transparent), transparent 70%)",
-            "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #FDE68A 20%, transparent), transparent 70%)",
-          ].join(", "),
-        }}
-      />
-
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 relative z-[1]">
-        <div className="grid md:grid-cols-12 gap-8 items-end mb-12 md:mb-16">
-          <div className="md:col-span-7">
+      <div className="relative z-[1] mx-auto max-w-[1400px] px-6 lg:px-10">
+        <div className="mb-12 grid items-end gap-8 md:mb-16 md:grid-cols-12">
+          <div className="md:col-span-8">
             <Reveal>
               <div className="eyebrow">בקולם של הלקוחות שלנו</div>
             </Reveal>
             <CinematicHeading
               as="h2"
-              className="mt-5 text-[clamp(2rem,5.2vw,4.6rem)] leading-[0.96] tracking-[-0.03em] font-medium"
+              className="mt-5 text-[clamp(2rem,5.2vw,4.4rem)] font-bold leading-[0.98] tracking-[-0.035em] text-ink"
             >
               <>
                 שמעו את זה{" "}
-                <span className="serif-italic text-accent">ישירות</span> מהאנשים
+                <span className="font-semibold text-accent">ישירות</span> מהאנשים
                 שהעבודה שלהם השתנתה.
               </>
             </CinematicHeading>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
           {TESTIMONIALS.map((t, i) => (
             <TestimonialCard
               key={t.slug}
               t={t}
               index={i}
-              onOpen={() => setOpenIndex(i)}
+              playing={playingSlug === t.slug}
+              onPlay={() => setPlayingSlug(t.slug)}
+              onStop={() => setPlayingSlug(null)}
             />
           ))}
         </div>
       </div>
-
-      <TestimonialLightbox
-        testimonial={openIndex !== null ? TESTIMONIALS[openIndex] : null}
-        onClose={close}
-      />
     </section>
   );
 }
 
-/* ─── Card ───────────────────────────────────────────────────────────────── */
+/* ─── Card — portrait video on top, solid name panel below ──────────────── */
 
 function TestimonialCard({
   t,
   index,
-  onOpen,
+  playing,
+  onPlay,
+  onStop,
 }: {
   t: Testimonial;
   index: number;
-  onOpen: () => void;
+  playing: boolean;
+  onPlay: () => void;
+  onStop: () => void;
 }) {
   return (
     <Reveal delay={index * 0.08}>
-      <button
-        type="button"
-        onClick={onOpen}
-        aria-label={`הפעלת עדות של ${t.name}`}
-        className="group relative w-full aspect-[9/16] rounded-2xl overflow-hidden grad-border glow-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      <div
+        className={`group relative flex h-full w-full flex-col overflow-hidden rounded-xl text-right transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-2 hover:scale-[1.02] ${
+          playing
+            ? "border border-transparent bg-transparent shadow-none"
+            : "border border-white/10 bg-[#222C36] shadow-[0_18px_44px_-26px_rgba(20,26,32,0.55)] hover:border-white/25 hover:shadow-[0_34px_70px_-24px_rgba(20,26,32,0.6)] focus-within:border-white/25"
+        }`}
       >
-        <Image
-          src={t.posterSrc}
-          alt={t.name}
-          fill
-          sizes="(max-width: 768px) 50vw, 25vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-        />
-
-        {/* Bottom ink gradient so name is legible regardless of frame */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent"
-          style={{
-            background:
-              "linear-gradient(180deg, transparent 30%, rgba(5,3,9,0.4) 60%, rgba(5,3,9,0.92) 100%)",
-          }}
-        />
-
-        {/* Play button */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0.85, scale: 1 }}
-            whileHover={{ scale: 1.08 }}
-            className="w-12 h-12 md:w-16 md:h-16 rounded-full glass grad-border grid place-items-center text-foreground transition-transform duration-300 group-hover:scale-110"
-            style={{
-              boxShadow:
-                "0 12px 32px -10px color-mix(in srgb, var(--accent) 60%, transparent)",
-            }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="ml-0.5 md:w-6 md:h-6"
-              aria-hidden
-            >
-              <path d="M8 5.14v13.72a1 1 0 0 0 1.5.87l11.6-6.86a1 1 0 0 0 0-1.74L9.5 4.27A1 1 0 0 0 8 5.14z" />
-            </svg>
-          </motion.div>
-        </div>
-
-        {/* Name + role overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 text-left">
-          <div className="text-white font-medium text-[15px] md:text-base leading-tight tracking-tight">
-            {t.name}
-          </div>
-          <div className="text-white/70 text-[10px] md:text-[11px] font-mono uppercase tracking-[0.18em] mt-1">
-            {t.role}
-          </div>
-        </div>
-
-        {/* Hover accent ring */}
-        <span
-          aria-hidden
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            boxShadow:
-              "inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent)",
-          }}
-        />
-      </button>
-    </Reveal>
-  );
-}
-
-/* ─── Lightbox ──────────────────────────────────────────────────────────── */
-
-function TestimonialLightbox({
-  testimonial,
-  onClose,
-}: {
-  testimonial: Testimonial | null;
-  onClose: () => void;
-}) {
-  const reduced = useReducedMotion();
-  const isOpen = testimonial !== null;
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Close on ESC + lock page scroll while open
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [isOpen, onClose]);
-
-  if (!mounted) return null;
-
-  return createPortal(
-    <AnimatePresence>
-      {testimonial && (
-        <motion.div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Testimonial · ${testimonial.name}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          onClick={onClose}
-          className="fixed inset-0 z-[100] bg-ink/85 backdrop-blur-2xl flex items-center justify-center p-4 md:p-8"
-        >
-          {/* Aurora wash behind */}
-          <div
-            aria-hidden
-            className="absolute inset-0 aurora-bg opacity-40 pointer-events-none"
-          />
-
-          {/* Close button */}
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="סגירת העדות"
-            className="absolute top-5 right-5 md:top-7 md:right-7 z-[2] w-10 h-10 md:w-12 md:h-12 rounded-full glass grad-border grid place-items-center text-foreground hover:bg-accent/20 transition"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            >
-              <path d="M6 6l12 12M18 6l-12 12" />
-            </svg>
-          </button>
-
-          {/* Video container — stop click bubbling so the backdrop only closes outside */}
-          <motion.div
-            initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.94, y: 12 }}
-            animate={reduced ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-            exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-h-full"
-            style={{ aspectRatio: "9 / 16", height: "min(85vh, calc(100vw * 16 / 9))" }}
-          >
-            <div className="relative w-full h-full rounded-2xl overflow-hidden grad-border shadow-2xl">
+        {/* Media — portrait video; the face shows fully (no veil). */}
+        <div className="relative aspect-[4/5] overflow-hidden bg-ink">
+          {playing ? (
+            <>
               {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
               <video
-                key={testimonial.slug}
-                src={testimonial.videoSrc}
-                poster={testimonial.posterSrc}
+                src={t.videoSrc}
+                poster={t.posterSrc}
                 autoPlay
                 controls
                 playsInline
                 preload="metadata"
-                className="absolute inset-0 w-full h-full bg-ink object-cover"
+                onEnded={onStop}
+                className="absolute inset-0 h-full w-full bg-ink object-cover"
               />
+              {/* Dismiss — returns this card to its poster */}
+              <button
+                type="button"
+                onClick={onStop}
+                aria-label="עצירת הסרטון"
+                className="absolute left-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/45 text-white ring-1 ring-white/25 backdrop-blur-sm transition-colors hover:bg-black/70"
+              >
+                <X className="h-4 w-4" strokeWidth={2} />
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={onPlay}
+              aria-label={`הפעלת עדות של ${t.name}`}
+              className="absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8CA0B3]"
+            >
+              <Image
+                src={t.posterSrc}
+                alt={t.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              {/* Play badge — small, top corner, never covers the face */}
+              <span className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-white ring-1 ring-white/25 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                <Play className="ms-0.5 h-4 w-4" fill="currentColor" strokeWidth={0} />
+              </span>
+            </button>
+          )}
+        </div>
+
+        {/* Solid name panel — sits entirely below the video. mt-auto drops the
+            row low; the name/role and arrow share one row (text right, arrow
+            left, vertically aligned). */}
+        <div className="flex flex-1 flex-col px-5 pt-3.75 pb-2 md:px-6">
+          {!playing && (
+            <div className="mt-auto">
+              <h3 className="text-[14px] font-bold leading-snug tracking-[-0.01em] text-on-dark md:text-[15px]">
+                {t.name}
+              </h3>
+              <p className="mt-1 text-[11px] leading-relaxed text-on-dark/55">
+                {t.role}
+              </p>
             </div>
-            <div className="absolute inset-x-0 -bottom-12 md:-bottom-14 text-center">
-              <div className="text-white font-medium text-base">{testimonial.name}</div>
-              <div className="text-white/70 text-[11px] font-mono uppercase tracking-[0.18em] mt-1">
-                {testimonial.role}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>,
-    document.body,
+          )}
+        </div>
+      </div>
+    </Reveal>
   );
 }

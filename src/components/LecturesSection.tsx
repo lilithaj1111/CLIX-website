@@ -33,21 +33,7 @@ export function LecturesSection() {
     : CASCADE_ITEM;
 
   return (
-    <section className="relative border-t border-line py-20 md:py-28 overflow-hidden">
-      {/* Lime/mint radiant — same atmosphere as the AI Agents service
-          card on /services. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          background: [
-            "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #A3E635 28%, transparent), transparent 70%)",
-            "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #5EEAD4 24%, transparent), transparent 70%)",
-            "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #FDE68A 20%, transparent), transparent 70%)",
-          ].join(", "),
-        }}
-      />
-
+    <section className="relative border-t border-line bg-background py-20 md:py-28 overflow-hidden">
       <div className="relative z-[1] mx-auto max-w-[1240px] px-6 lg:px-10">
         {/* ── Top band — editorial header left, video right ──────────── */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -67,7 +53,7 @@ export function LecturesSection() {
 
             <motion.h2
               variants={cascadeItem}
-              className="mt-5 text-[clamp(2.1rem,3.8vw,3.4rem)] leading-[1.05] tracking-[-0.03em] font-medium text-balance"
+              className="mt-5 text-[clamp(2.1rem,3.8vw,3.4rem)] leading-[1.05] tracking-[-0.035em] font-semibold text-balance"
             >
               מביאים את צוות המומחים{" "}
               <span className="serif-italic text-accent">אל החדר שלכם.</span>

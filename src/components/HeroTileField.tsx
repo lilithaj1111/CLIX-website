@@ -41,9 +41,9 @@ export function HeroTileField({ className = "" }: { className?: string }) {
   const cycle = INTRO + (N - 1) * STEP + TIP_DUR + BACK_DUR + HOLD_END;
 
   const glassBg =
-    "linear-gradient(90deg, rgba(99,102,241,0.92) 0%, rgba(129,140,248,0.85) 30%, rgba(165,180,252,0.70) 65%, rgba(199,210,254,0.40) 100%)";
+    "linear-gradient(90deg, rgba(140,160,179,0.92) 0%, rgba(169,189,208,0.85) 30%, rgba(169,189,208,0.70) 65%, rgba(225,230,235,0.40) 100%)";
   const glassShadow =
-    "4px 7px 0 0 rgba(79,70,229,0.28), 0 16px 30px -10px rgba(79,70,229,0.40), inset 0 2px 0 rgba(255,255,255,0.60), inset 0 -3px 6px rgba(67,56,202,0.30)";
+    "4px 7px 0 0 rgba(61,74,89,0.28), 0 16px 30px -10px rgba(61,74,89,0.40), inset 0 2px 0 rgba(255,255,255,0.60), inset 0 -3px 6px rgba(140,160,179,0.30)";
 
   return (
     <div aria-hidden className={`pointer-events-none ${className}`}>
@@ -60,7 +60,7 @@ export function HeroTileField({ className = "" }: { className?: string }) {
             width: 300,
             height: 300,
             background:
-              "radial-gradient(circle, rgba(99,102,241,0.40) 0%, rgba(129,140,248,0.18) 35%, transparent 70%)",
+              "radial-gradient(circle, rgba(140,160,179,0.40) 0%, rgba(169,189,208,0.18) 35%, transparent 70%)",
             filter: "blur(8px)",
           }}
           initial={reduce ? false : { opacity: 0.6, scale: 0.92 }}
@@ -104,7 +104,7 @@ export function HeroTileField({ className = "" }: { className?: string }) {
             height: THICK * 1.6,
             borderRadius: "9999px",
             background:
-              "radial-gradient(circle, rgba(67,56,202,0.95) 0%, rgba(79,86,255,0.55) 45%, transparent 72%)",
+              "radial-gradient(circle, rgba(140,160,179,0.95) 0%, rgba(169,189,208,0.55) 45%, transparent 72%)",
             filter: "blur(5px)",
           };
 

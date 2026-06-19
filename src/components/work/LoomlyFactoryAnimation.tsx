@@ -41,10 +41,10 @@ const DUR: Record<Phase, number> = {
   alert: 5000,
 };
 
-const ACCENT = "#34B5BB";
-const ACCENT_DEEP = "#0E7B82";
-const STEEL = "#475569";
-const INK = "#1F2937";
+const ACCENT = "#8CA0B3";
+const ACCENT_DEEP = "#A9BDD0";
+const STEEL = "#34404C";
+const INK = "#222A33";
 const INK_SOFT = "rgba(31,41,55,0.55)";
 const PAPER = "#FAF6EC";
 const PAPER_WARM = "#F1ECDF";
@@ -209,7 +209,7 @@ const TOOLS: Tool[] = [
     Icon: Mail,
     label: "Outlook · 412",
     sub: "Reply from shift lead",
-    tone: "#3B82F6",
+    tone: "#8CA0B3",
     metric: "L02 OUTPUT",
     value: "2,400",
     conflict: true,
@@ -239,7 +239,7 @@ const TOOLS: Tool[] = [
     Icon: Cog,
     label: "Gauge panel",
     sub: "Last cal 11d ago",
-    tone: "#0E7B82",
+    tone: "#8CA0B3",
     metric: "L02 OUTPUT",
     value: "2,395",
     conflict: true,
@@ -393,7 +393,7 @@ function PortalScene({ reduced }: { reduced: boolean }) {
     >
       <div
         className="relative rounded-[18px] p-1.5 shadow-[0_24px_44px_-18px_rgba(31,41,55,0.45)]"
-        style={{ background: `linear-gradient(180deg, ${STEEL}, #1F2937)` }}
+        style={{ background: `linear-gradient(180deg, ${STEEL}, #222A33)` }}
       >
         <span
           className="absolute top-2 left-3 w-1 h-1 rounded-full"
@@ -493,7 +493,7 @@ function PortalScene({ reduced }: { reduced: boolean }) {
           className="mx-auto h-2 rounded-b-md mt-px"
           style={{
             width: "20%",
-            background: "linear-gradient(180deg, #475569, #1F2937)",
+            background: "linear-gradient(180deg, #34404C, #222A33)",
           }}
         />
       </div>
@@ -596,7 +596,7 @@ function AlertScene({ reduced }: { reduced: boolean }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.5, ease: EASE }}
             className="col-span-2 rounded-lg overflow-hidden"
-            style={{ background: "#0E8E70", border: `1px solid ${LINE}` }}
+            style={{ background: "#8CA0B3", border: `1px solid ${LINE}` }}
           >
             <div className="px-1.5 py-1 flex items-center gap-1 text-white">
               <span className="w-3 h-3 rounded-full grid place-items-center bg-white/20 text-white">

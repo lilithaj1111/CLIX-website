@@ -48,19 +48,19 @@ export function Hero() {
         }}
       />
 
-      {/* Soft lime radiant on the left + blue radiant on the right —
-          the lime anchors the illustration, the blue pulls the eye to
-          the headline + CTAs and ties the hero to the brand accent. */}
+      {/* Soft slate / blue-grey radiants — calm, on-palette washes that
+          anchor the illustration on the left and pull the eye toward the
+          headline + CTAs on the right. */}
       <div
         aria-hidden
         className="absolute inset-0 z-[1] pointer-events-none mix-blend-multiply"
         style={{
           background: [
-            "radial-gradient(55% 70% at 12% 50%, color-mix(in srgb, #A3E635 18%, transparent), transparent 75%)",
-            "radial-gradient(40% 55% at 28% 70%, color-mix(in srgb, #BEF264 14%, transparent), transparent 75%)",
-            "radial-gradient(50% 65% at 82% 40%, color-mix(in srgb, #60A5FA 22%, transparent), transparent 75%)",
-            "radial-gradient(35% 50% at 92% 75%, color-mix(in srgb, #3B82F6 16%, transparent), transparent 75%)",
-            "radial-gradient(30% 45% at 70% 18%, color-mix(in srgb, #93C5FD 14%, transparent), transparent 75%)",
+            "radial-gradient(55% 70% at 12% 50%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 75%)",
+            "radial-gradient(40% 55% at 28% 70%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 75%)",
+            "radial-gradient(50% 65% at 82% 40%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 75%)",
+            "radial-gradient(35% 50% at 92% 75%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 75%)",
+            "radial-gradient(30% 45% at 70% 18%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 75%)",
           ].join(", "),
         }}
       />

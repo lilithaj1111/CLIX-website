@@ -65,9 +65,9 @@ export function PageHero({
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             background: [
-              "radial-gradient(46% 60% at 88% 6%, color-mix(in srgb, #3B7BF5 20%, transparent), transparent 66%)",
-              "radial-gradient(44% 56% at 10% 0%, color-mix(in srgb, #A3E635 22%, transparent), transparent 66%)",
-              "radial-gradient(64% 52% at 50% 104%, color-mix(in srgb, #BEF264 13%, transparent), transparent 70%)",
+              "radial-gradient(46% 60% at 88% 6%, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 66%)",
+              "radial-gradient(44% 56% at 10% 0%, color-mix(in srgb, var(--accent-2) 22%, transparent), transparent 66%)",
+              "radial-gradient(64% 52% at 50% 104%, color-mix(in srgb, #A9BDD0 13%, transparent), transparent 70%)",
             ].join(", "),
             maskImage: "linear-gradient(to bottom, #000 55%, transparent 100%)",
             WebkitMaskImage: "linear-gradient(to bottom, #000 55%, transparent 100%)",

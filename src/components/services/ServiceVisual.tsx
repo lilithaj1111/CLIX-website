@@ -165,7 +165,7 @@ function AIAgentsVisual() {
             width: "80%",
             aspectRatio: "1.4",
             background:
-              "radial-gradient(circle, rgba(190,242,100,0.32), rgba(94,234,212,0.16) 50%, transparent 76%)",
+              "radial-gradient(circle, rgba(140,160,179,0.32), rgba(169,189,208,0.16) 50%, transparent 76%)",
             filter: "blur(28px)",
           }}
         />
@@ -204,8 +204,8 @@ function AIAgentsVisual() {
                   <span
                     className="ml-2 inline-grid place-items-center w-4 h-4 rounded text-paper shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, #BEF264, #65A30D)",
-                      boxShadow: "0 2px 4px -1px rgba(101,163,13,0.4)",
+                      background: "linear-gradient(135deg, #8CA0B3, #A9BDD0)",
+                      boxShadow: "0 2px 4px -1px rgba(140,160,179,0.4)",
                     }}
                   >
                     <Bot className="w-2.5 h-2.5" strokeWidth={2.4} />
@@ -219,9 +219,9 @@ function AIAgentsVisual() {
                 </div>
                 <span className="inline-flex items-center gap-1 text-[6.5px] font-mono uppercase tracking-[0.14em] text-foreground/55 shrink-0">
                   <span className="relative inline-flex">
-                    <span className="w-1 h-1 rounded-full bg-[#65A30D]" />
+                    <span className="w-1 h-1 rounded-full bg-[#8CA0B3]" />
                     <motion.span
-                      className="absolute inset-0 w-1 h-1 rounded-full bg-[#65A30D]"
+                      className="absolute inset-0 w-1 h-1 rounded-full bg-[#8CA0B3]"
                       animate={{ scale: [1, 2.4, 1], opacity: [0.7, 0, 0.7] }}
                       transition={{ duration: 1.8, repeat: Infinity }}
                     />
@@ -245,7 +245,7 @@ function AIAgentsVisual() {
                       onClick={() => setActive(i)}
                       className="relative flex items-center gap-1 px-1.5 py-1 text-[8px] font-medium transition-colors cursor-pointer focus:outline-none"
                       style={{
-                        color: isActive ? "#15803D" : "rgba(31,41,55,0.55)",
+                        color: isActive ? "#3D4A59" : "rgba(31,41,55,0.55)",
                       }}
                     >
                       <span>{t.label}</span>
@@ -253,10 +253,10 @@ function AIAgentsVisual() {
                         className="rounded-full px-1 py-px text-[5.5px] font-mono uppercase tracking-[0.1em]"
                         style={{
                           background: isActive
-                            ? "rgba(190,242,100,0.55)"
+                            ? "rgba(140,160,179,0.55)"
                             : "rgba(31,41,55,0.06)",
                           color: isActive
-                            ? "#15803D"
+                            ? "#3D4A59"
                             : "rgba(31,41,55,0.5)",
                         }}
                       >
@@ -265,7 +265,7 @@ function AIAgentsVisual() {
                       {isActive && (
                         <motion.span
                           layoutId="agent-tab-underline"
-                          className="absolute left-0 right-0 -bottom-px h-[2px] bg-[#65A30D] rounded-full"
+                          className="absolute left-0 right-0 -bottom-px h-[2px] bg-[#8CA0B3] rounded-full"
                         />
                       )}
                     </button>
@@ -312,9 +312,9 @@ function AIAgentsVisual() {
           viewport={{ once: true }}
           transition={{ delay: 0.45, duration: 0.5 }}
           animate={{ y: [0, -4, 0] }}
-          className="absolute top-[4%] right-[2%] z-20 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl shadow-[0_12px_24px_-8px_rgba(101,163,13,0.45)]"
+          className="absolute top-[4%] right-[2%] z-20 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl shadow-[0_12px_24px_-8px_rgba(140,160,179,0.45)]"
           style={{
-            background: "linear-gradient(135deg, #BEF264, #65A30D)",
+            background: "linear-gradient(135deg, #8CA0B3, #A9BDD0)",
             border: "1.5px solid var(--paper)",
           }}
         >
@@ -336,7 +336,7 @@ function AIAgentsVisual() {
           animate={{ y: [0, -3, 0] }}
           className="absolute bottom-[4%] left-[1%] z-20 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-paper border border-line shadow-[0_12px_24px_-8px_rgba(11,19,38,0.28)]"
         >
-          <TrendingUp className="w-3 h-3 text-[#0F766E]" strokeWidth={2.5} />
+          <TrendingUp className="w-3 h-3 text-[#8CA0B3]" strokeWidth={2.5} />
           <div className="leading-none">
             <div className="text-[9.5px] font-bold text-foreground/85 tabular-nums">
               2.1×
@@ -357,8 +357,8 @@ const AGENT_ROSTER = [
     name: "Sales SDR",
     role: "Inbound qualify · book",
     Icon: TrendingUp,
-    tint: "#15803D",
-    bg: "rgba(190,242,100,0.55)",
+    tint: "#5C7488",
+    bg: "rgba(140,160,179,0.45)",
     today: "28",
     status: "online" as const,
   },
@@ -367,8 +367,8 @@ const AGENT_ROSTER = [
     name: "Support Triage",
     role: "Tickets · routing",
     Icon: LifeBuoy,
-    tint: "#0F766E",
-    bg: "rgba(94,234,212,0.45)",
+    tint: "#5C7488",
+    bg: "rgba(169,189,208,0.45)",
     today: "94",
     status: "online" as const,
   },
@@ -377,8 +377,8 @@ const AGENT_ROSTER = [
     name: "Research Analyst",
     role: "RAG · web · summarise",
     Icon: Search,
-    tint: "#B45309",
-    bg: "rgba(254,243,199,0.95)",
+    tint: "#5C7488",
+    bg: "rgba(225,230,235,0.95)",
     today: "16",
     status: "thinking" as const,
   },
@@ -387,8 +387,8 @@ const AGENT_ROSTER = [
     name: "Voice Receptionist",
     role: "Inbound calls · book",
     Icon: Headphones,
-    tint: "#7C2D12",
-    bg: "rgba(254,215,170,0.7)",
+    tint: "#3D4A59",
+    bg: "rgba(169,189,208,0.6)",
     today: "12",
     status: "online" as const,
   },
@@ -550,8 +550,8 @@ function AgentToolsTab() {
       name: "HubSpot CRM",
       kind: "contacts · deals",
       Icon: Users,
-      tint: "#15803D",
-      bg: "rgba(190,242,100,0.55)",
+      tint: "#5C7488",
+      bg: "rgba(140,160,179,0.45)",
       calls: "134",
       rate: "98%",
     },
@@ -559,8 +559,8 @@ function AgentToolsTab() {
       name: "Gmail",
       kind: "send · draft · reply",
       Icon: Mail,
-      tint: "#0F766E",
-      bg: "rgba(94,234,212,0.45)",
+      tint: "#5C7488",
+      bg: "rgba(169,189,208,0.45)",
       calls: "89",
       rate: "96%",
     },
@@ -568,8 +568,8 @@ function AgentToolsTab() {
       name: "Notion KB",
       kind: "RAG · summarise",
       Icon: BookOpen,
-      tint: "#B45309",
-      bg: "rgba(254,243,199,0.95)",
+      tint: "#5C7488",
+      bg: "rgba(225,230,235,0.95)",
       calls: "230",
       rate: "92%",
     },
@@ -577,8 +577,8 @@ function AgentToolsTab() {
       name: "Web search",
       kind: "live lookup",
       Icon: Search,
-      tint: "#7C2D12",
-      bg: "rgba(254,215,170,0.7)",
+      tint: "#3D4A59",
+      bg: "rgba(169,189,208,0.6)",
       calls: "62",
       rate: "100%",
     },
@@ -844,7 +844,7 @@ function CRMVisual() {
         <div className="relative w-12 h-12">
           <span
             className="absolute top-0 left-1 w-7 h-6 rounded-xl rounded-bl-sm grid place-items-center text-paper shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)]"
-            style={{ background: "linear-gradient(135deg, #7DD3FC, #38BDF8)" }}
+            style={{ background: "linear-gradient(135deg, #A9BDD0, #8CA0B3)" }}
           >
             <span className="flex gap-[2px]">
               <span className="w-[3px] h-[3px] rounded-full bg-paper/85" />
@@ -854,7 +854,7 @@ function CRMVisual() {
           </span>
           <span
             className="absolute bottom-0 right-0 w-8 h-7 rounded-xl rounded-br-sm grid place-items-center text-paper shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)]"
-            style={{ background: "linear-gradient(135deg, #BAE6FD, #7DD3FC)" }}
+            style={{ background: "linear-gradient(135deg, #A9BDD0, #8CA0B3)" }}
           >
             <span className="flex gap-[2px]">
               <span className="w-[3px] h-[3px] rounded-full bg-paper/90" />
@@ -875,18 +875,18 @@ function CRMVisual() {
       render: () => (
         <div className="relative w-14 h-12 flex items-end gap-1">
           <div
-            className="relative w-10 h-10 rounded-lg grid place-items-center text-[#16A34A] shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)] border border-[#16A34A]/15"
-            style={{ background: "linear-gradient(135deg, #ECFDF5, #D1FAE5)" }}
+            className="relative w-10 h-10 rounded-lg grid place-items-center text-[#5C7488] shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)] border border-[#5C7488]/15"
+            style={{ background: "linear-gradient(135deg, #E1E6EB, #A9BDD0)" }}
           >
             <LineChart className="w-5 h-5" strokeWidth={2.3} />
             <TrendingUp
-              className="absolute -top-1 -right-1 w-3 h-3 text-paper bg-[#16A34A] rounded p-0.5"
+              className="absolute -top-1 -right-1 w-3 h-3 text-paper bg-[#5C7488] rounded p-0.5"
               strokeWidth={3}
             />
           </div>
           <div className="flex flex-col items-center -ml-1 mb-0.5">
-            <Coins className="w-3 h-3 text-[#CA8A04]" strokeWidth={2.5} fill="#FDE68A" />
-            <Coins className="w-3.5 h-3.5 -mt-1 text-[#CA8A04]" strokeWidth={2.5} fill="#FDE68A" />
+            <Coins className="w-3 h-3 text-[#8CA0B3]" strokeWidth={2.5} fill="#A9BDD0" />
+            <Coins className="w-3.5 h-3.5 -mt-1 text-[#8CA0B3]" strokeWidth={2.5} fill="#A9BDD0" />
           </div>
         </div>
       ),
@@ -915,7 +915,7 @@ function CRMVisual() {
             className="absolute top-2 left-1.5 w-3 h-3 rounded-full"
             style={{
               background:
-                "conic-gradient(#22C55E 0% 35%, #3B82F6 35% 60%, #F59E0B 60% 100%)",
+                "conic-gradient(#8CA0B3 0% 35%, #5C7488 35% 60%, #A9BDD0 60% 100%)",
             }}
           />
           <div className="absolute bottom-1.5 left-1.5 right-1.5 flex items-end gap-[2px] h-4">
@@ -923,7 +923,7 @@ function CRMVisual() {
               <span
                 key={i}
                 className="block flex-1 rounded-[1px]"
-                style={{ background: i === 3 ? "#22C55E" : "#94A3B8", height: `${h}%` }}
+                style={{ background: i === 3 ? "#5C7488" : "#94A3B8", height: `${h}%` }}
               />
             ))}
           </div>
@@ -941,19 +941,19 @@ function CRMVisual() {
         <div className="relative w-12 h-12">
           <span
             className="absolute top-1 left-0 w-5 h-5 rounded-full grid place-items-center text-paper shadow-[0_4px_10px_-3px_rgba(11,19,38,0.3)]"
-            style={{ background: "linear-gradient(135deg, #FCA5A5, #EF4444)" }}
+            style={{ background: "linear-gradient(135deg, #A9BDD0, #8CA0B3)" }}
           >
             <User className="w-3 h-3" strokeWidth={2.5} />
           </span>
           <span
             className="absolute top-1 right-0 w-5 h-5 rounded-full grid place-items-center text-paper shadow-[0_4px_10px_-3px_rgba(11,19,38,0.3)]"
-            style={{ background: "linear-gradient(135deg, #FCA5A5, #EF4444)" }}
+            style={{ background: "linear-gradient(135deg, #A9BDD0, #8CA0B3)" }}
           >
             <User className="w-3 h-3" strokeWidth={2.5} />
           </span>
           <span
             className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full grid place-items-center text-paper shadow-[0_4px_10px_-3px_rgba(11,19,38,0.35)]"
-            style={{ background: "linear-gradient(135deg, #5EEAD4, #0F766E)" }}
+            style={{ background: "linear-gradient(135deg, #A9BDD0, #5C7488)" }}
           >
             <User className="w-3.5 h-3.5" strokeWidth={2.5} />
           </span>
@@ -970,15 +970,15 @@ function CRMVisual() {
       render: () => (
         <div className="relative w-14 h-12 flex items-end gap-1">
           <div className="flex flex-col items-center mb-0.5">
-            <DollarSign className="w-3 h-3 text-[#CA8A04]" strokeWidth={3} />
-            <Coins className="w-3.5 h-3.5 -mt-0.5 text-[#CA8A04]" strokeWidth={2.5} fill="#FDE68A" />
+            <DollarSign className="w-3 h-3 text-[#8CA0B3]" strokeWidth={3} />
+            <Coins className="w-3.5 h-3.5 -mt-0.5 text-[#8CA0B3]" strokeWidth={2.5} fill="#A9BDD0" />
           </div>
           <div
-            className="relative w-10 h-10 rounded-xl grid place-items-center text-[#854D0E] shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)] border border-[#CA8A04]/25"
-            style={{ background: "linear-gradient(135deg, #FEF3C7, #FCD34D)" }}
+            className="relative w-10 h-10 rounded-xl grid place-items-center text-[#3D4A59] shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)] border border-[#8CA0B3]/25"
+            style={{ background: "linear-gradient(135deg, #E1E6EB, #A9BDD0)" }}
           >
             <Wallet className="w-5 h-5" strokeWidth={2.3} />
-            <span className="absolute -top-1 -right-1 inline-flex items-center justify-center w-3.5 h-3.5 rounded-full text-[6px] font-bold text-paper bg-[#CA8A04]">
+            <span className="absolute -top-1 -right-1 inline-flex items-center justify-center w-3.5 h-3.5 rounded-full text-[6px] font-bold text-paper bg-[#5C7488]">
               $
             </span>
           </div>
@@ -996,7 +996,7 @@ function CRMVisual() {
         <div className="relative w-10 h-10">
           <div
             className="w-full h-full rounded-xl grid place-items-center text-paper shadow-[0_6px_14px_-4px_rgba(11,19,38,0.3)]"
-            style={{ background: "linear-gradient(135deg, #FDE68A, #CA8A04)" }}
+            style={{ background: "linear-gradient(135deg, #A9BDD0, #8CA0B3)" }}
           >
             <Mail className="w-5 h-5" strokeWidth={2.3} />
           </div>
@@ -1004,9 +1004,9 @@ function CRMVisual() {
             1
           </span>
           <Bell
-            className="absolute -top-2 -left-1 w-3 h-3 text-[#0F766E]"
+            className="absolute -top-2 -left-1 w-3 h-3 text-[#5C7488]"
             strokeWidth={2.5}
-            fill="#5EEAD4"
+            fill="#A9BDD0"
           />
         </div>
       ),
@@ -1070,7 +1070,7 @@ function CRMVisual() {
               </motion.span>
             ) : (
               <d.Icon
-                className="text-[#16A34A]"
+                className="text-[#8CA0B3]"
                 style={{ width: d.size, height: d.size }}
                 strokeWidth={2.5}
               />
@@ -1091,7 +1091,7 @@ function CRMVisual() {
             {/* Screen bezel */}
             <div
               className="relative w-full aspect-[16/10] rounded-t-lg p-1 shadow-[0_30px_50px_-20px_rgba(11,19,38,0.45)]"
-              style={{ background: "linear-gradient(180deg, #0F172A 0%, #1E293B 100%)" }}
+              style={{ background: "linear-gradient(180deg, #222A33 0%, #34404C 100%)" }}
             >
               <span className="absolute top-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-ink/80" />
               <div className="relative w-full h-full rounded-md overflow-hidden">
@@ -1099,7 +1099,7 @@ function CRMVisual() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(180deg, #F0FDF4 0%, #ECFDF5 60%, #D1FAE5 100%)",
+                      "linear-gradient(180deg, #F4F5F7 0%, #E7EAEE 60%, #E1E6EB 100%)",
                   }}
                 />
                 {/* Light reflection diagonal */}
@@ -1116,7 +1116,7 @@ function CRMVisual() {
                 <div className="absolute inset-0 flex flex-col px-1.5 pt-1 pb-1 z-[2]">
                   {/* Header row */}
                   <div className="flex items-center gap-1 mb-1">
-                    <span className="inline-block w-1.5 h-1.5 rounded-sm bg-[#22C55E]" />
+                    <span className="inline-block w-1.5 h-1.5 rounded-sm bg-[#8CA0B3]" />
                     <span className="text-[4.5px] font-bold uppercase tracking-[0.14em] text-ink/85 leading-none">
                       CRM · Q3
                     </span>
@@ -1128,7 +1128,7 @@ function CRMVisual() {
 
                   {/* Sparkline chart panel */}
                   <div
-                    className="relative flex-1 rounded-[2px] border border-[#22C55E]/15 overflow-hidden"
+                    className="relative flex-1 rounded-[2px] border border-[#8CA0B3]/15 overflow-hidden"
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 100%)",
@@ -1146,8 +1146,8 @@ function CRMVisual() {
                     >
                       <defs>
                         <linearGradient id="crm-screen-area" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#22C55E" stopOpacity="0.45" />
-                          <stop offset="100%" stopColor="#22C55E" stopOpacity="0" />
+                          <stop offset="0%" stopColor="#8CA0B3" stopOpacity="0.45" />
+                          <stop offset="100%" stopColor="#8CA0B3" stopOpacity="0" />
                         </linearGradient>
                       </defs>
                       <path
@@ -1161,16 +1161,16 @@ function CRMVisual() {
                         transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
                         d="M 0,28 L 12,22 L 24,25 L 36,16 L 48,18 L 60,10 L 72,12 L 84,6 L 100,4"
                         fill="none"
-                        stroke="#16A34A"
+                        stroke="#5C7488"
                         strokeWidth={1.2}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
                       {/* end-of-line marker */}
-                      <circle cx="100" cy="4" r="1.3" fill="#16A34A" />
+                      <circle cx="100" cy="4" r="1.3" fill="#5C7488" />
                     </svg>
                     {/* tiny "+38%" pill */}
-                    <span className="absolute top-0.5 right-0.5 inline-flex items-center px-[2px] py-px rounded-[1px] bg-[#16A34A] text-paper text-[3.5px] font-bold leading-none">
+                    <span className="absolute top-0.5 right-0.5 inline-flex items-center px-[2px] py-px rounded-[1px] bg-[#5C7488] text-paper text-[3.5px] font-bold leading-none">
                       +38%
                     </span>
                   </div>
@@ -1178,9 +1178,9 @@ function CRMVisual() {
                   {/* KPI tiles row */}
                   <div className="grid grid-cols-3 gap-1 mt-1">
                     {[
-                      { label: "Deals",   value: "63",   color: "#3B82F6" },
-                      { label: "Pipeline", value: "$1.2m", color: "#F97316" },
-                      { label: "Won",     value: "$480k", color: "#22C55E" },
+                      { label: "Deals",   value: "63",   color: "#8CA0B3" },
+                      { label: "Pipeline", value: "$1.2m", color: "#A9BDD0" },
+                      { label: "Won",     value: "$480k", color: "#5C7488" },
                     ].map((k) => (
                       <div
                         key={k.label}
@@ -1209,7 +1209,7 @@ function CRMVisual() {
                   <motion.div
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[20%] left-[10%] w-[55%] h-[55%] text-[#F97316]"
+                    className="absolute top-[20%] left-[10%] w-[55%] h-[55%] text-[#A9BDD0]"
                     style={{
                       filter: "drop-shadow(0 1px 2px rgba(11,19,38,0.25))",
                       opacity: 0.85,
@@ -1220,7 +1220,7 @@ function CRMVisual() {
                   <motion.div
                     animate={{ rotate: [360, 0] }}
                     transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-0 right-0 w-[42%] h-[42%] text-[#22C55E]"
+                    className="absolute top-0 right-0 w-[42%] h-[42%] text-[#8CA0B3]"
                     style={{
                       filter: "drop-shadow(0 1px 2px rgba(11,19,38,0.25))",
                       opacity: 0.9,
@@ -1231,7 +1231,7 @@ function CRMVisual() {
                   <motion.div
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-0 right-[6%] w-[34%] h-[34%] text-[#EF4444]"
+                    className="absolute bottom-0 right-[6%] w-[34%] h-[34%] text-[#5C7488]"
                     style={{
                       filter: "drop-shadow(0 1px 2px rgba(11,19,38,0.25))",
                       opacity: 0.85,
@@ -1339,9 +1339,9 @@ const FLOW_NODES: Array<{
     sub: "POST /lead",
     kind: "trigger",
     Icon: Zap,
-    tint: "#15803D",
-    bg: "rgba(190,242,100,0.55)",
-    borderColor: "rgba(101,163,13,0.35)",
+    tint: "#3D4A59",
+    bg: "rgba(140,160,179,0.55)",
+    borderColor: "rgba(92,116,136,0.35)",
     x: 13,
     y: 56,
   },
@@ -1352,8 +1352,8 @@ const FLOW_NODES: Array<{
     kind: "ai",
     Icon: Bot,
     tint: "#FFFFFF",
-    bg: "linear-gradient(135deg, #BEF264, #65A30D)",
-    borderColor: "#65A30D",
+    bg: "linear-gradient(135deg, #8CA0B3, #A9BDD0)",
+    borderColor: "#8CA0B3",
     x: 48,
     y: 56,
     hero: true,
@@ -1364,9 +1364,9 @@ const FLOW_NODES: Array<{
     sub: "create contact",
     kind: "action",
     Icon: Users,
-    tint: "#0F766E",
-    bg: "rgba(94,234,212,0.50)",
-    borderColor: "rgba(15,118,110,0.30)",
+    tint: "#5C7488",
+    bg: "rgba(169,189,208,0.50)",
+    borderColor: "rgba(92,116,136,0.30)",
     x: 84,
     y: 26,
   },
@@ -1376,9 +1376,9 @@ const FLOW_NODES: Array<{
     sub: "#new-leads",
     kind: "action",
     Icon: MessageCircle,
-    tint: "#7C2D12",
-    bg: "rgba(254,215,170,0.78)",
-    borderColor: "rgba(124,45,18,0.28)",
+    tint: "#3D4A59",
+    bg: "rgba(169,189,208,0.78)",
+    borderColor: "rgba(61,74,89,0.28)",
     x: 84,
     y: 56,
   },
@@ -1388,9 +1388,9 @@ const FLOW_NODES: Array<{
     sub: "welcome reply",
     kind: "action",
     Icon: Mail,
-    tint: "#B45309",
-    bg: "rgba(254,243,199,0.95)",
-    borderColor: "rgba(180,83,9,0.30)",
+    tint: "#5C7488",
+    bg: "rgba(225,230,235,0.95)",
+    borderColor: "rgba(92,116,136,0.30)",
     x: 84,
     y: 86,
   },
@@ -1418,8 +1418,8 @@ function IntegrationsVisual() {
             <span
               className="inline-grid place-items-center w-4 h-4 rounded text-paper shrink-0"
               style={{
-                background: "linear-gradient(135deg, #BEF264, #65A30D)",
-                boxShadow: "0 2px 4px -1px rgba(101,163,13,0.4)",
+                background: "linear-gradient(135deg, #8CA0B3, #A9BDD0)",
+                boxShadow: "0 2px 4px -1px rgba(140,160,179,0.4)",
               }}
             >
               <Bot className="w-2.5 h-2.5" strokeWidth={2.4} />
@@ -1470,7 +1470,7 @@ function IntegrationsVisual() {
               width: "36%",
               aspectRatio: "1",
               background:
-                "radial-gradient(circle, rgba(190,242,100,0.35), transparent 70%)",
+                "radial-gradient(circle, rgba(140,160,179,0.35), transparent 70%)",
               filter: "blur(24px)",
             }}
           />
@@ -1496,7 +1496,7 @@ function IntegrationsVisual() {
                   key={`${c.from}-${c.to}`}
                   d={d}
                   fill="none"
-                  stroke="#65A30D"
+                  stroke="#8CA0B3"
                   strokeWidth={0.85}
                   strokeLinecap="round"
                   opacity={0.65}
@@ -1574,8 +1574,8 @@ function FlowNode({
         <span
           className="inline-block px-1.5 py-0.5 rounded-full text-[5.5px] font-mono font-bold uppercase tracking-[0.14em]"
           style={{
-            background: hero ? "rgba(190,242,100,0.55)" : "rgba(31,41,55,0.06)",
-            color: hero ? "#15803D" : "rgba(31,41,55,0.55)",
+            background: hero ? "rgba(140,160,179,0.55)" : "rgba(31,41,55,0.06)",
+            color: hero ? "#3D4A59" : "rgba(31,41,55,0.55)",
           }}
         >
           {KIND_LABEL[kind]}
@@ -1589,7 +1589,7 @@ function FlowNode({
           background: bg,
           border: hero ? `2px solid ${borderColor}` : `1.5px solid ${borderColor}`,
           boxShadow: hero
-            ? "0 16px 30px -10px rgba(101,163,13,0.5), 0 4px 10px -3px rgba(11,19,38,0.18)"
+            ? "0 16px 30px -10px rgba(140,160,179,0.5), 0 4px 10px -3px rgba(11,19,38,0.18)"
             : "0 10px 22px -10px rgba(11,19,38,0.32), 0 2px 6px -2px rgba(11,19,38,0.12)",
         }}
       >
@@ -1671,14 +1671,14 @@ function WebsitesVisual() {
                 className="block aspect-[5/3] rounded-lg"
                 style={{
                   background:
-                    "linear-gradient(135deg, #A3E635, color-mix(in srgb, #A3E635 70%, white))",
+                    "linear-gradient(135deg, #8CA0B3, color-mix(in srgb, #8CA0B3 70%, white))",
                 }}
               />
               <span
                 className="block aspect-[5/3] rounded-lg"
                 style={{
                   background:
-                    "linear-gradient(135deg, #5EEAD4, color-mix(in srgb, #5EEAD4 70%, white))",
+                    "linear-gradient(135deg, #A9BDD0, color-mix(in srgb, #A9BDD0 70%, white))",
                 }}
               />
               <span
@@ -1934,11 +1934,11 @@ function SoftwareVisual() {
   // / cornflower) but darker shades so they pop against paper.
   const tokenColor = (kind: string) => {
     switch (kind) {
-      case "kw":  return "#65A30D";                       // deep lime — keywords
-      case "fn":  return "#15803D";                       // forest green — function names
+      case "kw":  return "#5C7488";                       // accent — keywords
+      case "fn":  return "#3D4A59";                       // accent deep — function names
       case "var": return "rgba(31,41,55,0.85)";           // ink — identifiers
-      case "str": return "#B45309";                       // amber — strings
-      case "num": return "#0F766E";                       // mint deep — numbers
+      case "str": return "#8CA0B3";                       // accent-2 — strings
+      case "num": return "#5C7488";                       // accent — numbers
       case "op":  return "rgba(31,41,55,0.45)";           // ink soft — operators
       case "br":
       default:    return "rgba(31,41,55,0.30)";           // ink softer — braces
@@ -1977,12 +1977,12 @@ function SoftwareVisual() {
             <span
               className="ml-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[8.5px] font-mono"
               style={{
-                background: "rgba(190,242,100,0.18)",
-                border: "1px solid rgba(101,163,13,0.35)",
-                color: "#15803D",
+                background: "rgba(140,160,179,0.18)",
+                border: "1px solid rgba(92,116,136,0.35)",
+                color: "#3D4A59",
               }}
             >
-              <Code2 className="w-2.5 h-2.5" style={{ color: "#65A30D" }} />
+              <Code2 className="w-2.5 h-2.5" style={{ color: "#5C7488" }} />
               dashboard.tsx
             </span>
           </div>
@@ -2008,14 +2008,14 @@ function SoftwareVisual() {
                   key={f}
                   className="flex items-center gap-1.5 px-1.5 py-0.5 rounded text-[8px] font-mono"
                   style={{
-                    background: i === 0 ? "rgba(190,242,100,0.28)" : "transparent",
-                    color: i === 0 ? "#15803D" : "rgba(31,41,55,0.62)",
+                    background: i === 0 ? "rgba(140,160,179,0.28)" : "transparent",
+                    color: i === 0 ? "#3D4A59" : "rgba(31,41,55,0.62)",
                     fontWeight: i === 0 ? 600 : 400,
                   }}
                 >
                   <span
                     className="w-1.5 h-1.5 rounded-sm"
-                    style={{ background: i === 0 ? "#65A30D" : "rgba(101,163,13,0.5)" }}
+                    style={{ background: i === 0 ? "#5C7488" : "rgba(140,160,179,0.5)" }}
                   />
                   {f}
                 </div>
@@ -2057,8 +2057,8 @@ function SoftwareVisual() {
           <div
             className="flex items-center justify-between px-3 py-1 text-[7.5px] font-mono uppercase tracking-[0.12em]"
             style={{
-              background: "linear-gradient(90deg, #65A30D 0%, #BEF264 100%)",
-              color: "#0F172A",
+              background: "linear-gradient(90deg, #5C7488 0%, #8CA0B3 100%)",
+              color: "#222A33",
             }}
           >
             <span className="font-semibold">main · TypeScript</span>
@@ -2102,7 +2102,7 @@ function StrategyVisual() {
             width: "76%",
             aspectRatio: "1.4",
             background:
-              "radial-gradient(circle, rgba(190,242,100,0.30), rgba(94,234,212,0.16) 50%, transparent 76%)",
+              "radial-gradient(circle, rgba(140,160,179,0.30), rgba(169,189,208,0.16) 50%, transparent 76%)",
             filter: "blur(28px)",
           }}
         />
@@ -2137,7 +2137,7 @@ function StrategyVisual() {
                   </span>
                 </div>
                 <span className="inline-flex items-center gap-1 text-[6px] font-mono uppercase tracking-[0.14em] text-foreground/55">
-                  <span className="w-1 h-1 rounded-full bg-[#65A30D]" />
+                  <span className="w-1 h-1 rounded-full bg-[#8CA0B3]" />
                   draft
                 </span>
               </div>
@@ -2157,7 +2157,7 @@ function StrategyVisual() {
                       onClick={() => setActive(i)}
                       className="relative flex items-center gap-1 px-1.5 py-1 text-[8px] font-medium cursor-pointer focus:outline-none"
                       style={{
-                        color: isActive ? "#15803D" : "rgba(31,41,55,0.55)",
+                        color: isActive ? "#3D4A59" : "rgba(31,41,55,0.55)",
                       }}
                     >
                       <span>{t.label}</span>
@@ -2165,10 +2165,10 @@ function StrategyVisual() {
                         className="rounded-full px-1 py-px text-[5.5px] font-mono uppercase tracking-[0.1em]"
                         style={{
                           background: isActive
-                            ? "rgba(190,242,100,0.55)"
+                            ? "rgba(140,160,179,0.55)"
                             : "rgba(31,41,55,0.06)",
                           color: isActive
-                            ? "#15803D"
+                            ? "#3D4A59"
                             : "rgba(31,41,55,0.5)",
                         }}
                       >
@@ -2177,7 +2177,7 @@ function StrategyVisual() {
                       {isActive && (
                         <motion.span
                           layoutId="strategy-tab-underline"
-                          className="absolute left-0 right-0 -bottom-px h-[2px] bg-[#65A30D] rounded-full"
+                          className="absolute left-0 right-0 -bottom-px h-[2px] bg-[#8CA0B3] rounded-full"
                         />
                       )}
                     </button>
@@ -2228,10 +2228,10 @@ function StrategyVisual() {
           <span
             className="grid place-items-center w-7 h-7 rounded-full text-[9.5px] font-bold tabular-nums"
             style={{
-              border: "2.5px solid #65A30D",
-              color: "#15803D",
+              border: "2.5px solid #5C7488",
+              color: "#3D4A59",
               background:
-                "conic-gradient(from -90deg, #BEF264 0% 78%, rgba(31,41,55,0.08) 78% 100%)",
+                "conic-gradient(from -90deg, #8CA0B3 0% 78%, rgba(31,41,55,0.08) 78% 100%)",
             }}
           >
             <span className="w-[18px] h-[18px] rounded-full bg-paper grid place-items-center">
@@ -2259,8 +2259,8 @@ function StrategyVisual() {
           <span
             className="grid place-items-center w-7 h-7 rounded-full"
             style={{
-              background: "rgba(94,234,212,0.45)",
-              color: "#0F766E",
+              background: "rgba(169,189,208,0.45)",
+              color: "#3D4A59",
             }}
           >
             <Shield className="w-3.5 h-3.5" strokeWidth={2.4} />
@@ -2282,11 +2282,11 @@ function StrategyVisual() {
 /* — Tab 1 · Audit — horizontal readiness-score bars per pillar — */
 function StrategyAuditTab() {
   const scores = [
-    { label: "Data quality", score: 82, color: "#15803D" },
-    { label: "Talent depth", score: 64, color: "#B45309" },
-    { label: "Tooling", score: 91, color: "#15803D" },
-    { label: "Process maturity", score: 58, color: "#B45309" },
-    { label: "Governance", score: 73, color: "#0F766E" },
+    { label: "Data quality", score: 82, color: "#5C7488" },
+    { label: "Talent depth", score: 64, color: "#8CA0B3" },
+    { label: "Tooling", score: 91, color: "#5C7488" },
+    { label: "Process maturity", score: 58, color: "#8CA0B3" },
+    { label: "Governance", score: 73, color: "#3D4A59" },
   ];
 
   return (
@@ -2378,12 +2378,12 @@ function StrategyCasesTab() {
       {cases.map((c, i) => {
         const tierColor =
           c.tier === "win"
-            ? "#15803D"
+            ? "#5C7488"
             : c.tier === "bet"
-            ? "#0F766E"
+            ? "#3D4A59"
             : c.tier === "fill"
-            ? "#B45309"
-            : "#7C2D12";
+            ? "#8CA0B3"
+            : "#A9BDD0";
         return (
           <motion.span
             key={c.name}
@@ -2412,11 +2412,11 @@ function StrategyCasesTab() {
 /* — Tab 3 · Roadmap — 6-month Gantt-style lanes — */
 function StrategyRoadmapTab() {
   const lanes = [
-    { name: "Audit", start: 0, end: 1, color: "#0F766E" },
-    { name: "Pilot agent", start: 1, end: 3, color: "#15803D" },
-    { name: "Wire CRM", start: 2, end: 4, color: "#B45309" },
-    { name: "Train team", start: 3, end: 5, color: "#0F766E" },
-    { name: "Scale + govern", start: 4, end: 6, color: "#15803D" },
+    { name: "Audit", start: 0, end: 1, color: "#3D4A59" },
+    { name: "Pilot agent", start: 1, end: 3, color: "#5C7488" },
+    { name: "Wire CRM", start: 2, end: 4, color: "#8CA0B3" },
+    { name: "Train team", start: 3, end: 5, color: "#3D4A59" },
+    { name: "Scale + govern", start: 4, end: 6, color: "#5C7488" },
   ];
   const months = ["M1", "M2", "M3", "M4", "M5", "M6"];
 

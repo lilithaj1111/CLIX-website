@@ -1,26 +1,30 @@
 @import url("https://use.typekit.net/qnj1ksn.css");
 @import "tailwindcss";
 
-/* Modern blue palette — cool off-white paper, deep navy ink, and a
-   punchy cornflower-blue accent (the bright SaaS-blue from the
-   reference). Dark sections invert to a deep navy. The accent
-   gradient runs from deep blue (--accent-deep) through cornflower
-   (--accent) up to a soft sky tint (--accent-2). */
+/* Muted slate palette — a calm, enterprise look (UiPath-inspired) built on
+   three brand colours:
+     · Dark Slate Gray  #3D4A59  — dark sections, primary buttons, deep emphasis
+     · Muted Blue-Gray  #8CA0B3  — accent washes, glows, highlights
+     · Light Gray       #F2F2F2  — page background
+   Supporting tints/shades stay strictly inside the same cool blue-grey hue
+   family so nothing reads as "branded blue" or rainbow any more. The accent
+   role is intentionally restrained (the muted blue-grey) rather than a punchy
+   colour — emphasis comes from the dark slate and from weight/contrast. */
 :root {
-  --bg: #F7F9FC;
-  --bg-warm: #EAF0F8;
-  --paper: #FFFFFF;
-  --fg: #1A2238;
-  --ink: #0B1326;
-  --ink-warm: #0F1A2E;
-  --fg-muted: #6E7990;
-  --fg-on-dark: #EAF0F8;
-  --line: #DDE4EE;
-  --line-strong: #BFC9DA;
-  --accent: #3B7BF5;
-  --accent-2: #7FA9F7;
-  --accent-deep: #1E4DB8;
-  --accent-soft: #DDE9FE;
+  --bg: #F2F2F2;          /* brand light gray */
+  --bg-warm: #E7EAEE;     /* deeper grey for section contrast */
+  --paper: #FFFFFF;       /* lightest surface — cards/sheets */
+  --fg: #2C3641;          /* deep slate — body text */
+  --ink: #222A33;         /* darkest — headlines */
+  --ink-warm: #2A3540;    /* dark sections (a shade darker than the slate for depth) */
+  --fg-muted: #5E6B7A;    /* muted secondary text */
+  --fg-on-dark: #EDEFF2;  /* light text on dark */
+  --line: #D7DBE0;        /* hairline borders/dividers */
+  --line-strong: #B8BFC8; /* emphasised borders */
+  --accent: #5C7488;      /* readable mid blue-grey — links, text emphasis, dots */
+  --accent-2: #8CA0B3;    /* brand muted blue-gray — glows / washes / secondary */
+  --accent-deep: #3D4A59; /* brand dark slate — primary buttons, deep emphasis */
+  --accent-soft: #E1E6EB; /* light blue-grey tint — chips, soft hovers */
 }
 
 @theme inline {
@@ -101,8 +105,8 @@ h1, h2, h3, h4, h5, h6 {
 .serif-italic {
   font-family: var(--font-discovery);
   font-style: normal;
-  font-weight: 500;
-  letter-spacing: -0.022em;
+  font-weight: 700;
+  letter-spacing: -0.028em;
   font-feature-settings: "ss01", "ss02", "calt", "kern";
   color: var(--accent);
 }
@@ -295,22 +299,22 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
-/* Forest gradient CTA — the primary button surface. Warm cream text on
-   a 3-stop accent → deep-forest gradient. Both ends are dark enough
-   that light text reads cleanly (8:1 on accent, 10:1 on deep). Hover
-   lifts slightly and brightens both the gradient and the surround. */
+/* Primary CTA — a solid dark-slate pill (UiPath-style). Light text on the
+   brand dark slate (#3D4A59), with a barely-there gradient for depth. Reads
+   as authoritative and calm rather than a punchy coloured button. Hover
+   lifts slightly and brightens the surface a touch. */
 .btn-violet {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--accent) 100%, white 6%) 0%,
-    var(--accent) 55%,
-    var(--accent-deep) 100%
+    color-mix(in srgb, var(--accent-deep) 100%, white 10%) 0%,
+    var(--accent-deep) 55%,
+    color-mix(in srgb, var(--accent-deep) 100%, black 16%) 100%
   );
-  color: var(--paper);
+  color: var(--fg-on-dark);
   box-shadow:
-    0 10px 28px -10px color-mix(in srgb, var(--accent) 60%, transparent),
+    0 10px 28px -10px color-mix(in srgb, var(--accent-deep) 55%, transparent),
     0 2px 8px -2px color-mix(in srgb, var(--accent-deep) 40%, transparent),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
   transition:
     box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
@@ -321,16 +325,16 @@ h1, h2, h3, h4, h5, h6 {
 .btn-violet:focus-visible {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--accent) 100%, white 18%) 0%,
-    var(--accent) 55%,
-    color-mix(in srgb, var(--accent-deep) 100%, var(--accent) 25%) 100%
+    color-mix(in srgb, var(--accent-deep) 100%, white 20%) 0%,
+    color-mix(in srgb, var(--accent-deep) 100%, white 6%) 55%,
+    var(--accent-deep) 100%
   );
   transform: translateY(-1.5px);
   box-shadow:
-    0 18px 40px -12px color-mix(in srgb, var(--accent) 78%, transparent),
+    0 18px 40px -12px color-mix(in srgb, var(--accent-deep) 70%, transparent),
     0 4px 12px -2px color-mix(in srgb, var(--accent-deep) 50%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+    0 0 0 1px color-mix(in srgb, var(--accent-2) 45%, transparent),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
 }
 .btn-violet:active {
   transform: translateY(-0.5px);

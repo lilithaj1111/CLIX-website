@@ -60,9 +60,9 @@ export function ParticleWaveBackground({ className = "" }: { className?: string 
     let bokeh: Bokeh[] = [];
 
     const col = (mix: number, a: number) => {
-      const r = Math.round(86 + (163 - 86) * mix);
-      const g = Math.round(152 + (230 - 152) * mix);
-      const b = Math.round(250 + (53 - 250) * mix);
+      const r = Math.round(140 + (169 - 140) * mix);
+      const g = Math.round(160 + (189 - 160) * mix);
+      const b = Math.round(179 + (208 - 179) * mix);
       return `rgba(${r},${g},${b},${a})`;
     };
 
@@ -141,8 +141,8 @@ export function ParticleWaveBackground({ className = "" }: { className?: string 
       }
       ctx!.lineCap = "round";
       ctx!.lineWidth = 26;
-      ctx!.strokeStyle = "rgba(150,195,255,0.10)";
-      ctx!.shadowColor = "rgba(120,180,255,0.55)";
+      ctx!.strokeStyle = "rgba(169,189,208,0.10)";
+      ctx!.shadowColor = "rgba(140,160,179,0.55)";
       ctx!.shadowBlur = 30;
       ctx!.stroke();
       ctx!.shadowBlur = 0;
@@ -156,12 +156,12 @@ export function ParticleWaveBackground({ className = "" }: { className?: string 
         ctx!.closePath();
         const tone = 0.1 + layer * 0.045;
         const g = ctx!.createLinearGradient(0, crestY(layer, w / 2, t) - 24, 0, h);
-        g.addColorStop(0, `rgba(96,160,250,${tone})`);
-        g.addColorStop(1, `rgba(40,90,200,${tone * 0.4})`);
+        g.addColorStop(0, `rgba(140,160,179,${tone})`);
+        g.addColorStop(1, `rgba(61,74,89,${tone * 0.4})`);
         ctx!.fillStyle = g;
         ctx!.fill();
         if (layer === 1) {
-          ctx!.fillStyle = "rgba(163,230,53,0.045)";
+          ctx!.fillStyle = "rgba(140,160,179,0.045)";
           ctx!.fill();
         }
 
@@ -172,8 +172,8 @@ export function ParticleWaveBackground({ className = "" }: { className?: string 
           else ctx!.lineTo(x, y);
         }
         ctx!.lineWidth = 1.4;
-        ctx!.strokeStyle = `rgba(228,242,255,${0.55 - layer * 0.09})`;
-        ctx!.shadowColor = "rgba(120,180,255,0.9)";
+        ctx!.strokeStyle = `rgba(231,234,238,${0.55 - layer * 0.09})`;
+        ctx!.shadowColor = "rgba(140,160,179,0.9)";
         ctx!.shadowBlur = 14 - layer * 2;
         ctx!.stroke();
         ctx!.shadowBlur = 0;

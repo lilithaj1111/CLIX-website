@@ -42,9 +42,9 @@ const DUR: Record<Phase, number> = {
   sent: 4600,
 };
 
-const ACCENT = "#3B7BF5";
-const ACCENT_DEEP = "#1E40AF";
-const INK = "#1F2937";
+const ACCENT = "#8CA0B3";
+const ACCENT_DEEP = "#3D4A59";
+const INK = "#222A33";
 const INK_SOFT = "rgba(31,41,55,0.55)";
 const PAPER = "#FAF6EC";
 const PAPER_WARM = "#F1ECDF";
@@ -234,7 +234,7 @@ function TicketScene({ reduced }: { reduced: boolean }) {
                 }}
                 className="flex items-center gap-1.5 px-2 py-1.5"
                 style={{
-                  background: q.isNew ? "rgba(59,123,245,0.06)" : "white",
+                  background: q.isNew ? "rgba(140,160,179,0.06)" : "white",
                   borderColor: LINE,
                 }}
               >

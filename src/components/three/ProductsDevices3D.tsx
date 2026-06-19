@@ -43,9 +43,9 @@ export function ProductsDevices3D({ reduced = false }: ProductsDevices3DProps) {
       <directionalLight
         position={[-3, -1, 2]}
         intensity={0.55}
-        color="#C2A56D"
+        color="#8CA0B3"
       />
-      <pointLight position={[0, 0, 4]} intensity={0.3} color="#547A95" />
+      <pointLight position={[0, 0, 4]} intensity={0.3} color="#8CA0B3" />
 
       <Environment preset="apartment" />
 
@@ -156,7 +156,7 @@ function Laptop3D({ reduced }: { reduced: boolean }) {
           {/* Screen UI — chart hero block (sage accent) */}
           <mesh position={[0.3, 1.4, 0.054]}>
             <planeGeometry args={[1.8, 0.55]} />
-            <meshBasicMaterial color="#547A95" transparent opacity={0.78} />
+            <meshBasicMaterial color="#8CA0B3" transparent opacity={0.78} />
           </mesh>
 
           {/* Screen UI — 3 KPI cards */}
@@ -248,7 +248,7 @@ function Phone3D({ reduced }: { reduced: boolean }) {
         {/* Title block (emissive sage card) */}
         <mesh position={[0, 0.62, 0.094]}>
           <planeGeometry args={[0.88, 0.3]} />
-          <meshBasicMaterial color="#547A95" transparent opacity={0.85} />
+          <meshBasicMaterial color="#8CA0B3" transparent opacity={0.85} />
         </mesh>
 
         {/* Content cards */}

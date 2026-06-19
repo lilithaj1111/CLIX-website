@@ -344,7 +344,7 @@ const NODES: Node[] = [
   { key: "hub",     label: "HubSpot",    sub: "עסקאות",     Icon: Database,        color: "#F97316", pos: { x: 12, y: 24 } },
   { key: "stripe",  label: "Stripe",     sub: "תשלומים",    Icon: Receipt,         color: "#635BFF", pos: { x: 14, y: 70 } },
   { key: "qb",      label: "QuickBooks", sub: "יומן רישום", Icon: FileSpreadsheet, color: "#2CA01C", pos: { x: 86, y: 24 } },
-  { key: "mail",    label: "אימייל",      sub: "חשבוניות",   Icon: Mail,            color: "#3B82F6", pos: { x: 86, y: 70 } },
+  { key: "mail",    label: "אימייל",      sub: "חשבוניות",   Icon: Mail,            color: "#8CA0B3", pos: { x: 86, y: 70 } },
 ];
 
 const ATLAS_HUB = { x: 50, y: 48 };

@@ -67,8 +67,8 @@ export function WebGLShader({ className = "" }: { className?: string }) {
         // intensity drives alpha; colour leans lime where the distorted
         // channel dominates (lime emphasised), blue elsewhere. Output is
         // premultiplied (col * alpha) to match three's default blending.
-        vec3 blue = vec3(0.616, 0.745, 0.976); // #9DBEF9 lighter blue
-        vec3 lime = vec3(0.824, 0.961, 0.549); // #D2F58C lighter lime
+        vec3 blue = vec3(0.663, 0.741, 0.816); // #A9BDD0 lighter blue
+        vec3 lime = vec3(0.549, 0.627, 0.702); // #8CA0B3 muted blue-grey
 
         float sum = r + g + b;
         vec3 col = mix(blue, lime, clamp((b * 1.5) / (sum + 0.001), 0.0, 1.0));

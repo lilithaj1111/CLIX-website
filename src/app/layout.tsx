@@ -70,9 +70,9 @@ export const metadata: Metadata = {
     "Clix בונה סוכני AI, אוטומציות WhatsApp, מערכות CRM ותוכנה ייעודית לארגונים שמוכנים לפעול במהירות של הבינה המלאכותית.",
   metadataBase: new URL("https://clix-solution.com"),
   icons: {
-    icon: "/clix-logo.png",
-    shortcut: "/clix-logo.png",
-    apple: "/clix-logo.png",
+    icon: "/clix-mark.png",
+    shortcut: "/clix-mark.png",
+    apple: "/clix-mark.png",
   },
   openGraph: {
     title: "Clix — בינה מהונדסת לעסק שלכם.",
@@ -92,6 +92,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${rubik.variable} ${heebo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground grain">

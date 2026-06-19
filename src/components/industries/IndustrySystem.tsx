@@ -200,7 +200,7 @@ export function IndustrySystem({
             className="mx-auto mt-14 flex max-w-fit items-center gap-2.5 rounded-full border bg-paper px-5 py-2.5 text-[14px] font-medium shadow-[0_18px_40px_-26px_rgba(11,19,38,0.25)]"
             style={{
               borderColor: `color-mix(in srgb, ${c1} 30%, transparent)`,
-              color: `color-mix(in srgb, ${c1} 80%, #0B1326)`,
+              color: `color-mix(in srgb, ${c1} 80%, #222A33)`,
             }}
             initial={reduce ? false : { opacity: 0, y: 14 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}

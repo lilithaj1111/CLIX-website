@@ -111,15 +111,11 @@ export function VoiceAgentSection() {
   };
 
   return (
-    <section className="relative border-t border-line py-20 md:py-28 overflow-hidden">
+    <section className="relative border-t border-line bg-background py-20 md:py-28 overflow-hidden">
       <audio ref={audioRef} src={AUDIO_SRC} preload="metadata" />
 
-      {/* Lime/mint radial backdrop — soft "atmosphere" tying this section
-          to the AI Agents service card on /services. */}
-      <LimeRadiant />
-
-      {/* Plus-cross blueprint grid behind everything — matches the reference's
-          "engineered paper" backdrop, tinted sage. */}
+      {/* Plus-cross blueprint grid behind everything — a faint "engineered
+          paper" texture (UiPath-style technical backdrop). */}
       <PlusGridBackdrop />
 
       <div className="relative mx-auto max-w-[1240px] px-6 lg:px-10">
@@ -147,7 +143,7 @@ export function VoiceAgentSection() {
             </div>
 
             {/* Headline — flows naturally; text-balance keeps lines even */}
-            <h2 className="mt-6 max-w-[640px] text-[clamp(2.1rem,4.2vw,3.85rem)] leading-[1.05] tracking-[-0.035em] font-medium text-balance">
+            <h2 className="mt-6 max-w-[640px] text-[clamp(2.1rem,4.2vw,3.85rem)] leading-[1.05] tracking-[-0.04em] font-semibold text-balance">
               סוכנים קוליים שמנהלים את כל{" "}
               <span className="serif-italic text-accent">השיחה.</span>
             </h2>
@@ -249,7 +245,7 @@ function PlayerCard({
           className="absolute top-[16%] -left-[3px] w-[4px] h-12 rounded-l-md pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, #050a17 0%, #1a2238 60%, #28304a 100%)",
+              "linear-gradient(90deg, #1A222B 0%, #2A3540 60%, #3D4A59 100%)",
             boxShadow: "inset 1px 0 0 rgba(255,255,255,0.06)",
           }}
         />
@@ -258,7 +254,7 @@ function PlayerCard({
           className="absolute top-[26%] -left-[3px] w-[4px] h-8 rounded-l-md pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, #050a17 0%, #1a2238 60%, #28304a 100%)",
+              "linear-gradient(90deg, #1A222B 0%, #2A3540 60%, #3D4A59 100%)",
             boxShadow: "inset 1px 0 0 rgba(255,255,255,0.06)",
           }}
         />
@@ -267,7 +263,7 @@ function PlayerCard({
           className="absolute top-[18%] -right-[3px] w-[4px] h-16 rounded-r-md pointer-events-none"
           style={{
             background:
-              "linear-gradient(-90deg, #050a17 0%, #1a2238 60%, #28304a 100%)",
+              "linear-gradient(-90deg, #1A222B 0%, #2A3540 60%, #3D4A59 100%)",
             boxShadow: "inset -1px 0 0 rgba(255,255,255,0.06)",
           }}
         />
@@ -277,7 +273,7 @@ function PlayerCard({
           className="relative w-full aspect-[10/20] rounded-[44px] p-[5px]"
           style={{
             background:
-              "linear-gradient(135deg, #1f2a44 0%, #0b1326 45%, #0F1A2E 100%)",
+              "linear-gradient(135deg, #34404C 0%, #222A33 45%, #2A3540 100%)",
             boxShadow: [
               "0 70px 110px -40px rgba(11,19,38,0.55)",
               "0 30px 50px -22px rgba(11,19,38,0.40)",
@@ -293,7 +289,7 @@ function PlayerCard({
             className="relative w-full h-full rounded-[40px] overflow-hidden bg-paper"
             style={{
               background:
-                "linear-gradient(180deg, #FFFFFF 0%, #F7F9FC 35%, #EAF0F8 100%)",
+                "linear-gradient(180deg, #FFFFFF 0%, #F4F5F7 35%, #E7EAEE 100%)",
             }}
           >
             {/* Dynamic island — top notch carrying status */}
@@ -548,24 +544,6 @@ function CallActionButton({
         {label}
       </span>
     </button>
-  );
-}
-
-/* ─── Lime/mint radial backdrop ─────────────────────────────────────────── */
-
-function LimeRadiant() {
-  return (
-    <div
-      aria-hidden
-      className="absolute inset-0 pointer-events-none z-0"
-      style={{
-        background: [
-          "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #A3E635 30%, transparent), transparent 70%)",
-          "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #5EEAD4 26%, transparent), transparent 70%)",
-          "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #FDE68A 22%, transparent), transparent 70%)",
-        ].join(", "),
-      }}
-    />
   );
 }
 

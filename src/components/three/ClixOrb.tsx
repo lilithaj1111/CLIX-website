@@ -43,8 +43,8 @@ export function ClixOrb({
   useEffect(() => {
     const cs = getComputedStyle(document.documentElement);
     setColors({
-      fg: (cs.getPropertyValue("--fg") || "#1e1a2a").trim(),
-      accent: (cs.getPropertyValue("--accent") || "#547A95").trim(),
+      fg: (cs.getPropertyValue("--fg") || "#2C3641").trim(),
+      accent: (cs.getPropertyValue("--accent") || "#5C7488").trim(),
     });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);

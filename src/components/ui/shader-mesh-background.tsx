@@ -25,18 +25,18 @@ export function ShaderMeshBackground({ className = "" }: { className?: string })
     <div
       aria-hidden
       className={`pointer-events-none ${className}`}
-      style={{ backgroundColor: "#F7F9FC" }}
+      style={{ backgroundColor: "#F4F5F7" }}
     >
       <MeshGradient
         className="absolute inset-0 h-full w-full opacity-90"
-        colors={["#F2F6FD", "#BFD3FB", "#7FA9F7", "#D4F58A", "#A3E635"]}
+        colors={["#F4F5F7", "#A9BDD0", "#A9BDD0", "#8CA0B3", "#A9BDD0"]}
         speed={0.3}
         distortion={0.8}
         swirl={0.5}
       />
       <MeshGradient
         className="absolute inset-0 h-full w-full opacity-40"
-        colors={["#F7F9FC", "#DDE9FE", "#9DC0FA", "#CBF08C"]}
+        colors={["#F4F5F7", "#E1E6EB", "#A9BDD0", "#8CA0B3"]}
         speed={0.2}
         distortion={1}
         swirl={0.25}

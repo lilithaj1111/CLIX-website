@@ -61,9 +61,9 @@ export function HeroScene3D({ reduced = false }: HeroScene3DProps) {
       <directionalLight
         position={[-4, -2, 3]}
         intensity={0.7}
-        color="#C2A56D"
+        color="#8CA0B3"
       />
-      <pointLight position={[0, 0, 2]} intensity={0.45} color="#547A95" />
+      <pointLight position={[0, 0, 2]} intensity={0.45} color="#8CA0B3" />
 
       {/* Studio environment drives the iridescent reflections on the core. */}
       <Environment preset="apartment" />
@@ -111,7 +111,7 @@ function CentralCore({ reduced }: { reduced: boolean }) {
         <mesh ref={haloRef}>
           <icosahedronGeometry args={[1.55, 0]} />
           <meshBasicMaterial
-            color="#547A95"
+            color="#8CA0B3"
             transparent
             opacity={0.06}
             depthWrite={false}
@@ -122,13 +122,13 @@ function CentralCore({ reduced }: { reduced: boolean }) {
         <mesh ref={meshRef}>
           <icosahedronGeometry args={[1.25, 1]} />
           <meshPhysicalMaterial
-            color="#e3ecea"
+            color="#E7EAEE"
             metalness={0.35}
             roughness={0.08}
             transmission={0.55}
             thickness={1.2}
             ior={1.5}
-            attenuationColor="#547A95"
+            attenuationColor="#8CA0B3"
             attenuationDistance={2.2}
             clearcoat={1}
             clearcoatRoughness={0.04}
@@ -136,7 +136,7 @@ function CentralCore({ reduced }: { reduced: boolean }) {
             iridescenceIOR={1.5}
             iridescenceThicknessRange={[300, 820]}
             sheen={0.55}
-            sheenColor={new THREE.Color("#C2A56D")}
+            sheenColor={new THREE.Color("#A9BDD0")}
             sheenRoughness={0.3}
             envMapIntensity={1.5}
           />
@@ -147,7 +147,7 @@ function CentralCore({ reduced }: { reduced: boolean }) {
         <lineSegments>
           <edgesGeometry args={[new THREE.IcosahedronGeometry(1.25, 1)]} />
           <lineBasicMaterial
-            color="#2C3947"
+            color="#2A3540"
             transparent
             opacity={0.32}
             depthWrite={false}
@@ -206,7 +206,7 @@ function OrbitingSatellite({
     <group ref={groupRef}>
       <lineSegments ref={meshRef} geometry={geom}>
         <lineBasicMaterial
-          color="#547A95"
+          color="#8CA0B3"
           transparent
           opacity={0.55}
           depthWrite={false}
@@ -215,7 +215,7 @@ function OrbitingSatellite({
       {/* Tiny solid pip at the satellite's center — acts as a node marker */}
       <mesh>
         <sphereGeometry args={[0.045, 12, 12]} />
-        <meshBasicMaterial color="#2C3947" />
+        <meshBasicMaterial color="#2A3540" />
       </mesh>
     </group>
   );
@@ -292,7 +292,7 @@ function Connectors({ reduced }: { reduced: boolean }) {
   return (
     <lineSegments ref={ref} geometry={geom}>
       <lineBasicMaterial
-        color="#547A95"
+        color="#8CA0B3"
         transparent
         opacity={0.22}
         depthWrite={false}
@@ -338,7 +338,7 @@ function Dust({ reduced }: { reduced: boolean }) {
   return (
     <points ref={ref} geometry={geom}>
       <pointsMaterial
-        color="#547A95"
+        color="#8CA0B3"
         size={0.04}
         sizeAttenuation
         transparent

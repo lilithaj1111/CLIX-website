@@ -63,11 +63,11 @@ export function AuroraHero({
           style={{
             background: `
               repeating-linear-gradient(100deg,
-                #E0F2FE 10%,
-                #DBEAFE 15%,
-                #ECFCCB 20%,
-                #D9F99D 25%,
-                #DBEAFE 30%)
+                #E1E6EB 10%,
+                #A9BDD0 15%,
+                #8CA0B3 20%,
+                #A9BDD0 25%,
+                #A9BDD0 30%)
             `,
             backgroundSize: "300% 100%",
             filter: "blur(80px)",
@@ -92,11 +92,11 @@ export function AuroraHero({
                 transparent 12%,
                 rgba(217, 249, 157, 0.10) 16%),
               repeating-linear-gradient(100deg,
-                #E0F2FE 10%,
-                #DBEAFE 15%,
-                #ECFCCB 20%,
-                #D9F99D 25%,
-                #DBEAFE 30%)
+                #E1E6EB 10%,
+                #A9BDD0 15%,
+                #8CA0B3 20%,
+                #A9BDD0 25%,
+                #A9BDD0 30%)
             `,
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",

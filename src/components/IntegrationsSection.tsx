@@ -19,35 +19,7 @@ import { TOOLS, type Tool } from "@/lib/tool-icons";
  */
 export function IntegrationsSection() {
   return (
-    <section className="relative border-t border-line py-16 md:py-32 overflow-hidden divider-draw">
-      <div aria-hidden className="absolute inset-0 z-0 aurora-bg-tr opacity-55" />
-
-      {/* Lime/mint radiant — distributed across BOTH sides so the green
-          undertone reads on the right tool cards as well as the left. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          background: [
-            "radial-gradient(40% 50% at 20% 30%, color-mix(in srgb, #A3E635 30%, transparent), transparent 70%)",
-            "radial-gradient(40% 50% at 80% 30%, color-mix(in srgb, #A3E635 28%, transparent), transparent 70%)",
-            "radial-gradient(38% 48% at 50% 65%, color-mix(in srgb, #5EEAD4 26%, transparent), transparent 70%)",
-            "radial-gradient(34% 44% at 88% 75%, color-mix(in srgb, #5EEAD4 26%, transparent), transparent 70%)",
-            "radial-gradient(32% 42% at 30% 88%, color-mix(in srgb, #FDE68A 22%, transparent), transparent 70%)",
-          ].join(", "),
-        }}
-      />
-
-      {/* Soft warm-purple wash directly behind the focal block. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(40% 55% at 50% 50%, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 60%)",
-        }}
-      />
-
+    <section className="relative border-t border-line bg-background py-16 md:py-32 overflow-hidden">
       <div className="relative z-[1] mx-auto max-w-[1320px] px-6 lg:px-10">
         <CollageStage />
       </div>
@@ -335,7 +307,7 @@ function PolaroidCard({ tool }: { tool: Tool }) {
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(124,58,168,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,168,0.09) 1px, transparent 1px)",
+              "linear-gradient(rgba(140,160,179,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(140,160,179,0.09) 1px, transparent 1px)",
             backgroundSize: "14px 14px",
             maskImage:
               "radial-gradient(circle at 50% 50%, black 35%, transparent 75%)",

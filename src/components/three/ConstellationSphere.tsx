@@ -41,7 +41,7 @@ export function ConstellationSphere({
       >
         {/* Fog matched to bg so the back of the sphere fades into the page
             — adds depth without a hard horizon. */}
-        <fog attach="fog" args={["#fafaf4", 4.5, 8]} />
+        <fog attach="fog" args={["#F4F5F7", 4.5, 8]} />
         <Sphere
           count={count}
           neighbors={neighbors}
@@ -162,7 +162,7 @@ function Sphere({
     <group ref={groupRef}>
       <lineSegments geometry={lineGeom}>
         <lineBasicMaterial
-          color="#4a6258"
+          color="#8CA0B3"
           transparent
           opacity={0.22}
           depthWrite={false}
@@ -173,7 +173,7 @@ function Sphere({
           matching the reference look. */}
       <points geometry={pointGeom}>
         <pointsMaterial
-          color="#2f4039"
+          color="#2A3540"
           size={5}
           sizeAttenuation={false}
           transparent

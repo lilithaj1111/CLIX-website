@@ -86,14 +86,14 @@ export function ParticleHero() {
           variants={lineV}
           initial="hidden"
           animate="show"
-          className="flex flex-wrap items-baseline justify-center gap-x-[0.28em] gap-y-1 text-[clamp(2.5rem,6vw,5rem)] font-normal leading-[1.05] tracking-[-0.035em] text-on-dark"
+          className="flex flex-wrap items-baseline justify-center gap-x-[0.28em] gap-y-1 text-[clamp(2.7rem,6.4vw,5.4rem)] font-bold leading-[1.02] tracking-[-0.04em] text-on-dark"
           style={{ textShadow: "0 1px 4px rgba(0,0,0,0.65), 0 10px 38px rgba(0,0,0,0.5)" }}
         >
           {WORDS.map((w, i) => (
             <motion.span
               key={i}
               variants={wordV}
-              className={`inline-block ${w.accent ? "text-accent" : ""}`}
+              className={`inline-block ${w.accent ? "text-[#A9BDD0]" : ""}`}
             >
               {w.text}
             </motion.span>
