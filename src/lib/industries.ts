@@ -50,7 +50,7 @@ export const industries: Industry[] = [
   {
     slug: "real-estate",
     icon: "Building2",
-    image: "/hero1.png",
+    image: "/ind-real-estate.png",
     name: "נדל״ן",
     verb: "לסגור עסקאות מהר יותר",
     pain: "לידים נופלים בין הסדקים, והמתווך הראשון שמגיב מנצח.",
@@ -74,13 +74,13 @@ export const industries: Industry[] = [
     intro:
       "בנדל״ן, מי שמגיב ראשון מנצח. בנינו מערכות שמוודאות שאף ליד לא נופל בין הסדקים מהפנייה הראשונה ועד חתימת החוזה, מסביב לשעון.",
     relatedServices: ["whatsapp", "crm", "ai-agents"],
-    theme: ["#3B7BF5", "#A3E635"],
+    theme: ["#845EF7", "#A99BF5"],
     layout: "flow",
   },
   {
     slug: "finance",
     icon: "Landmark",
-    image: "/aipic.jpg",
+    image: "/ind-finance.png",
     name: "פיננסים וביטוח",
     verb: "לתפעל בלי לוותר על ציות",
     pain: "תהליכים ידניים, רגולציה כבדה ואפס מקום לטעות בנתונים.",
@@ -104,13 +104,13 @@ export const industries: Industry[] = [
     intro:
       "בעולם הפיננסי כל תהליך כפוף לרגולציה ולדיוק. אנחנו מאוטמים את העבודה החוזרת בלי להתפשר על ציות, אבטחה ושקיפות.",
     relatedServices: ["integrations", "ai-agents", "software"],
-    theme: ["#1E4DB8", "#A3E635"],
+    theme: ["#3A46F0", "#A99BF5"],
     layout: "cards",
   },
   {
     slug: "healthcare",
     icon: "HeartPulse",
-    image: "/hero2.png",
+    image: "/ind-health.png",
     name: "בריאות וקליניקות",
     verb: "להחזיר זמן לצוות הרפואי",
     pain: "המזכירות טובעת בתיאומים, תזכורות ומענה טלפוני חוזר.",
@@ -134,13 +134,13 @@ export const industries: Industry[] = [
     intro:
       "צוותים רפואיים מבזבזים שעות על תיאומים ומענה טלפוני חוזר. בנינו מערכות שמחזירות את הזמן הזה למטופלים בלי לפגוע בשירות.",
     relatedServices: ["whatsapp", "ai-agents", "integrations"],
-    theme: ["#0EA5E9", "#BEF264"],
+    theme: ["#845EF7", "#C8BFF3"],
     layout: "flow",
   },
   {
     slug: "retail",
     icon: "ShoppingBag",
-    image: "/tt.jpg",
+    image: "/ind-retail.png",
     name: "קמעונאות ו-eCommerce",
     verb: "להמיר כל שיחה למכירה",
     pain: "עגלות ננטשות ושאלות לקוחות מחכות שעות למענה.",
@@ -164,13 +164,13 @@ export const industries: Industry[] = [
     intro:
       "בקמעונאות, מהירות המענה היא ההבדל בין מכירה לעגלה נטושה. הפכנו את ערוצי השירות למכונת מכירה שעובדת מסביב לשעון.",
     relatedServices: ["whatsapp", "integrations", "ai-agents"],
-    theme: ["#2563EB", "#A3E635"],
+    theme: ["#4F46D6", "#A99BF5"],
     layout: "cards",
   },
   {
     slug: "logistics",
     icon: "Truck",
-    image: "/automations.jpg",
+    image: "/ind-logistics.png",
     name: "לוגיסטיקה ותפעול",
     verb: "לאחד מערך מקוטע",
     pain: "חמישה כלים שלא מדברים, ועדכון שמגיע תמיד מאוחר מדי.",
@@ -194,7 +194,7 @@ export const industries: Industry[] = [
     intro:
       "תפעול לוגיסטי מתפזר על פני מערכות, גיליונות וצוותים. איחדנו אותם לתמונת אמת אחת שמתעדכנת בזמן אמת בלי גזור-הדבק.",
     relatedServices: ["software", "integrations", "ai-agents"],
-    theme: ["#1E4DB8", "#BEF264"],
+    theme: ["#3A46F0", "#C8BFF3"],
     layout: "flow",
   },
   {
@@ -224,7 +224,7 @@ export const industries: Industry[] = [
     intro:
       "מוסדות חינוך מאבדים נרשמים בגלל ליווי לא עקבי. בנינו מערכות שמלוות כל מתעניין מהשאלה הראשונה ועד ההרשמה ברצף ובלי לאבד אף אחד.",
     relatedServices: ["ai-agents", "whatsapp", "integrations"],
-    theme: ["#5C93F7", "#BEF264"],
+    theme: ["#9A7BF8", "#C8BFF3"],
     layout: "cards",
   },
 ];

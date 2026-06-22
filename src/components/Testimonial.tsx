@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Play, X } from "lucide-react";
-import { Reveal } from "./Reveal";
-import { useInViewAttr } from "@/lib/useInViewAttr";
-import { CinematicHeading } from "./CinematicHeading";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 type Testimonial = {
   slug: string;
@@ -16,170 +14,168 @@ type Testimonial = {
 };
 
 const TESTIMONIALS: Testimonial[] = [
-  {
-    slug: "asaf-peretz",
-    name: "אסף פרץ",
-    role: "מייסד · SalesIQ",
-    videoSrc: "/testimonials/asaf-peretz.mp4",
-    posterSrc: "/testimonials/asaf-peretz.jpg",
-  },
-  {
-    slug: "adir-peretz",
-    name: "אדיר פרץ",
-    role: "בעלים · סטודיו וידאו וצילום",
-    videoSrc: "/testimonials/adir-peretz.mp4",
-    posterSrc: "/testimonials/adir-peretz.jpg",
-  },
-  {
-    slug: "nevo-yahaloman",
-    name: "נבו יהלומן",
-    role: "מייסד",
-    videoSrc: "/testimonials/nevo-yahaloman.mp4",
-    posterSrc: "/testimonials/nevo-yahaloman.jpg",
-  },
-  {
-    slug: "noam-tovi",
-    name: "נועם תובי",
-    role: "בעלים · השקעות",
-    videoSrc: "/testimonials/noam-tovi.mp4",
-    posterSrc: "/testimonials/noam-tovi.jpg",
-  },
+  { slug: "asaf-peretz", name: "אסף פרץ", role: "מייסד · SalesIQ", videoSrc: "/testimonials/asaf-peretz.mp4", posterSrc: "/testimonials/asaf-peretz.jpg" },
+  { slug: "adir-peretz", name: "אדיר פרץ", role: "בעלים · סטודיו וידאו וצילום", videoSrc: "/testimonials/adir-peretz.mp4", posterSrc: "/testimonials/adir-peretz.jpg" },
+  { slug: "nevo-yahaloman", name: "נבו יהלומן", role: "מייסד", videoSrc: "/testimonials/nevo-yahaloman.mp4", posterSrc: "/testimonials/nevo-yahaloman.jpg" },
+  { slug: "noam-tovi", name: "נועם תובי", role: "בעלים · השקעות", videoSrc: "/testimonials/noam-tovi.mp4", posterSrc: "/testimonials/noam-tovi.jpg" },
 ];
 
 export function Testimonial() {
-  const sectionRef = useInViewAttr<HTMLElement>();
-  // Single active inline video at a time — clicking another card swaps it, so
-  // the others are never blocked (no full-screen modal).
-  const [playingSlug, setPlayingSlug] = useState<string | null>(null);
+  const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const total = TESTIMONIALS.length;
+  const t = TESTIMONIALS[active];
+  const nextT = TESTIMONIALS[(active + 1) % total];
+
+  const go = (dir: number) => {
+    setPlaying(false);
+    setActive((a) => (a + dir + total) % total);
+  };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden border-t border-line bg-background py-24 md:py-32"
-    >
-      <div className="relative z-[1] mx-auto max-w-[1400px] px-6 lg:px-10">
-        <div className="mb-12 grid items-end gap-8 md:mb-16 md:grid-cols-12">
-          <div className="md:col-span-8">
-            <Reveal>
-              <div className="eyebrow">בקולם של הלקוחות שלנו</div>
-            </Reveal>
-            <CinematicHeading
-              as="h2"
-              className="mt-5 text-[clamp(2rem,5.2vw,4.4rem)] font-bold leading-[0.98] tracking-[-0.035em] text-ink"
-            >
-              <>
-                שמעו את זה{" "}
-                <span className="font-semibold text-accent">ישירות</span> מהאנשים
-                שהעבודה שלהם השתנתה.
-              </>
-            </CinematicHeading>
-          </div>
-        </div>
+    <section className="relative overflow-hidden border-t border-white/10 bg-[#26292E] py-40">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(800px 520px at 20% 60%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 66%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* TEXT — first child → RIGHT in RTL */}
+          <div className="lg:col-span-5">
+            <p className="font-mono text-[13px] font-medium uppercase tracking-[0.2em] text-[#A99BF5]">
+              בקולם של הלקוחות שלנו
+            </p>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
-          {TESTIMONIALS.map((t, i) => (
-            <TestimonialCard
-              key={t.slug}
-              t={t}
-              index={i}
-              playing={playingSlug === t.slug}
-              onPlay={() => setPlayingSlug(t.slug)}
-              onStop={() => setPlayingSlug(null)}
-            />
-          ))}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={t.slug}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h2 className="mt-4 text-[clamp(3rem,6.5vw,5.2rem)] font-bold leading-[1] tracking-[-0.03em] text-on-dark">
+                  {t.name}
+                </h2>
+                <p className="mt-5 text-[clamp(1.15rem,1.8vw,1.5rem)] leading-relaxed text-on-dark/60">
+                  {t.role}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            <button
+              type="button"
+              onClick={() => setPlaying(true)}
+              className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-[#A99BF5] transition-colors hover:text-on-dark"
+            >
+              צפו בסרטון
+              <Play className="h-5 w-5" fill="currentColor" strokeWidth={0} />
+            </button>
+          </div>
+
+          {/* THUMBNAILS — second child → LEFT in RTL */}
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-5 sm:gap-6">
+              {/* Active — large */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={t.slug}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative aspect-[4/5] w-full flex-1 overflow-hidden rounded-none border border-white/10 bg-ink"
+                >
+                  {playing ? (
+                    // eslint-disable-next-line jsx-a11y/media-has-caption
+                    <video
+                      src={t.videoSrc}
+                      poster={t.posterSrc}
+                      autoPlay
+                      controls
+                      playsInline
+                      preload="metadata"
+                      onEnded={() => setPlaying(false)}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setPlaying(true)}
+                      aria-label={`הפעלת עדות של ${t.name}`}
+                      className="group absolute inset-0"
+                    >
+                      <Image
+                        src={t.posterSrc}
+                        alt={t.name}
+                        fill
+                        sizes="(max-width:1024px) 100vw, 40vw"
+                        className="object-cover object-[center_30%]"
+                      />
+                      <span className="absolute inset-0 grid place-items-center">
+                        <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-black/40 text-white ring-1 ring-white/30 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                          <Play className="ms-1 h-6 w-6" fill="currentColor" strokeWidth={0} />
+                        </span>
+                      </span>
+                      <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-5 text-right">
+                        <span className="block text-base font-bold text-white">{t.name}</span>
+                        <span className="block text-[12.5px] text-white/70">{t.role}</span>
+                      </span>
+                    </button>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Next-up — peeking */}
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label={`הבא: ${nextT.name}`}
+                className="relative hidden w-[180px] shrink-0 self-stretch overflow-hidden rounded-none border border-white/10 opacity-55 transition-opacity duration-300 hover:opacity-90 sm:block md:w-[230px] lg:w-[270px]"
+              >
+                <Image
+                  src={nextT.posterSrc}
+                  alt={nextT.name}
+                  fill
+                  sizes="180px"
+                  className="object-cover object-[center_30%]"
+                />
+              </button>
+            </div>
+
+            {/* Carousel controls — below the thumbnails, larger */}
+            <div className="mt-10 flex items-center gap-6">
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => go(-1)}
+                  aria-label="הקודם"
+                  className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/25 text-on-dark/80 transition-colors hover:bg-white/10 hover:text-on-dark"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label="הבא"
+                  className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/25 text-on-dark/80 transition-colors hover:bg-white/10 hover:text-on-dark"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="flex flex-1 items-center gap-4 font-mono text-lg tabular-nums">
+                <span className="text-on-dark">{String(active + 1).padStart(2, "0")}</span>
+                <span className="h-px flex-1 bg-white/30" />
+                <span className="text-on-dark/40">{String(total).padStart(2, "0")}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-/* ─── Card — portrait video on top, solid name panel below ──────────────── */
-
-function TestimonialCard({
-  t,
-  index,
-  playing,
-  onPlay,
-  onStop,
-}: {
-  t: Testimonial;
-  index: number;
-  playing: boolean;
-  onPlay: () => void;
-  onStop: () => void;
-}) {
-  return (
-    <Reveal delay={index * 0.08}>
-      <div
-        className={`group relative flex h-full w-full flex-col overflow-hidden rounded-xl text-right transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-2 hover:scale-[1.02] ${
-          playing
-            ? "border border-transparent bg-transparent shadow-none"
-            : "border border-white/10 bg-[#222C36] shadow-[0_18px_44px_-26px_rgba(20,26,32,0.55)] hover:border-white/25 hover:shadow-[0_34px_70px_-24px_rgba(20,26,32,0.6)] focus-within:border-white/25"
-        }`}
-      >
-        {/* Media — portrait video; the face shows fully (no veil). */}
-        <div className="relative aspect-[4/5] overflow-hidden bg-ink">
-          {playing ? (
-            <>
-              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-              <video
-                src={t.videoSrc}
-                poster={t.posterSrc}
-                autoPlay
-                controls
-                playsInline
-                preload="metadata"
-                onEnded={onStop}
-                className="absolute inset-0 h-full w-full bg-ink object-cover"
-              />
-              {/* Dismiss — returns this card to its poster */}
-              <button
-                type="button"
-                onClick={onStop}
-                aria-label="עצירת הסרטון"
-                className="absolute left-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/45 text-white ring-1 ring-white/25 backdrop-blur-sm transition-colors hover:bg-black/70"
-              >
-                <X className="h-4 w-4" strokeWidth={2} />
-              </button>
-            </>
-          ) : (
-            <button
-              type="button"
-              onClick={onPlay}
-              aria-label={`הפעלת עדות של ${t.name}`}
-              className="absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8CA0B3]"
-            >
-              <Image
-                src={t.posterSrc}
-                alt={t.name}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-              {/* Play badge — small, top corner, never covers the face */}
-              <span className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-white ring-1 ring-white/25 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                <Play className="ms-0.5 h-4 w-4" fill="currentColor" strokeWidth={0} />
-              </span>
-            </button>
-          )}
-        </div>
-
-        {/* Solid name panel — sits entirely below the video. mt-auto drops the
-            row low; the name/role and arrow share one row (text right, arrow
-            left, vertically aligned). */}
-        <div className="flex flex-1 flex-col px-5 pt-3.75 pb-2 md:px-6">
-          {!playing && (
-            <div className="mt-auto">
-              <h3 className="text-[14px] font-bold leading-snug tracking-[-0.01em] text-on-dark md:text-[15px]">
-                {t.name}
-              </h3>
-              <p className="mt-1 text-[11px] leading-relaxed text-on-dark/55">
-                {t.role}
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </Reveal>
   );
 }

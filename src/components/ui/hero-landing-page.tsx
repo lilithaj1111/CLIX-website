@@ -46,7 +46,7 @@ export function TuringLanding() {
           className="absolute inset-0 mix-blend-multiply"
           style={{
             background:
-              "linear-gradient(to left, color-mix(in srgb, #A9BDD0 35%, transparent), transparent 60%)",
+              "linear-gradient(to left, color-mix(in srgb, #A99BF5 35%, transparent), transparent 60%)",
             opacity: 0.7,
           }}
         />
@@ -54,7 +54,7 @@ export function TuringLanding() {
           className="absolute inset-0 mix-blend-multiply"
           style={{
             background:
-              "linear-gradient(to top right, color-mix(in srgb, #8CA0B3 30%, transparent), transparent 60%)",
+              "linear-gradient(to top right, color-mix(in srgb, #845EF7 30%, transparent), transparent 60%)",
             opacity: 0.65,
           }}
         />
@@ -62,7 +62,7 @@ export function TuringLanding() {
           className="absolute inset-0 mix-blend-multiply"
           style={{
             background:
-              "radial-gradient(60% 50% at 20% 80%, color-mix(in srgb, #A9BDD0 32%, transparent), transparent 70%)",
+              "radial-gradient(60% 50% at 20% 80%, color-mix(in srgb, #A99BF5 32%, transparent), transparent 70%)",
           }}
         />
       </div>
@@ -98,7 +98,7 @@ export function TuringLanding() {
               ולהגדיל פרודוקטיביות באמצעות מערכות חכמות.
             </p>
             <div className="flex gap-5 items-center">
-              <button className="flex items-center gap-2.5 bg-[#8CA0B3] text-white py-3.5 px-7 rounded-md text-base font-medium hover:bg-[#3D4A59] hover:-translate-x-0.5 transition-all duration-200">
+              <button className="flex items-center gap-2.5 bg-[#845EF7] text-white py-3.5 px-7 rounded-md text-base font-medium hover:bg-[#3A46F0] hover:-translate-x-0.5 transition-all duration-200">
                 בואו נתחיל
                 <ArrowRight className="w-5 h-5 -scale-x-100" />
               </button>

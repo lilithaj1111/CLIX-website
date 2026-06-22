@@ -25,7 +25,7 @@ export function IndustryIcon({
     <span
       className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden ring-1 ring-white/50 ${s.box} ${className}`}
       style={{
-        background: "linear-gradient(158deg, #A9BDD0 0%, #A9BDD0 46%, #8CA0B3 100%)",
+        background: "linear-gradient(158deg, #A99BF5 0%, #A99BF5 46%, #845EF7 100%)",
         boxShadow:
           "inset 0 1.5px 0 rgba(255,255,255,0.85), inset 0 -8px 13px rgba(43,92,162,0.28), 0 16px 28px -12px rgba(96,158,235,0.6)",
       }}

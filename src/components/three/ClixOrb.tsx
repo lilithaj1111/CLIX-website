@@ -44,7 +44,7 @@ export function ClixOrb({
     const cs = getComputedStyle(document.documentElement);
     setColors({
       fg: (cs.getPropertyValue("--fg") || "#2C3641").trim(),
-      accent: (cs.getPropertyValue("--accent") || "#5C7488").trim(),
+      accent: (cs.getPropertyValue("--accent") || "#845EF7").trim(),
     });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);

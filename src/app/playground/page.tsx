@@ -57,9 +57,9 @@ export default function PlaygroundPage() {
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             background: [
-              "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #8CA0B3 28%, transparent), transparent 70%)",
-              "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #A9BDD0 24%, transparent), transparent 70%)",
-              "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #8CA0B3 20%, transparent), transparent 70%)",
+              "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #845EF7 28%, transparent), transparent 70%)",
+              "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #A99BF5 24%, transparent), transparent 70%)",
+              "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #845EF7 20%, transparent), transparent 70%)",
             ].join(", "),
           }}
         />

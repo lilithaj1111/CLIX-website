@@ -40,8 +40,8 @@ export function Footer() {
         className="pointer-events-none absolute inset-0"
         style={{
           background: `
-            radial-gradient(900px 480px at 12% 110%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 65%),
-            radial-gradient(700px 420px at 92% 0%, color-mix(in srgb, var(--accent-2) 9%, transparent), transparent 70%)
+            radial-gradient(900px 480px at 12% 110%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 65%),
+            radial-gradient(700px 420px at 92% 0%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 70%)
           `,
         }}
       />
@@ -50,7 +50,7 @@ export function Footer() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--accent-2) 45%, transparent) 50%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--accent) 50%, transparent) 35%, color-mix(in srgb, var(--accent-2) 45%, transparent) 65%, transparent 100%)",
         }}
       />
 
@@ -130,7 +130,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 transition-colors hover:text-on-dark"
                 >
-                  <MapPin className="h-4 w-4 shrink-0 text-[#8CA0B3]" strokeWidth={1.75} />
+                  <MapPin className="h-4 w-4 shrink-0 text-[#A99BF5]" strokeWidth={1.75} />
                   תל אביב · שירות גלובלי
                 </a>
               </li>

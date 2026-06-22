@@ -36,7 +36,7 @@ export function GridWave({
     const cs = getComputedStyle(document.documentElement);
     setColors({
       fg: (cs.getPropertyValue("--fg") || "#1e1a2a").trim(),
-      accent: (cs.getPropertyValue("--accent") || "#547A95").trim(),
+      accent: (cs.getPropertyValue("--accent") || "#845EF7").trim(),
     });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);

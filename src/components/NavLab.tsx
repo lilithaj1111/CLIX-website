@@ -42,7 +42,7 @@ export function NavLab() {
   return (
     <header
       style={{ fontFamily: "var(--font-google-sans)" }}
-      className="pointer-events-auto fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0b0712]"
+      className="pointer-events-auto fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#1A1C20]"
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3 lg:px-10">
         {/* Brand — right edge in RTL */}
@@ -88,7 +88,7 @@ export function NavLab() {
                   transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute right-1/2 top-full translate-x-1/2 pt-4"
                 >
-                  <div className="w-[260px] rounded-2xl border border-white/10 bg-[#140b1c]/90 p-2 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+                  <div className="w-[260px] rounded-2xl border border-white/10 bg-[#202327]/90 p-2 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl">
                     {industries.map((ind) => (
                       <Link
                         key={ind.slug}
@@ -158,7 +158,7 @@ export function NavLab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-auto mx-4 mt-2 rounded-2xl border border-white/10 bg-[#140b1c]/95 p-5 backdrop-blur-xl md:hidden"
+            className="pointer-events-auto mx-4 mt-2 rounded-2xl border border-white/10 bg-[#202327]/95 p-5 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1">
               <Link href="/services" className="py-2 text-lg text-white hover:text-white/70">שירותים</Link>

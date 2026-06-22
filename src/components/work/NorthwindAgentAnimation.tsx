@@ -38,9 +38,9 @@ const DUR: Record<Phase, number> = {
 };
 
 // Light palette — cream paper surface, slate ink text, warm slate-blue accent.
-const ACCENT = "#8CA0B3";
-const ACCENT_DEEP = "#34404C";
-const INK = "#222A33";
+const ACCENT = "#845EF7";
+const ACCENT_DEEP = "#322A60";
+const INK = "#24272B";
 const INK_SOFT = "rgba(31,41,55,0.55)";
 const PAPER = "#FAF6EC";
 const PAPER_WARM = "#F1ECDF";
@@ -225,7 +225,7 @@ function ChatScene({ reduced }: { reduced: boolean }) {
               className="w-6 h-6 rounded-full grid place-items-center"
               style={{
                 background:
-                  `linear-gradient(135deg, #8CA0B3, #A9BDD0)`,
+                  `linear-gradient(135deg, #845EF7, #A99BF5)`,
               }}
             >
               <span className="text-[8px] font-bold text-white">R</span>
@@ -276,7 +276,7 @@ function ChatScene({ reduced }: { reduced: boolean }) {
                       <div className="mt-0.5 flex items-center justify-end gap-0.5 text-[6.5px]" style={{ color: INK_SOFT }}>
                         <span>09:4{i}</span>
                         {!isClient && (
-                          <CheckCheck className="w-2.5 h-2.5" strokeWidth={2.5} style={{ color: "#8CA0B3" }} />
+                          <CheckCheck className="w-2.5 h-2.5" strokeWidth={2.5} style={{ color: "#845EF7" }} />
                         )}
                       </div>
                     </div>
@@ -392,7 +392,7 @@ function DispatchScene({ reduced }: { reduced: boolean }) {
             </svg>
             {/* Origin / destination markers (HTML so labels read crisply) */}
             <PinMarker x={30} y={36} label="CHI" pulse={!reduced} />
-            <PinMarker x={70} y={66} label="DAL" pulse={!reduced} accent="#8CA0B3" />
+            <PinMarker x={70} y={66} label="DAL" pulse={!reduced} accent="#845EF7" />
             {/* Truck travelling along the route */}
             {!reduced && (
               <motion.div

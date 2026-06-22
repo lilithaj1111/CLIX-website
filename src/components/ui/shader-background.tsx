@@ -20,7 +20,7 @@ type Props = {
 // Theme color for the plasma lines. The shader renders these over a
 // fully transparent canvas so the lines composite onto whatever page
 // surface sits behind it — no background wash leaks into the section.
-const LINE_COLOR = [0.361, 0.455, 0.533, 1.0]; // #5C7488 (--accent)
+const LINE_COLOR = [0.518, 0.369, 0.969, 1.0]; // #845EF7 (--accent)
 
 const VERT_SRC = `
   attribute vec4 aVertexPosition;

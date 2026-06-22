@@ -176,7 +176,7 @@ function Network({
     <group>
       <points ref={pointsRef} geometry={pointGeom}>
         <pointsMaterial
-          color="#8CA0B3"
+          color="#845EF7"
           size={0.058}
           sizeAttenuation
           transparent
@@ -186,7 +186,7 @@ function Network({
       </points>
       <lineSegments ref={linesRef} geometry={lineGeom}>
         <lineBasicMaterial
-          color="#8CA0B3"
+          color="#845EF7"
           transparent
           opacity={0.28}
           depthWrite={false}

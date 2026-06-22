@@ -16,16 +16,16 @@ import { Activity, ArrowDown, TrendingUp, Zap } from "lucide-react";
  *   03 · Scale without hiring     (volume up vs team flat sparklines)
  */
 
-const BLUE = "#8CA0B3";
-const BLUE_DEEP = "#3D4A59";
-const LIME = "#8CA0B3";
-const LIME_BRIGHT = "#A9BDD0";
-const LIME_DEEP = "#3D4A59";
-const INK = "#222A33";
+const BLUE = "#845EF7";
+const BLUE_DEEP = "#3A46F0";
+const LIME = "#845EF7";
+const LIME_BRIGHT = "#A99BF5";
+const LIME_DEEP = "#3A46F0";
+const INK = "#24272B";
 const INK_SOFT = "rgba(15,23,42,0.55)";
 const INK_MUTED = "rgba(15,23,42,0.38)";
 const PAPER = "#FFFFFF";
-const PAPER_WARM = "#F8FAFC";
+const PAPER_WARM = "#F5F3FB";
 const LINE_FAINT = "rgba(15,23,42,0.08)";
 
 type CardId = "speed" | "uptime" | "scale";
@@ -154,7 +154,7 @@ export function HeroServiceCards({ className = "" }: { className?: string }) {
                 onClick={() => handleClick(id)}
                 aria-label={`Select ${CARDS[id].label}`}
                 aria-pressed={isCenter}
-                className="absolute top-1/2 left-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8CA0B3]/60 rounded-[26px]"
+                className="absolute top-1/2 left-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#845EF7]/60 rounded-[26px]"
                 animate={{
                   x: offset * spread,
                   y: isCenter ? -12 : 22,

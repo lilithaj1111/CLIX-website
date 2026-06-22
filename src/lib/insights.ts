@@ -32,7 +32,7 @@ export const insights: Insight[] = [
     readingMinutes: 4,
     featured: true,
     cover: "/aipic.jpg",
-    tint: ["#3B7BF5", "#7FA9F7", "#A3E635"],
+    tint: ["#845EF7", "#A99BF5", "#A99BF5"],
     body: [
       {
         paragraphs: [
@@ -71,7 +71,7 @@ export const insights: Insight[] = [
     date: "אפריל 2026",
     readingMinutes: 4,
     cover: "/development.jpg",
-    tint: ["#5C93F7", "#A3E635", "#67E8F9"],
+    tint: ["#9A7BF8", "#A99BF5", "#B9AEF0"],
     body: [
       {
         paragraphs: [
@@ -111,7 +111,7 @@ export const insights: Insight[] = [
     date: "מרץ 2026",
     readingMinutes: 3,
     cover: "/automations.jpg",
-    tint: ["#1E4DB8", "#3B7BF5", "#BEF264"],
+    tint: ["#3A46F0", "#845EF7", "#C8BFF3"],
     body: [
       {
         paragraphs: [
@@ -147,7 +147,7 @@ export const insights: Insight[] = [
     date: "פברואר 2026",
     readingMinutes: 4,
     cover: "/picsai.jpg",
-    tint: ["#7FA9F7", "#BEF264", "#5EEAD4"],
+    tint: ["#A99BF5", "#C8BFF3", "#B9AEF0"],
     body: [
       {
         paragraphs: [

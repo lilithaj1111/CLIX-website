@@ -245,7 +245,7 @@ function PlayerCard({
           className="absolute top-[16%] -left-[3px] w-[4px] h-12 rounded-l-md pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, #1A222B 0%, #2A3540 60%, #3D4A59 100%)",
+              "linear-gradient(90deg, #26292E 0%, #2A2456 60%, #3A46F0 100%)",
             boxShadow: "inset 1px 0 0 rgba(255,255,255,0.06)",
           }}
         />
@@ -254,7 +254,7 @@ function PlayerCard({
           className="absolute top-[26%] -left-[3px] w-[4px] h-8 rounded-l-md pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, #1A222B 0%, #2A3540 60%, #3D4A59 100%)",
+              "linear-gradient(90deg, #26292E 0%, #2A2456 60%, #3A46F0 100%)",
             boxShadow: "inset 1px 0 0 rgba(255,255,255,0.06)",
           }}
         />
@@ -263,7 +263,7 @@ function PlayerCard({
           className="absolute top-[18%] -right-[3px] w-[4px] h-16 rounded-r-md pointer-events-none"
           style={{
             background:
-              "linear-gradient(-90deg, #1A222B 0%, #2A3540 60%, #3D4A59 100%)",
+              "linear-gradient(-90deg, #26292E 0%, #2A2456 60%, #3A46F0 100%)",
             boxShadow: "inset -1px 0 0 rgba(255,255,255,0.06)",
           }}
         />
@@ -273,7 +273,7 @@ function PlayerCard({
           className="relative w-full aspect-[10/20] rounded-[44px] p-[5px]"
           style={{
             background:
-              "linear-gradient(135deg, #34404C 0%, #222A33 45%, #2A3540 100%)",
+              "linear-gradient(135deg, #322A60 0%, #24272B 45%, #2A2456 100%)",
             boxShadow: [
               "0 70px 110px -40px rgba(11,19,38,0.55)",
               "0 30px 50px -22px rgba(11,19,38,0.40)",
@@ -289,7 +289,7 @@ function PlayerCard({
             className="relative w-full h-full rounded-[40px] overflow-hidden bg-paper"
             style={{
               background:
-                "linear-gradient(180deg, #FFFFFF 0%, #F4F5F7 35%, #E7EAEE 100%)",
+                "linear-gradient(180deg, #FFFFFF 0%, #F3F1FB 35%, #E2DFF2 100%)",
             }}
           >
             {/* Dynamic island — top notch carrying status */}

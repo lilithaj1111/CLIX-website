@@ -38,10 +38,10 @@ export function NetworkGraph({
   useEffect(() => {
     const cs = getComputedStyle(document.documentElement);
     setColors({
-      bg: (cs.getPropertyValue("--bg") || "#F2F2F2").trim(),
-      fg: (cs.getPropertyValue("--fg") || "#2C3641").trim(),
-      accent: (cs.getPropertyValue("--accent") || "#5C7488").trim(),
-      accent2: (cs.getPropertyValue("--accent-2") || "#8CA0B3").trim(),
+      bg: (cs.getPropertyValue("--bg") || "#E8E6F5").trim(),
+      fg: (cs.getPropertyValue("--fg") || "#2E3136").trim(),
+      accent: (cs.getPropertyValue("--accent") || "#845EF7").trim(),
+      accent2: (cs.getPropertyValue("--accent-2") || "#845EF7").trim(),
     });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);

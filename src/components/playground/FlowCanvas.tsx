@@ -397,9 +397,9 @@ export function FlowCanvas() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background: [
-                "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #8CA0B3 22%, transparent), transparent 70%)",
-                "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #A9BDD0 20%, transparent), transparent 70%)",
-                "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #8CA0B3 18%, transparent), transparent 70%)",
+                "radial-gradient(40% 50% at 25% 30%, color-mix(in srgb, #845EF7 22%, transparent), transparent 70%)",
+                "radial-gradient(38% 48% at 75% 60%, color-mix(in srgb, #A99BF5 20%, transparent), transparent 70%)",
+                "radial-gradient(32% 42% at 50% 85%, color-mix(in srgb, #845EF7 18%, transparent), transparent 70%)",
               ].join(", "),
             }}
           />

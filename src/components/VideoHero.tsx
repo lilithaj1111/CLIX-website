@@ -135,7 +135,7 @@ export function VideoHero() {
       />
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
-        <div className="max-w-2xl rounded-3xl border border-white/10 bg-[#1A222B]/55 p-7 backdrop-blur-md sm:p-10 md:p-12">
+        <div className="max-w-2xl rounded-3xl border border-white/10 bg-[#26292E]/55 p-7 backdrop-blur-md sm:p-10 md:p-12">
           {/* Eyebrow */}
           <motion.span
             initial={{ opacity: 0, y: 14 }}

@@ -39,9 +39,9 @@ export function FlowMesh({
       // Muted teals on warm cream surfaces. Additive bloom would wash
       // these out so we use normal blending with the dark half of the
       // accent range — the ribbon stays visible.
-      light: (cs.getPropertyValue("--accent") || "#547A95").trim(),
-      mid: (cs.getPropertyValue("--accent-deep") || "#2C3947").trim(),
-      deep: "#1A222B", // deepest slate for the back layer
+      light: (cs.getPropertyValue("--accent") || "#845EF7").trim(),
+      mid: (cs.getPropertyValue("--accent-deep") || "#3A46F0").trim(),
+      deep: "#26292E", // deepest slate for the back layer
     });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
@@ -74,7 +74,7 @@ export function FlowMesh({
           freqMul={1.0}
           radius={1.7}
           withLights
-          lightColor="#8CA0B3"
+          lightColor="#845EF7"
           lightCount={Math.max(18, Math.floor(28 * density))}
         />
         <Ribbon
@@ -89,7 +89,7 @@ export function FlowMesh({
           freqMul={0.85}
           radius={1.35}
           withLights
-          lightColor="#A9BDD0"
+          lightColor="#A99BF5"
           lightCount={Math.max(12, Math.floor(18 * density))}
         />
         <Ribbon
@@ -128,7 +128,7 @@ function Ribbon({
   freqMul,
   radius,
   withLights = false,
-  lightColor = "#8CA0B3",
+  lightColor = "#845EF7",
   lightCount = 24,
 }: {
   density: number;

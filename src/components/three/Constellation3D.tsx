@@ -89,7 +89,7 @@ export function Constellation3D({ className = "" }: Constellation3DProps) {
       >
         {/* Page-tinted fog — fades distant edges into the page surface,
             simulating depth-of-field without postprocessing. */}
-        <fog attach="fog" args={["#F4F5F7", 6.5, 15]} />
+        <fog attach="fog" args={["#F3F1FB", 6.5, 15]} />
         <CameraDrift reduced={reduced} />
         <DriftingDust reduced={reduced} />
         <ConstellationScene reduced={reduced} />
@@ -173,7 +173,7 @@ function DriftingDust({ reduced }: { reduced: boolean }) {
   return (
     <points geometry={geom}>
       <pointsMaterial
-        color="#8CA0B3"
+        color="#845EF7"
         size={0.045}
         sizeAttenuation
         transparent
@@ -351,7 +351,7 @@ function ConstellationScene({ reduced }: { reduced: boolean }) {
       {/* Cross-ring edges — fainter, behind */}
       <lineSegments geometry={crossGeom}>
         <lineBasicMaterial
-          color="#5C7488"
+          color="#845EF7"
           transparent
           opacity={0.28}
           depthWrite={false}
@@ -361,7 +361,7 @@ function ConstellationScene({ reduced }: { reduced: boolean }) {
       {/* Primary edges — brighter, define the structure */}
       <lineSegments geometry={primaryGeom}>
         <lineBasicMaterial
-          color="#5C7488"
+          color="#845EF7"
           transparent
           opacity={0.56}
           depthWrite={false}
@@ -380,7 +380,7 @@ function ConstellationScene({ reduced }: { reduced: boolean }) {
           >
             <sphereGeometry args={[n.size * 1.7, 20, 20]} />
             <meshBasicMaterial
-              color="#8CA0B3"
+              color="#845EF7"
               transparent
               opacity={0}
               depthWrite={false}
@@ -392,7 +392,7 @@ function ConstellationScene({ reduced }: { reduced: boolean }) {
             }}
           >
             <sphereGeometry args={[n.size, 24, 24]} />
-            <meshBasicMaterial color="#2A3540" />
+            <meshBasicMaterial color="#2A2456" />
           </mesh>
         </group>
       ))}
@@ -407,7 +407,7 @@ function ConstellationScene({ reduced }: { reduced: boolean }) {
         >
           <sphereGeometry args={[0.075, 14, 14]} />
           <meshBasicMaterial
-            color="#8CA0B3"
+            color="#845EF7"
             transparent
             opacity={0}
             depthWrite={false}

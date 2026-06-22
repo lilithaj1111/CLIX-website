@@ -40,7 +40,7 @@ export function HeroLiquidMetal({ reduced = false }: HeroLiquidMetalProps) {
       gl={{ alpha: true, antialias: true }}
     >
       {/* Soft fog matched to bg — back of the form fades into cream */}
-      <fog attach="fog" args={["#f4e9d5", 6, 12]} />
+      <fog attach="fog" args={["#E8E6F5", 6, 12]} />
 
       {/* Bright key + warm fill + sage rim — gives the chrome a luminous,
           airy feel instead of heavy contrast. */}
@@ -54,9 +54,9 @@ export function HeroLiquidMetal({ reduced = false }: HeroLiquidMetalProps) {
       <directionalLight
         position={[-2, -3, 3]}
         intensity={0.5}
-        color="#8CA0B3"
+        color="#845EF7"
       />
-      <pointLight position={[2, 0, 4]} intensity={0.4} color="#8CA0B3" />
+      <pointLight position={[2, 0, 4]} intensity={0.4} color="#845EF7" />
 
       {/* `studio` preset is the brightest of the Drei built-ins — required
           for the lift-from-the-shadows chrome look. */}
@@ -104,7 +104,7 @@ function ChromeForm({ reduced }: { reduced: boolean }) {
           clearcoatRoughness={0.02}
           envMapIntensity={2.2}
           sheen={0.5}
-          sheenColor={new THREE.Color("#8CA0B3")}
+          sheenColor={new THREE.Color("#845EF7")}
           sheenRoughness={0.3}
         />
       </mesh>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Bricolage_Grotesque, Fraunces, Space_Grotesk, Rubik, Heebo } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Bricolage_Grotesque, Fraunces, Space_Grotesk, Rubik, Heebo, Assistant } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -64,6 +64,15 @@ const heebo = Heebo({
   subsets: ["hebrew", "latin"],
 });
 
+// Assistant — clean geometric Hebrew+Latin sans, the closest free match for
+// Fontshok's Discovery (same Ultra-Light→Black weight range). Primary site
+// font until/unless the licensed Discovery webfonts are added to /public/fonts.
+const assistant = Assistant({
+  variable: "--font-assistant",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  subsets: ["hebrew", "latin"],
+});
+
 export const metadata: Metadata = {
   title: "Clix — בינה מהונדסת לעסק שלכם.",
   description:
@@ -93,7 +102,7 @@ export default function RootLayout({
       lang="he"
       dir="rtl"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${rubik.variable} ${heebo.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${rubik.variable} ${heebo.variable} ${assistant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground grain">
         <a

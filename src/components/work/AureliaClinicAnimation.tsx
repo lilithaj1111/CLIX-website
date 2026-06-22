@@ -35,8 +35,8 @@ const DUR: Record<Phase, number> = {
   rebooked: 4800,
 };
 
-const ACCENT = "#547A95";
-const ACCENT_DEEP = "#2C3947";
+const ACCENT = "#845EF7";
+const ACCENT_DEEP = "#3A46F0";
 const ROSE = "#E4A0A8";
 const ROSE_DEEP = "#B86A77";
 const INK = "#1F2937";
@@ -449,7 +449,7 @@ function FollowupScene({ reduced }: { reduced: boolean }) {
                       <div className="mt-0.5 flex items-center justify-end gap-0.5 text-[6.5px]" style={{ color: INK_SOFT }}>
                         <span>09:4{i}</span>
                         {!isClient && (
-                          <CheckCheck className="w-2.5 h-2.5" strokeWidth={2.5} style={{ color: "#A9BDD0" }} />
+                          <CheckCheck className="w-2.5 h-2.5" strokeWidth={2.5} style={{ color: "#A99BF5" }} />
                         )}
                       </div>
                     </div>

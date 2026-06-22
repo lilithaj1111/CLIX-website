@@ -42,9 +42,9 @@ const DUR: Record<Phase, number> = {
   sent: 4600,
 };
 
-const ACCENT = "#8CA0B3";
-const ACCENT_DEEP = "#3D4A59";
-const INK = "#222A33";
+const ACCENT = "#845EF7";
+const ACCENT_DEEP = "#3A46F0";
+const INK = "#24272B";
 const INK_SOFT = "rgba(31,41,55,0.55)";
 const PAPER = "#FAF6EC";
 const PAPER_WARM = "#F1ECDF";

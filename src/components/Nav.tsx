@@ -67,10 +67,9 @@ export function Nav() {
   const [mobileIndustries, setMobileIndustries] = useState(false);
   const closeTimer = useRef<number | undefined>(undefined);
 
-  // UiPath-style: a single solid dark charcoal bar over every page — dark over
-  // the black hero, dark over the light interior content alike. (We keep the
-  // `light` flag wired for minimal churn, but it stays false everywhere.)
-  const [light] = useState(false);
+  // A single solid white bar over every page (dark text/logo). The `light`
+  // flag stays true everywhere.
+  const [light] = useState(true);
 
   // Close any open menus when the route changes.
   useEffect(() => {
@@ -120,7 +119,7 @@ export function Nav() {
       style={{ fontFamily: "var(--font-google-sans)" }}
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         light
-          ? "border-line/40 bg-background/40 backdrop-blur-xl"
+          ? "border-line bg-paper"
           : "border-white/10 bg-ink-warm"
       }`}
     >
@@ -170,7 +169,7 @@ export function Nav() {
                   onMouseEnter={openMenu}
                   onMouseLeave={closeMenu}
                 >
-                  <div className="w-[340px] rounded-2xl border border-white/10 bg-[#222A33]/97 p-2.5 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+                  <div className="w-[340px] rounded-2xl border border-white/10 bg-[#24272B]/97 p-2.5 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl">
                     <div className="px-3 pb-1.5 pt-2 text-[10.5px] font-mono uppercase tracking-[0.18em] text-on-dark/45">
                       תעשיות שאנחנו בונים בהן
                     </div>
@@ -239,7 +238,7 @@ export function Nav() {
 
           <Link
             href="/contact"
-            className="hidden items-center rounded-full bg-on-dark px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white md:inline-flex"
+            className="hidden items-center rounded-none bg-[#845EF7] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8] md:inline-flex"
           >
             בואו נתחיל
           </Link>
@@ -291,7 +290,7 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-4 mt-2 rounded-2xl border border-white/10 bg-[#222A33]/97 p-5 backdrop-blur-xl md:hidden"
+            className="mx-4 mt-2 rounded-2xl border border-white/10 bg-[#24272B]/97 p-5 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1">
               <Link href="/services" className="py-2 text-lg text-white hover:text-white/70">
@@ -366,7 +365,7 @@ export function Nav() {
 
               <Link
                 href="/contact"
-                className="btn-violet mt-3 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium text-on-dark"
+                className="btn-violet mt-3 inline-flex items-center justify-center rounded-none px-5 py-3 text-sm font-medium text-on-dark"
               >
                 בואו נתחיל
               </Link>

@@ -37,9 +37,9 @@ export function ParticleWave({
   useEffect(() => {
     const cs = getComputedStyle(document.documentElement);
     setColors({
-      accent: (cs.getPropertyValue("--accent") || "#547A95").trim(),
-      accentDeep: (cs.getPropertyValue("--accent-deep") || "#2C3947").trim(),
-      bg: (cs.getPropertyValue("--bg") || "#f4e9d5").trim(),
+      accent: (cs.getPropertyValue("--accent") || "#845EF7").trim(),
+      accentDeep: (cs.getPropertyValue("--accent-deep") || "#3A46F0").trim(),
+      bg: (cs.getPropertyValue("--bg") || "#E8E6F5").trim(),
     });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
@@ -153,7 +153,7 @@ function Wave({
   const cBase = useMemo(() => new THREE.Color(accent), [accent]);
   const cHigh = useMemo(() => new THREE.Color(accentDeep), [accentDeep]);
   const cTrough = useMemo(
-    () => new THREE.Color(accent).lerp(new THREE.Color("#A9BDD0"), 0.45),
+    () => new THREE.Color(accent).lerp(new THREE.Color("#A99BF5"), 0.45),
     [accent],
   );
   const cBg = useMemo(() => new THREE.Color(bg), [bg]);

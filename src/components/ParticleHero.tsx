@@ -93,7 +93,7 @@ export function ParticleHero() {
             <motion.span
               key={i}
               variants={wordV}
-              className={`inline-block ${w.accent ? "text-[#A9BDD0]" : ""}`}
+              className={`inline-block ${w.accent ? "text-[#A99BF5]" : ""}`}
             >
               {w.text}
             </motion.span>

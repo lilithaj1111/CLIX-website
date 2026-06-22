@@ -43,9 +43,9 @@ export default async function InsightArticle({
           className="pointer-events-none absolute inset-0 z-0"
           style={{
             background: [
-              "radial-gradient(50% 60% at 10% -4%, color-mix(in srgb, #8CA0B3 20%, transparent), transparent 68%)",
-              "radial-gradient(48% 56% at 94% 4%, color-mix(in srgb, #8CA0B3 22%, transparent), transparent 68%)",
-              "radial-gradient(70% 52% at 50% -10%, color-mix(in srgb, #A9BDD0 12%, transparent), transparent 70%)",
+              "radial-gradient(50% 60% at 10% -4%, color-mix(in srgb, #845EF7 20%, transparent), transparent 68%)",
+              "radial-gradient(48% 56% at 94% 4%, color-mix(in srgb, #845EF7 22%, transparent), transparent 68%)",
+              "radial-gradient(70% 52% at 50% -10%, color-mix(in srgb, #A99BF5 12%, transparent), transparent 70%)",
             ].join(", "),
           }}
         />

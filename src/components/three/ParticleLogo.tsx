@@ -130,16 +130,16 @@ const FRAG_DUST = `
 
 // SLATE / BLUE-GREY palette — the field drifts between muted blue-grey tones
 // (the brightness pulse rides each change). Matches the brand palette:
-// dark slate #3D4A59 + muted blue-grey #8CA0B3.
+// dark slate #3A46F0 + muted blue-grey #845EF7.
 const CYCLE = [
-  new THREE.Color("#8CA0B3"), new THREE.Color("#5C7488"),
-  new THREE.Color("#A9BDD0"), new THREE.Color("#6E8398"),
+  new THREE.Color("#845EF7"), new THREE.Color("#845EF7"),
+  new THREE.Color("#A99BF5"), new THREE.Color("#9A7BF8"),
 ];
 const COLOR_EVERY = 10;
 // The shapes cycle tones, but the Clix LOGO (scroll-formed) settles to the brand blue-grey.
-const LOGO_BLUE = new THREE.Color("#8CA0B3");
+const LOGO_BLUE = new THREE.Color("#845EF7");
 // Intro pop: the forming logo flashes a brighter blue-grey, then settles into the cycle.
-const INTRO_TINT = new THREE.Color("#C2D0DD");
+const INTRO_TINT = new THREE.Color("#C9C0EE");
 
 export function ParticleLogo({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

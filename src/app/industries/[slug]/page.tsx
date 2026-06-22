@@ -88,7 +88,7 @@ export default async function IndustryPage({
   const [c1, c2] = ind.theme;
   const grad = `linear-gradient(135deg, ${c1}, ${c2})`;
   // The outcome card stays the brand's signature blue→lime on every sector.
-  const blueLime = "linear-gradient(135deg, #8CA0B3, #A9BDD0)";
+  const blueLime = "linear-gradient(135deg, #845EF7, #A99BF5)";
   const related = ind.relatedServices
     .map((s) => services.find((x) => x.slug === s))
     .filter((x): x is (typeof services)[number] => Boolean(x));
@@ -146,8 +146,8 @@ export default async function IndustryPage({
             <div className="lg:col-span-5">
               <div className="rounded-[1.8rem] p-[1.5px] shadow-[0_40px_80px_-30px_rgba(11,19,38,0.3)]" style={{ background: blueLime }}>
                 <div className="relative overflow-hidden rounded-[calc(1.8rem-1.5px)] bg-paper/80 p-8 backdrop-blur-md md:p-10">
-                  <span aria-hidden className="absolute -right-16 -top-16 block h-44 w-44 rounded-full opacity-60 blur-3xl" style={{ background: "#8CA0B3" }} />
-                  <span aria-hidden className="absolute -bottom-16 -left-16 block h-44 w-44 rounded-full opacity-60 blur-3xl" style={{ background: "#A9BDD0" }} />
+                  <span aria-hidden className="absolute -right-16 -top-16 block h-44 w-44 rounded-full opacity-60 blur-3xl" style={{ background: "#845EF7" }} />
+                  <span aria-hidden className="absolute -bottom-16 -left-16 block h-44 w-44 rounded-full opacity-60 blur-3xl" style={{ background: "#A99BF5" }} />
                   <div className="relative">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-paper" style={{ background: blueLime }}>
                       <TrendingUp className="h-5 w-5" strokeWidth={2} />

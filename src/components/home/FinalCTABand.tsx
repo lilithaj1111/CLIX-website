@@ -6,35 +6,45 @@ import { Reveal } from "@/components/Reveal";
 
 export function FinalCTABand() {
   return (
-    <section className="relative overflow-hidden border-t border-white/10 bg-ink-warm py-20 md:py-28">
+    <section className="relative flex min-h-[72vh] items-center overflow-hidden border-t border-white/10 bg-[#16181B] py-28 md:py-32">
+      {/* Static "platform" background image (public/cta-platform-bg.jpg). Replace
+          that file to swap the picture; bump the ?v= to bust the browser cache. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/cta-platform-bg.jpg?v=3')" }}
+      />
+      {/* Light legibility veil so the centred copy stays readable while the
+          vivid image still shows through */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/30" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(circle, color-mix(in srgb, var(--accent-2) 16%, transparent) 0%, transparent 70%)",
+          backgroundImage:
+            "radial-gradient(780px 520px at 50% 46%, rgba(0,0,0,0.45) 0%, transparent 72%)",
         }}
       />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <div className="relative z-[1] mx-auto w-full max-w-[1280px] px-6 lg:px-10">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-[#8CA0B3]">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-[#A99BF5]">
               מוכנים להתחיל?
             </p>
 
-            <h2 className="mt-4 text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.035em] text-on-dark">
+            <h2 className="mt-4 text-[clamp(1.85rem,4vw,3.2rem)] font-bold leading-[1.06] tracking-[-0.035em] text-on-dark">
               זה הסוף של העמוד — וההתחלה של המערכת הבאה שלכם.
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-[1.7] text-on-dark/65 md:text-base">
+            <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-[1.7] text-on-dark/70 md:text-base">
               נדבר 30 דקות, נמפה איפה AI באמת יזיז את המחט, ונצא עם תוכנית.
             </p>
 
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-on-dark px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
+                className="inline-flex items-center gap-2 rounded-none bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
               >
                 קבעו שיחה
                 <ArrowLeft className="h-4 w-4" strokeWidth={1.9} />
@@ -42,7 +52,7 @@ export function FinalCTABand() {
 
               <Link
                 href="mailto:info@clixsolution.com"
-                className="inline-flex items-center gap-2 rounded-full bg-[#54728A] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#62809a]"
+                className="inline-flex items-center gap-2 rounded-none border border-white/25 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
               >
                 או שלחו אימייל
               </Link>

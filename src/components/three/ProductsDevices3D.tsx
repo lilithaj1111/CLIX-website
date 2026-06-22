@@ -36,16 +36,16 @@ export function ProductsDevices3D({ reduced = false }: ProductsDevices3DProps) {
     >
       {/* Page-tinted fog so the devices' far edges fade into the cream
           surface instead of ending hard. */}
-      <fog attach="fog" args={["#f4e9d5", 8, 14]} />
+      <fog attach="fog" args={["#E8E6F5", 8, 14]} />
 
       <ambientLight intensity={0.55} />
       <directionalLight position={[3, 5, 4]} intensity={1.05} color="#ffffff" />
       <directionalLight
         position={[-3, -1, 2]}
         intensity={0.55}
-        color="#8CA0B3"
+        color="#845EF7"
       />
-      <pointLight position={[0, 0, 4]} intensity={0.3} color="#8CA0B3" />
+      <pointLight position={[0, 0, 4]} intensity={0.3} color="#845EF7" />
 
       <Environment preset="apartment" />
 
@@ -156,7 +156,7 @@ function Laptop3D({ reduced }: { reduced: boolean }) {
           {/* Screen UI — chart hero block (sage accent) */}
           <mesh position={[0.3, 1.4, 0.054]}>
             <planeGeometry args={[1.8, 0.55]} />
-            <meshBasicMaterial color="#8CA0B3" transparent opacity={0.78} />
+            <meshBasicMaterial color="#845EF7" transparent opacity={0.78} />
           </mesh>
 
           {/* Screen UI — 3 KPI cards */}
@@ -248,7 +248,7 @@ function Phone3D({ reduced }: { reduced: boolean }) {
         {/* Title block (emissive sage card) */}
         <mesh position={[0, 0.62, 0.094]}>
           <planeGeometry args={[0.88, 0.3]} />
-          <meshBasicMaterial color="#8CA0B3" transparent opacity={0.85} />
+          <meshBasicMaterial color="#845EF7" transparent opacity={0.85} />
         </mesh>
 
         {/* Content cards */}

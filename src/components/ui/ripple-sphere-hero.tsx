@@ -21,15 +21,15 @@ export function RippleSphereHero() {
       style={{
         background: [
           // lime wash, upper-left → fading out
-          "radial-gradient(78% 98% at 4% 26%, color-mix(in srgb, #8CA0B3 32%, transparent), transparent 58%)",
-          "radial-gradient(46% 60% at 22% 70%, color-mix(in srgb, #A9BDD0 18%, transparent), transparent 64%)",
+          "radial-gradient(78% 98% at 4% 26%, color-mix(in srgb, #845EF7 32%, transparent), transparent 58%)",
+          "radial-gradient(46% 60% at 22% 70%, color-mix(in srgb, #A99BF5 18%, transparent), transparent 64%)",
           // lime wash, right side
-          "radial-gradient(60% 82% at 98% 34%, color-mix(in srgb, #8CA0B3 28%, transparent), transparent 60%)",
-          "radial-gradient(44% 58% at 86% 80%, color-mix(in srgb, #A9BDD0 16%, transparent), transparent 64%)",
+          "radial-gradient(60% 82% at 98% 34%, color-mix(in srgb, #845EF7 28%, transparent), transparent 60%)",
+          "radial-gradient(44% 58% at 86% 80%, color-mix(in srgb, #A99BF5 16%, transparent), transparent 64%)",
           // soft cool tint, bottom-centre
-          "radial-gradient(60% 70% at 50% 96%, color-mix(in srgb, #D7DBE0 60%, transparent), transparent 64%)",
+          "radial-gradient(60% 70% at 50% 96%, color-mix(in srgb, #D7D3EC 60%, transparent), transparent 64%)",
           // baby-blue base
-          "linear-gradient(180deg, #F4F5F7 0%, #E7EAEE 52%, #D7DBE0 100%)",
+          "linear-gradient(180deg, #F3F1FB 0%, #E2DFF2 52%, #D7D3EC 100%)",
         ].join(", "),
       }}
     >
@@ -39,9 +39,9 @@ export function RippleSphereHero() {
         className="absolute inset-x-0 bottom-[2%] z-0 h-[48%]"
         style={{
           background: [
-            "radial-gradient(54% 100% at 50% 100%, color-mix(in srgb, #A9BDD0 40%, transparent), transparent 72%)",
-            "radial-gradient(40% 90% at 30% 100%, color-mix(in srgb, #8CA0B3 26%, transparent), transparent 74%)",
-            "radial-gradient(34% 80% at 72% 100%, color-mix(in srgb, #A9BDD0 20%, transparent), transparent 74%)",
+            "radial-gradient(54% 100% at 50% 100%, color-mix(in srgb, #A99BF5 40%, transparent), transparent 72%)",
+            "radial-gradient(40% 90% at 30% 100%, color-mix(in srgb, #845EF7 26%, transparent), transparent 74%)",
+            "radial-gradient(34% 80% at 72% 100%, color-mix(in srgb, #A99BF5 20%, transparent), transparent 74%)",
           ].join(", "),
           filter: "blur(22px)",
         }}
@@ -56,7 +56,7 @@ export function RippleSphereHero() {
         className="pointer-events-none absolute inset-0 z-[2]"
         style={{
           background:
-            "radial-gradient(120% 70% at 50% 22%, color-mix(in srgb, #F4F5F7 70%, transparent), transparent 58%)",
+            "radial-gradient(120% 70% at 50% 22%, color-mix(in srgb, #F3F1FB 70%, transparent), transparent 58%)",
         }}
       />
 

@@ -23,14 +23,14 @@ type ServiceConfig = {
 };
 
 const SERVICE_CONFIGS: ServiceConfig[] = [
-  { kind: "ai-agents",    tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 01
-  { kind: "whatsapp",     tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 02
-  { kind: "crm",          tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 03
-  { kind: "integrations", tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 04
-  { kind: "websites",     tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 05
-  { kind: "mobile",       tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 06
-  { kind: "software",     tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 07
-  { kind: "strategy",     tint: ["#8CA0B3", "#A9BDD0", "#8CA0B3"] }, // 08
+  { kind: "ai-agents",    tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 01
+  { kind: "whatsapp",     tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 02
+  { kind: "crm",          tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 03
+  { kind: "integrations", tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 04
+  { kind: "websites",     tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 05
+  { kind: "mobile",       tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 06
+  { kind: "software",     tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 07
+  { kind: "strategy",     tint: ["#845EF7", "#A99BF5", "#845EF7"] }, // 08
 ];
 
 function ServiceBlob({ tint }: { tint: [string, string, string] }) {

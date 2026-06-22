@@ -40,7 +40,7 @@ export function CTA() {
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="mt-5 text-[clamp(2rem,4.8vw,4.2rem)] font-bold leading-[1] tracking-[-0.04em] text-on-dark">
-                אתם מביאים את <span className="serif-italic text-[#A9BDD0]">העסק.</span>
+                אתם מביאים את <span className="serif-italic text-[#A99BF5]">העסק.</span>
                 <br />
                 אנחנו מביאים את הבינה.
               </h2>

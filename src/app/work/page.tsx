@@ -94,7 +94,7 @@ export default function WorkPage() {
                     so we show the real outcome metrics on a clean dark panel
                     instead (readable + actually useful at 375px). */}
                 <div className="md:hidden absolute inset-0 flex flex-col justify-center gap-1 bg-ink-warm px-6 py-7">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8CA0B3]">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#845EF7]">
                     {p.category} · {p.year}
                   </div>
                   <div className="mt-3 flex flex-col">
