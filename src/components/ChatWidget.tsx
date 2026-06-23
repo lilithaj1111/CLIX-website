@@ -193,7 +193,7 @@ export function ChatWidget() {
         transition={{ duration: 0.6, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.97 }}
-        className="btn-violet fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[55] inline-flex items-center gap-2 p-1.5 sm:pl-2 sm:pr-4 sm:py-2 rounded-full font-medium text-sm shadow-[0_18px_44px_-14px] shadow-accent/55"
+        className="bg-accent text-white transition-colors hover:bg-[#9A7BF8] fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[55] inline-flex items-center gap-2 p-1.5 sm:pl-2 sm:pr-4 sm:py-2 rounded-full font-medium text-sm shadow-[0_18px_44px_-14px] shadow-accent/55"
       >
         <span className="relative inline-flex w-7 h-7 rounded-full bg-paper items-center justify-center text-ink">
           <LogoMark size={16} />

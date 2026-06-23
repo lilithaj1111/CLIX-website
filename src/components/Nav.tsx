@@ -35,8 +35,8 @@ const links = [
   { href: "/services", label: "שירותים" },
   { href: "/work", label: "פרויקטים" },
   { href: "/insights", label: "תובנות" },
-  { href: "/playground", label: "פלייגראונד" },
   { href: "/about", label: "אודותינו" },
+  { href: "/contact", label: "צרו קשר" },
 ];
 
 const socials = [
@@ -116,7 +116,7 @@ export function Nav() {
 
   return (
     <header
-      style={{ fontFamily: "var(--font-google-sans)" }}
+      style={{ fontFamily: "var(--font-rubik)" }}
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
         light
           ? "border-line bg-paper"
@@ -133,7 +133,7 @@ export function Nav() {
         {/* Centre — white text links + industries dropdown */}
         <nav
           className="hidden items-center gap-7 md:flex"
-          style={{ fontFamily: "var(--font-google-sans)" }}
+          style={{ fontFamily: "var(--font-rubik)" }}
         >
           {renderLink(links[0])}
 
@@ -238,7 +238,7 @@ export function Nav() {
 
           <Link
             href="/contact"
-            className="hidden items-center rounded-none bg-[#845EF7] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8] md:inline-flex"
+            className="hidden items-center rounded-full bg-[#845EF7] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8] md:inline-flex"
           >
             בואו נתחיל
           </Link>
@@ -365,7 +365,7 @@ export function Nav() {
 
               <Link
                 href="/contact"
-                className="btn-violet mt-3 inline-flex items-center justify-center rounded-none px-5 py-3 text-sm font-medium text-on-dark"
+                className="btn-violet mt-3 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium text-on-dark"
               >
                 בואו נתחיל
               </Link>

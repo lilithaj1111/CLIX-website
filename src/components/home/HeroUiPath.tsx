@@ -7,7 +7,7 @@ import { CirculatingLines } from "@/components/CirculatingLines";
 
 export function HeroUiPath() {
   return (
-    <section className="relative flex min-h-[82vh] items-center overflow-hidden bg-[#1A1C20] pb-24 pt-32 md:pt-40">
+    <section className="relative flex min-h-dvh items-center overflow-hidden bg-[#1A1C20] pb-20 pt-28 md:pb-[calc(135px_+_18dvh)] md:pt-[190px]">
       {/* Animated circulating-lines background (canvas) */}
       <CirculatingLines className="pointer-events-none absolute inset-0 h-full w-full" />
       {/* Legibility veil so text stays readable over the motion */}
@@ -46,29 +46,24 @@ export function HeroUiPath() {
               <div className="mt-8 flex flex-wrap justify-end gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-none bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
                 >
                   בואו נתחיל <ArrowLeft className="h-4 w-4" strokeWidth={2} />
                 </Link>
                 <Link
                   href="/work"
-                  className="inline-flex items-center gap-2 rounded-none border border-white/30 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
                 >
                   צפו בעבודות שלנו <ArrowLeft className="h-4 w-4" strokeWidth={2} />
                 </Link>
               </div>
-            </Reveal>
-            <Reveal delay={0.24}>
-              <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.18em] text-on-dark/45">
-                מעל 25 עסקים · 6 שווקים · 50+ אוטומציות
-              </p>
             </Reveal>
           </div>
 
           {/* RIGHT in RTL (first child) — big brand statement */}
           <div className="order-1 text-right lg:order-1">
             <Reveal>
-              <h1 className="text-[clamp(3rem,7vw,5.6rem)] font-bold leading-[1.02] tracking-[-0.04em] text-on-dark">
+              <h1 className="whitespace-nowrap text-[clamp(2rem,7vw,5.6rem)] font-bold leading-[1.05] tracking-[-0.04em] text-on-dark md:leading-[1.02]">
                 בינה מהונדסת.
                 <br />
                 <span className="text-gradient-flow">תוצאות אמיתיות.</span>

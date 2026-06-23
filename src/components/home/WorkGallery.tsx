@@ -53,7 +53,7 @@ export function WorkGallery() {
                 <Reveal key={project.slug} delay={i * 0.08}>
                   <Link
                     href="/work"
-                    className="group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-none border border-white/10 bg-[#24272B]/80 p-7 backdrop-blur-sm transition-colors duration-300 hover:border-white/25"
+                    className="group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#24272B]/80 p-7 backdrop-blur-sm transition-colors duration-300 hover:border-white/25"
                   >
                     {/* Front — dark metric card */}
                     <div className="flex h-full flex-col transition-opacity duration-300 group-hover:opacity-0">
@@ -96,14 +96,14 @@ export function WorkGallery() {
               <div className="flex flex-wrap justify-center gap-3">
                 <Link
                   href="/work"
-                  className="inline-flex items-center gap-2 rounded-none bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
                 >
                   לכל העבודות
                   <ArrowLeft className="h-4 w-4" strokeWidth={1.9} />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-none border border-white/25 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
                 >
                   בואו נתחיל
                 </Link>

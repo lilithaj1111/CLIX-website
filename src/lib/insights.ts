@@ -31,7 +31,7 @@ export const insights: Insight[] = [
     date: "מאי 2026",
     readingMinutes: 4,
     featured: true,
-    cover: "/aipic.jpg",
+    cover: "/card-ai-agent.png",
     tint: ["#845EF7", "#A99BF5", "#A99BF5"],
     body: [
       {
@@ -70,7 +70,7 @@ export const insights: Insight[] = [
       "קל לבנות מהר. קשה לבנות כך שגם בעוד שנה לא תתחרטו. הנה מה שמפריד בין פיתוח שמחזיק מעמד לבין חוב טכני.",
     date: "אפריל 2026",
     readingMinutes: 4,
-    cover: "/development.jpg",
+    cover: "/ins-build.png",
     tint: ["#9A7BF8", "#A99BF5", "#B9AEF0"],
     body: [
       {
@@ -110,7 +110,7 @@ export const insights: Insight[] = [
       "כולם רוצים את ה-AI הנוצץ. הכסף האמיתי מסתתר בעבודה השקופה שאף אחד לא אוהב לעשות.",
     date: "מרץ 2026",
     readingMinutes: 3,
-    cover: "/automations.jpg",
+    cover: "/card-automation.jpg",
     tint: ["#3A46F0", "#845EF7", "#C8BFF3"],
     body: [
       {
@@ -146,7 +146,7 @@ export const insights: Insight[] = [
       "לפני שחותמים על פרויקט AI חמש שאלות שיחסכו לכם תקציב, זמן ואכזבה.",
     date: "פברואר 2026",
     readingMinutes: 4,
-    cover: "/picsai.jpg",
+    cover: "/ins-strategy.png",
     tint: ["#A99BF5", "#C8BFF3", "#B9AEF0"],
     body: [
       {

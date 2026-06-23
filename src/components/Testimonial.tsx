@@ -33,7 +33,7 @@ export function Testimonial() {
   };
 
   return (
-    <section className="relative overflow-hidden border-t border-white/10 bg-[#26292E] py-40">
+    <section className="relative overflow-hidden border-t border-white/10 bg-[#26292E] py-24 md:py-40">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -43,9 +43,9 @@ export function Testimonial() {
         }}
       />
       <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-10">
           {/* TEXT — first child → RIGHT in RTL */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 lg:mt-2.5">
             <p className="font-mono text-[13px] font-medium uppercase tracking-[0.2em] text-[#A99BF5]">
               בקולם של הלקוחות שלנו
             </p>
@@ -58,7 +58,7 @@ export function Testimonial() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <h2 className="mt-4 text-[clamp(3rem,6.5vw,5.2rem)] font-bold leading-[1] tracking-[-0.03em] text-on-dark">
+                <h2 className="mt-4 text-[clamp(2.25rem,6.5vw,5.2rem)] font-bold leading-[1] tracking-[-0.03em] text-on-dark">
                   {t.name}
                 </h2>
                 <p className="mt-5 text-[clamp(1.15rem,1.8vw,1.5rem)] leading-relaxed text-on-dark/60">
@@ -88,7 +88,7 @@ export function Testimonial() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative aspect-[4/5] w-full flex-1 overflow-hidden rounded-none border border-white/10 bg-ink"
+                  className="relative aspect-[4/5] w-full flex-1 overflow-hidden rounded-3xl border border-white/10 bg-ink"
                 >
                   {playing ? (
                     // eslint-disable-next-line jsx-a11y/media-has-caption
@@ -135,7 +135,7 @@ export function Testimonial() {
                 type="button"
                 onClick={() => go(1)}
                 aria-label={`הבא: ${nextT.name}`}
-                className="relative hidden w-[180px] shrink-0 self-stretch overflow-hidden rounded-none border border-white/10 opacity-55 transition-opacity duration-300 hover:opacity-90 sm:block md:w-[230px] lg:w-[270px]"
+                className="relative hidden w-[180px] shrink-0 self-stretch overflow-hidden rounded-3xl border border-white/10 opacity-55 transition-opacity duration-300 hover:opacity-90 sm:block md:w-[230px] lg:w-[270px]"
               >
                 <Image
                   src={nextT.posterSrc}

@@ -104,7 +104,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${rubik.variable} ${heebo.variable} ${assistant.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground grain">
+      <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground grain">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:btn-violet focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-medium"

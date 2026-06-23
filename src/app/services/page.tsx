@@ -94,7 +94,7 @@ export default function ServicesPage() {
               <article
                 id={s.slug}
                 key={s.slug}
-                className="relative grid md:grid-cols-2 gap-10 md:gap-16 items-center py-16 md:py-24 border-b border-line last:border-b-0"
+                className="relative grid md:grid-cols-2 gap-8 md:gap-16 items-center py-12 sm:py-16 md:py-24 border-b border-line last:border-b-0"
               >
                 {/* ── Content column ──────────────────────────────────── */}
                 <Reveal

@@ -41,7 +41,7 @@ export function ResourcesGrid() {
               <Reveal key={ins.slug} delay={i * 0.06}>
                 <Link
                   href={`/insights/${ins.slug}`}
-                  className="group block h-full rounded-none p-6 transition-all duration-300 hover:-translate-y-1.5 hover:bg-paper hover:shadow-[0_28px_56px_-22px_rgba(20,26,32,0.28)]"
+                  className="group block h-full rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:bg-paper hover:shadow-[0_28px_56px_-22px_rgba(20,26,32,0.28)]"
                 >
                   <span className="inline-flex h-12 w-12 items-center justify-center text-ink">
                     <Icon className="h-8 w-8" strokeWidth={1.4} />

@@ -125,7 +125,7 @@ export function PlatformWaves({
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
       const parent = canvas.parentElement;
       const rect = parent
         ? parent.getBoundingClientRect()
@@ -311,20 +311,52 @@ export function PlatformWaves({
       ctx.globalAlpha = 1;
     };
 
+    let io: IntersectionObserver | null = null;
+    let onVis: (() => void) | null = null;
+
     if (reduce) {
       time = 6;
       drawFrame(0);
     } else {
+      let visible = true;
+      let pageVisible = true;
       const tick = () => {
         time += 0.016;
         drawFrame(0.016);
         raf = requestAnimationFrame(tick);
       };
-      raf = requestAnimationFrame(tick);
+      const start = () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+      const stop = () => {
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      };
+      const sync = () => (visible && pageVisible ? start() : stop());
+      // Pause the loop whenever the canvas is off-screen or the tab is hidden.
+      io = new IntersectionObserver(
+        ([entry]) => {
+          visible = entry.isIntersecting;
+          sync();
+        },
+        { threshold: 0 },
+      );
+      io.observe(canvas);
+      onVis = () => {
+        pageVisible = document.visibilityState === "visible";
+        sync();
+      };
+      document.addEventListener("visibilitychange", onVis);
+      sync();
     }
 
     return () => {
-      cancelAnimationFrame(raf);
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      io?.disconnect();
+      if (onVis) document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", resize);
     };
   }, [vivid]);

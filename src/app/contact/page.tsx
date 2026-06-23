@@ -30,7 +30,7 @@ export default function ContactPage() {
 
       <section className="pb-24 md:pb-32">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
             <Reveal className="md:col-span-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 sm:gap-y-8">
                 <div>

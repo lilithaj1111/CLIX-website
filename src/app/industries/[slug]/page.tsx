@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { industries, getIndustry } from "@/lib/industries";
 import { services } from "@/lib/services";
-import { CTA } from "@/components/CTA";
 import { IndustrySystem } from "@/components/industries/IndustrySystem";
 import { IndustryIcon } from "@/components/industries/IndustryIcon";
 import {
@@ -244,8 +243,6 @@ export default async function IndustryPage({
           </div>
         </div>
       </section>
-
-      <CTA />
     </>
   );
 }

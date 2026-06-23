@@ -37,23 +37,6 @@ export function TeamSection() {
               <span className="serif-italic text-accent">בנו את זה.</span>
             </h2>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.15,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="md:col-span-4 md:col-start-9 md:pt-6"
-          >
-            <p className="text-[15px] leading-relaxed text-foreground/75">
-              צוות מקצועי של מומחי אוטומציה ופיתוח בוגרי יחידה 8200
-              והטכניון שבונים מערכות ייעודיות לארגונים שלוקחים את
-              הטכנולוגיה שלהם ברצינות.
-            </p>
-          </motion.div>
         </div>
 
         {/* ── Founder + Co-founder cards ────────────────────────────── */}

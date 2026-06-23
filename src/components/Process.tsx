@@ -62,12 +62,6 @@ export function Process() {
               משמעת של <span className="serif-italic text-accent">מפעל.</span>
             </h2>
           </Reveal>
-          <Reveal className="md:col-span-5 md:col-start-8">
-            <p className="text-foreground/70 leading-[1.7] text-[15.5px]">
-              אנחנו מנסים מהר כמו מעבדה ומשלחים במשמעת של מפעל כל שבוע יוצא
-              תוצר שאפשר להשתמש בו, לא עוד מצגת. ארבעה שלבים, מבעיה לייצור.
-            </p>
-          </Reveal>
         </div>
 
         <div className="grid md:grid-cols-4 gap-6 md:gap-5">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Reveal } from "./Reveal";
-import { Scene } from "./three/Scene";
+import { Zap, CheckCheck } from "lucide-react";
 import { Tilt } from "./Tilt";
 import { useInViewAttr } from "@/lib/useInViewAttr";
 
@@ -80,35 +80,74 @@ export function CTA() {
           </div>
 
           <Reveal direction="right" delay={0.2} className="hidden md:block md:col-span-5">
-            <Tilt max={10} scale={1.01}>
+            <Tilt max={7} scale={1.01}>
               <motion.div
                 style={{ y: sceneY, rotateZ: sceneRotate }}
-                className="grad-border glass relative rounded-2xl h-[280px] md:h-[340px] overflow-hidden"
+                className="relative overflow-hidden rounded-3xl bg-[#F4F2FB] p-5 shadow-[0_45px_90px_-40px_rgba(8,10,18,0.85)] ring-1 ring-black/5 md:p-6"
               >
-                <Scene
-                  kind="orb"
-                  density={1.1}
-                  scale={1.15}
-                  accentMix={0.7}
-                  position={[0, 0, 0]}
-                  className="absolute inset-0 pointer-events-none"
-                />
-                <div className="absolute inset-0 flex flex-col justify-between p-7 pointer-events-none">
-                  <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60">
-                    <span>זמן מענה ממוצע</span>
-                    <span>· בזמן אמת</span>
+                {/* Header — Clix identity + live status */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#A99BF5] to-[#845EF7] text-[15px] font-bold text-white shadow-sm">
+                      C
+                    </span>
+                    <div className="leading-tight">
+                      <div className="text-[15px] font-bold text-ink">Clix</div>
+                      <div className="text-[11px] font-medium text-accent">זמן מענה ממוצע</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60">
-                      פחות מיום עסקים אחד
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/45">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#3A94C5]" />
+                    בזמן אמת
+                  </span>
+                </div>
+
+                {/* Inbound — customer message (right) */}
+                <div className="mt-6 text-right">
+                  <div className="inline-block max-w-[82%] rounded-2xl rounded-tr-md bg-white px-4 py-2.5 text-right text-[13.5px] font-medium text-ink shadow-sm">
+                    שלחתי פנייה דרך האתר 👋
+                  </div>
+                  <div className="mt-1.5 px-1 text-[11px] text-foreground/40">09:14</div>
+                </div>
+
+                {/* Speed chip — the promise, literally */}
+                <div className="my-4 flex justify-center">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-accent-soft px-3.5 py-1.5 text-[12px] font-semibold text-[#5B47D6]">
+                    זמן תגובה · פחות משעתיים
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#F4A93C] text-white">
+                      <Zap className="h-3 w-3" fill="currentColor" strokeWidth={0} />
+                    </span>
+                  </span>
+                </div>
+
+                {/* Outbound — instant Clix reply (left) */}
+                <div className="text-left">
+                  <div className="inline-block max-w-[92%] rounded-2xl rounded-tl-md bg-gradient-to-br from-[#6C5CE7] to-[#845EF7] px-4 py-2.5 text-right text-[13.5px] font-medium leading-relaxed text-white shadow-md">
+                    🚀 קיבלנו! חוזרים אליכם עם הצעה מותאמת תוך שעות
+                  </div>
+                  <div className="mt-1.5 px-1 text-[11px] text-foreground/40">
+                    <span className="inline-flex items-center gap-1">
+                      <CheckCheck className="h-3.5 w-3.5 text-[#3A94C5]" strokeWidth={2.2} />
+                      נקרא · 11:01
+                    </span>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="my-5 h-px bg-ink/10" />
+
+                {/* Footer — the SLA stat */}
+                <div className="flex items-end justify-between">
+                  <div className="text-right">
+                    <div className="text-[12.5px] text-foreground/55">אנחנו חוזרים אליכם</div>
+                    <div className="mt-0.5 text-2xl font-bold tracking-tight text-accent md:text-[26px]">
+                      תוך שעות.
                     </div>
-                    <div className="mt-2 text-2xl md:text-3xl tracking-tight">
-                      אנחנו חוזרים אליכם
-                      <br />
-                      <span className="serif-italic text-accent">
-                        תוך שעות.
-                      </span>
-                    </div>
+                  </div>
+                  <div className="font-mono text-[10px] uppercase leading-[1.5] tracking-[0.18em] text-foreground/45">
+                    פחות מיום
+                    <br />
+                    עסקים אחד
                   </div>
                 </div>
               </motion.div>

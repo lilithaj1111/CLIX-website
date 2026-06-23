@@ -24,7 +24,6 @@ const InstagramIcon = ({ className }: { className?: string }) => (
 const companyLinks = [
   { href: "/work", label: "עבודות" },
   { href: "/insights", label: "תובנות" },
-  { href: "/playground", label: "פלייגראונד" },
   { href: "/about", label: "אודותינו" },
   { href: "/contact", label: "צרו קשר" },
 ];
@@ -58,7 +57,7 @@ export function Footer() {
         {/* ── Link columns (UiPath-style) ─────────────────────────────── */}
         <div className="grid grid-cols-2 gap-10 md:grid-cols-12 md:gap-8">
           {/* Brand + connect */}
-          <div className="col-span-2 md:col-span-4">
+          <div className="col-span-2 md:col-span-3">
             <Logo size={48} className="text-on-dark" />
             <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-on-dark/60">
               סוכני AI, אוטומציות, מערכות CRM ותוכנה מותאמת אישית — נבנים כדי
@@ -111,7 +110,7 @@ export function Footer() {
           </FooterCol>
 
           {/* Contact */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-3">
             <h3 className="text-[13px] font-semibold text-on-dark">צרו קשר</h3>
             <ul className="mt-4 space-y-2.5 text-[13.5px] text-on-dark/60">
               <li>
@@ -135,6 +134,30 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+
+            {/* Location map — keeps Google's natural colours (blue water, grey
+                streets), just gently muted for the dark footer, with a faint
+                brand wash on top for palette consistency. Lazy-loaded. */}
+            <div className="relative mt-5 overflow-hidden rounded-md border border-white/10 bg-[#16181B]">
+              <iframe
+                title="מפה — תל אביב"
+                src="https://maps.google.com/maps?q=32.0852999,34.7817676&z=13&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="block h-44 w-full border-0"
+                style={{ filter: "saturate(0.9) brightness(0.92) contrast(1.05)" }}
+              />
+              {/* Faint cobalt → violet → cyan wash so the natural map still reads
+                  on-brand (low opacity, normal blend — reliable everywhere). */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(130deg, color-mix(in srgb, #3A46F0 16%, transparent), color-mix(in srgb, #845EF7 10%, transparent) 50%, color-mix(in srgb, #3A94C5 16%, transparent))",
+                }}
+              />
+            </div>
           </div>
         </div>
 

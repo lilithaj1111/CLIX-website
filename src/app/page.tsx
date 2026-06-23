@@ -2,6 +2,7 @@
 // order: hero → solutions → platform/ROI → customer gallery → resources →
 // latest/news → closing CTA. Built entirely from Clix data.
 import { HeroUiPath } from "@/components/home/HeroUiPath";
+import { StackSection } from "@/components/home/StackSection";
 import { SolutionsTabs } from "@/components/home/SolutionsTabs";
 import { WorkGallery } from "@/components/home/WorkGallery";
 import { Testimonial } from "@/components/Testimonial";
@@ -14,6 +15,8 @@ export default function Home() {
     <>
       {/* Hero */}
       <HeroUiPath />
+      {/* The stack — every tool you use feeds one Clix brain */}
+      <StackSection />
       {/* Latest from Clix — news/services cards */}
       <PlatformFeatures />
       {/* Solutions by industry (vertical tabs) */}

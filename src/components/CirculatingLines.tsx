@@ -117,7 +117,7 @@ export function CirculatingLines({ className = "" }: { className?: string }) {
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
       const parent = canvas.parentElement;
       const rect = parent
         ? parent.getBoundingClientRect()
@@ -217,6 +217,9 @@ export function CirculatingLines({ className = "" }: { className?: string }) {
       raf = requestAnimationFrame(tick);
     };
 
+    let io: IntersectionObserver | null = null;
+    let onVis: (() => void) | null = null;
+
     if (reduce) {
       // Static single pass so there's still a luminous orb, no animation.
       for (let i = 0; i < 240; i++) {
@@ -224,11 +227,40 @@ export function CirculatingLines({ className = "" }: { className?: string }) {
         drawFrame();
       }
     } else {
-      raf = requestAnimationFrame(tick);
+      let visible = true;
+      let pageVisible = true;
+      const start = () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+      const stop = () => {
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      };
+      const sync = () => (visible && pageVisible ? start() : stop());
+      // Pause the loop whenever the canvas is off-screen or the tab is hidden.
+      io = new IntersectionObserver(
+        ([entry]) => {
+          visible = entry.isIntersecting;
+          sync();
+        },
+        { threshold: 0 },
+      );
+      io.observe(canvas);
+      onVis = () => {
+        pageVisible = document.visibilityState === "visible";
+        sync();
+      };
+      document.addEventListener("visibilitychange", onVis);
+      sync();
     }
 
     return () => {
-      cancelAnimationFrame(raf);
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      io?.disconnect();
+      if (onVis) document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", resize);
     };
   }, []);

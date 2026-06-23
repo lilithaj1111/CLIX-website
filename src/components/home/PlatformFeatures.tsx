@@ -65,7 +65,7 @@ export function PlatformFeatures() {
             <Reveal key={p.slug} delay={i * 0.07}>
               <Link
                 href={`/services#${p.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-none border border-white/10 bg-[#2C3037] transition-colors duration-300 hover:border-white/25"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#2C3037] transition-colors duration-300 hover:border-white/25"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-ink">
                   <Image
@@ -86,7 +86,7 @@ export function PlatformFeatures() {
                   <p className="mt-2 text-[13.5px] leading-relaxed text-on-dark/75">
                     {p.desc}
                   </p>
-                  <span className="mt-6 inline-flex h-9 w-9 items-center justify-center rounded-none border border-white/15 text-on-dark/80 transition-all duration-300 group-hover:-translate-x-1 group-hover:bg-white/10 group-hover:text-on-dark">
+                  <span className="mt-6 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-on-dark/80 transition-all duration-300 group-hover:-translate-x-1 group-hover:bg-white/10 group-hover:text-on-dark">
                     <ArrowLeft className="h-4 w-4" strokeWidth={1.9} />
                   </span>
                 </div>
@@ -99,14 +99,14 @@ export function PlatformFeatures() {
           <div className="mt-12 flex flex-wrap gap-3">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 rounded-none bg-on-dark px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-full bg-on-dark px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
             >
               גלו את השירותים
               <ArrowLeft className="h-4 w-4" strokeWidth={1.9} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-none bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#9A7BF8]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#9A7BF8]"
             >
               דברו איתנו
             </Link>

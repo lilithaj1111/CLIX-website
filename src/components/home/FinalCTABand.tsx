@@ -12,7 +12,7 @@ export function FinalCTABand() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/cta-platform-bg.jpg?v=3')" }}
+        style={{ backgroundImage: "url('/cta-platform-bg.jpg?v=4')" }}
       />
       {/* Light legibility veil so the centred copy stays readable while the
           vivid image still shows through */}
@@ -44,7 +44,7 @@ export function FinalCTABand() {
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-none bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#845EF7] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#9A7BF8]"
               >
                 קבעו שיחה
                 <ArrowLeft className="h-4 w-4" strokeWidth={1.9} />
@@ -52,7 +52,7 @@ export function FinalCTABand() {
 
               <Link
                 href="mailto:info@clixsolution.com"
-                className="inline-flex items-center gap-2 rounded-none border border-white/25 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-on-dark transition-colors hover:bg-white/10"
               >
                 או שלחו אימייל
               </Link>

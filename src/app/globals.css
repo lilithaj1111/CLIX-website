@@ -82,11 +82,11 @@
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --color-ink-warm: var(--ink-warm);
-  --font-sans: "Discovery", var(--font-assistant), var(--font-rubik), var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-tech), ui-monospace, monospace;
   --font-serif: var(--font-italic-serif), ui-serif, Georgia, serif;
-  --font-display: "Discovery", var(--font-assistant), var(--font-rubik), var(--font-display-grotesque), var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
-  --font-discovery: "Discovery", var(--font-assistant), var(--font-rubik), var(--font-discovery-tech), var(--font-display-grotesque), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+  --font-discovery: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {

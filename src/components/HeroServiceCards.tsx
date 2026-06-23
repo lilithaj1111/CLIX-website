@@ -111,7 +111,7 @@ export function HeroServiceCards({ className = "" }: { className?: string }) {
   const spread = isMobile ? 72 : 122;
 
   return (
-    <div className={`relative w-full ${className}`}>
+    <div className={`relative w-full overflow-hidden ${className}`}>
       {/* Subtle grid backdrop — fades at the edges */}
       <div
         aria-hidden

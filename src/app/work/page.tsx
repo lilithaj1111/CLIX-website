@@ -34,7 +34,7 @@ export default function WorkPage() {
               key={p.slug}
               as="article"
               delay={(i % 3) * 0.04}
-              className="grid md:grid-cols-12 gap-8 md:gap-12 py-16 md:py-24 border-b border-line items-start"
+              className="grid md:grid-cols-12 gap-6 md:gap-12 py-12 sm:py-16 md:py-24 border-b border-line items-start"
             >
               <span id={p.slug} className="absolute -mt-24" />
               <div className="md:col-span-1 font-mono text-xs text-foreground/60 md:pt-2">

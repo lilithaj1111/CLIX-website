@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { industries } from "@/lib/industries";
-import { CTA } from "@/components/CTA";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
 import { IndustryIcon } from "@/components/industries/IndustryIcon";
@@ -151,8 +150,6 @@ export default function IndustriesPage() {
           </Reveal>
         </div>
       </section>
-
-      <CTA />
     </>
   );
 }
