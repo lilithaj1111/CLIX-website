@@ -3,22 +3,32 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { CirculatingLines } from "@/components/CirculatingLines";
 
 export function HeroUiPath() {
   return (
-    <section className="relative flex min-h-dvh items-center overflow-hidden bg-[#1A1C20] pb-20 pt-28 md:pb-[calc(135px_+_18dvh)] md:pt-[190px]">
-      {/* Animated circulating-lines background (canvas) */}
-      <CirculatingLines className="pointer-events-none absolute inset-0 h-full w-full" />
-      {/* Legibility veil so text stays readable over the motion */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[#1A1C20]/45" />
-      {/* Blue-purple atmospheric glow over the swirl */}
+    <section className="relative flex min-h-dvh items-center overflow-hidden bg-[#0A0912] pb-20 pt-28 md:pb-[calc(135px_+_18dvh)] md:pt-[190px]">
+      {/* Neon brand background image */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/cta-neon-bg.jpg')" }}
+      />
+      {/* Legibility veil — a touch darker on the left where the body copy sits */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage:
-            "radial-gradient(900px 700px at 50% 46%, rgba(132, 94, 247, 0.22) 0%, transparent 60%)",
+          background:
+            "linear-gradient(to right, rgba(10,9,18,0.8), rgba(10,9,18,0.5) 50%, rgba(10,9,18,0.42))",
+        }}
+      />
+      {/* Mask the Gemini watermark in the bottom-right corner */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-0 h-52 w-52"
+        style={{
+          background:
+            "radial-gradient(circle at 100% 100%, #0A0912 0%, #0A0912 45%, transparent 78%)",
         }}
       />
 
@@ -63,10 +73,10 @@ export function HeroUiPath() {
           {/* RIGHT in RTL (first child) — big brand statement */}
           <div className="order-1 text-right lg:order-1">
             <Reveal>
-              <h1 className="whitespace-nowrap text-[clamp(2rem,7vw,5.6rem)] font-bold leading-[1.05] tracking-[-0.04em] text-on-dark md:leading-[1.02]">
-                בינה מהונדסת.
+              <h1 className="text-[clamp(2rem,7vw,5.6rem)] font-bold leading-[1.05] tracking-[-0.04em] text-on-dark md:leading-[1.02]">
+                בינה&nbsp;מהונדסת.
                 <br />
-                <span className="text-gradient-flow">תוצאות אמיתיות.</span>
+                <span className="text-gradient-flow">תוצאות&nbsp;אמיתיות.</span>
               </h1>
             </Reveal>
           </div>
